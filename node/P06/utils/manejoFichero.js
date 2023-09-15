@@ -1,4 +1,4 @@
-function escribirFichero (nombreFichero,res){
+async function escribirFichero (nombreFichero,res){
     const fs = require('fs');
 
     fs.writeFile(
