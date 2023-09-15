@@ -1,0 +1,10 @@
+form {
+    margin: auto;
+    max-width: 15rem;
+    background: rgb(171, 81, 255);
+    padding: 0,5rem;
+}
+
+table {
+    border: 1;
+}
