@@ -1,7 +1,7 @@
 function escribirFichero (nombreFichero,res){
     const fs = require('fs');
 
-    fs.writeFile(
+    fs.writeFileSync(
         nombreFichero, //nombre del fichero
         res, //información a guardar
         (err) => { //callback respuesta al finalizar
