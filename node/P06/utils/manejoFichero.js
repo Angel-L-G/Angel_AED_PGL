@@ -11,6 +11,8 @@ async function escribirFichero (nombreFichero,res){
                 console.log("se ha grabado");
         }
     );
+
+    return "Se ha grabado";
 }
 
 exports.escribir = escribirFichero;

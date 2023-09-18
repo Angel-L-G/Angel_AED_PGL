@@ -1,6 +1,6 @@
 const {escribir} = require("./utils/manejoFichero");
 const {crearTabla} = require("./modelo/tabla");
 
-escribir("tabla.txt",crearTabla(7) )
-    .then(console.log("Ok Grabado"))
-    .catch(err=> console.log(err));
+console.log(escribir("tabla.txt",crearTabla(7) )
+    .then(dato=> console.log(dato))
+    .catch(err=> console.log(err)));

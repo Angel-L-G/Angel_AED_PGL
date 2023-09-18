@@ -1,4 +1,4 @@
-var toBeGuessed= parseInt(Math.random() * 10);
+const toBeGuessed= parseInt(Math.random() * 10);
 
 function adivinar(num){
     console.log(toBeGuessed);
@@ -9,7 +9,6 @@ function adivinar(num){
     }else if(num > toBeGuessed){
         p.innerHTML += `</br>${num} es mayor que el numero oculto`;
     }else{
-        p.innerHTML += `</br>${num} es menor que el numero oculto`;    }
-
-    
+        p.innerHTML += `</br>${num} es menor que el numero oculto`;    
+    }
 }
