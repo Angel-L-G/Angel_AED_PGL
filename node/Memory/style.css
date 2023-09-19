@@ -1,0 +1,35 @@
+.container{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 30rem;
+    margin: auto;
+    width: 23rem;
+}
+
+p{
+    
+    text-align: center;
+}
+
+.botonVisible{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: rgb(233, 255, 133);
+    color: rgb(0, 0, 0);
+}
+
+.botonNoVisible{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: rgb(0, 117, 45);
+    color: rgb(0, 117, 45);
+}
+
+body{
+    background-color: burlywood;
+}
