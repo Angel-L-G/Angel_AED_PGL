@@ -1,11 +1,21 @@
 <?php
-    $num = 12345;
-    $res = "";
+    $numero = 472;
+    $numeroInicial = $numero;
+    $descomposicion = '';
+    $potencia = 1;
 
-    for ($i=0; $i < $num; $i*=10) { 
-        //$digit = $num  10;
+    while ($numero > 0) {
+        $digito = $numero % 10;
+        $descomposicion .= "$digito * $potencia";
+        $potencia *= 10;
 
-        $res .= $digit . ":" . $i . "</br>";
+        if ($numero >= 10) {
+        $descomposicion .= " + ";
+        }
+
+        $numero = (int)($numero / 10);
     }
-    echo $res;
+
+    echo "Descomposición: $descomposicion\n";
+    echo "Resultado: $numeroInicial";
 ?>

@@ -1,18 +1,15 @@
-.container{
+.grid{
     display: grid;
-    grid-template-rows: repeat(3,1fr);
-    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,auto);
+    grid-template-columns: repeat(3,auto);
     gap: 1rem;
-    padding: 1rem;
-    max-width: 30rem;
+    padding: auto;
+    max-width: 90%;
     margin: auto;
-    width: 23rem;
+    width: auto;
+    background-color: aqua;
 }
 
-p{
-    
-    text-align: center;
-}
 
 .botonVisible{
     width: 5rem;
