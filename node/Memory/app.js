@@ -9,13 +9,19 @@ function crearCasillas(){
     generateArray();
     container.setAttribute('style',`grid-template-rows: repeat(${nivel},auto); grid-template-columns: repeat(${nivel},auto);`);
     for (let index = 0; index < Math.pow(nivel,2); index++) {
-        let casilla = document.createElement("button");
+        let casilla = document.createElement("div");
         casilla.classList.add("botonNoVisible");
-        //casilla.innerText = (generateNum());
+        if(array[index]){
+            casilla.innerText = (array[index]);
+        }else{
+            casilla.innerText = (index+1);
+        }
         casilla.onclick = reveal;
         container.appendChild(casilla);
     }
     nivel += 1;
+
+    
 }
 
 let array = [];
@@ -24,7 +30,7 @@ function generateArray(){
     
     let j = parseInt(Math.trunc(Math.pow(nivel,2))/2);
     for (let i = 0; i < j; i++) {
-        array[i] = i;
+        array[i] = i+1;
     }
     let array2 = array.slice();
 
@@ -37,6 +43,7 @@ function generateArray(){
 
 let pair = 0;
 let last = null;
+let counter = 0;
 
 function reveal(evt){
     let casilla = evt.target;
@@ -45,18 +52,20 @@ function reveal(evt){
 
     console.log(casilla.innerText);
     if(pair==1){
+        if(last.innerText !== casilla.innerText){
+            casilla.classList.remove("botonVisible");
+            casilla.classList.add("botonNoVisible");
+
+            last.classList.remove("botonVisible");
+            last.classList.add("botonNoVisible");
+
+            last = null;
+        }
         pair = 0;
-    }else{
+    }else if(pair==0){
         pair = 1;
-        //last = casilla.innerText;
+        last = casilla;
+    }else{
+        
     }
-
-
-
 }
-
-/*document.createElement();
-
-function unaFuncion(evt){
-    evt.
-}*/
