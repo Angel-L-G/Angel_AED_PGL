@@ -7,6 +7,6 @@
 
     echo "<br>";
 
-    $array2 = array(2 => "mensaje",7 => "lalala!", "yepa yepa!!");
+    $array2 = [2 => "mensaje",7 => "lalala!", "yepa yepa!!"];
     var_dump($array2);
 ?>

@@ -1,8 +1,7 @@
 <?php
-    for($i=0;$i<10;$i++){
-        ${"dato" . $i} = $i;
-    }
+    $variable = 'dato';
+    $dato = 5;
+    echo $$variable.'<br>';
 
-    echo "<br> $dato3 ";
-    echo "<br> $dato8 ";
+    
 ?>
