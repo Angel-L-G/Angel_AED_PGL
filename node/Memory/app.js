@@ -19,9 +19,6 @@ function crearCasillas(){
         casilla.onclick = reveal;
         container.appendChild(casilla);
     }
-    nivel += 1;
-
-    
 }
 
 let array = [];
@@ -32,8 +29,8 @@ function generateArray(){
     for (let i = 0; i < j; i++) {
         array[i] = i+1;
     }
-    let array2 = array.slice();
 
+    let array2 = array.slice();
     array = array.concat(array2);
     
 
@@ -42,30 +39,51 @@ function generateArray(){
 }
 
 let pair = 0;
-let last = null;
+let first = null;
+let second = null;
 let counter = 0;
 
 function reveal(evt){
+
+    if(counter == parseInt(Math.pow(nivel,2)/2)){
+        counter++;
+    }
+
+    if(pair==2){
+        first.classList.remove("botonVisible");
+        first.classList.add("botonNoVisible");
+
+        second.classList.remove("botonVisible");
+        second.classList.add("botonNoVisible");
+
+        pair = 0;
+    }
+    
+
     let casilla = evt.target;
     casilla.classList.remove("botonNoVisible");
     casilla.classList.add("botonVisible");
 
     console.log(casilla.innerText);
     if(pair==1){
-        if(last.innerText !== casilla.innerText){
-            casilla.classList.remove("botonVisible");
-            casilla.classList.add("botonNoVisible");
-
-            last.classList.remove("botonVisible");
-            last.classList.add("botonNoVisible");
-
-            last = null;
-        }
         pair = 0;
+
+        if(first.innerText !== casilla.innerText){
+            pair = 2;
+            second = casilla;
+        }else{
+            counter++;
+        }
+
     }else if(pair==0){
         pair = 1;
-        last = casilla;
-    }else{
-        
+        first = casilla;
+    }
+
+    if(counter >= Math.pow(nivel,2)/2){
+        alert("Muy Buena Crack, Subes De Nivel");
+        nivel++;
+        counter = 0;
+        crearCasillas();
     }
 }
