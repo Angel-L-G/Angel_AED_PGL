@@ -7,15 +7,11 @@ let nivel = 3;
 function crearCasillas(){
     container.innerHTML = "";
     generateArray();
-    container.setAttribute('style',`grid-template-rows: repeat(${nivel},auto); grid-template-columns: repeat(${nivel},auto);`);
+    container.setAttribute('style',`grid-template-rows: repeat(${nivel},2rem); grid-template-columns: repeat(${nivel},2rem);`);
     for (let index = 0; index < Math.pow(nivel,2); index++) {
         let casilla = document.createElement("div");
         casilla.classList.add("botonNoVisible");
-        if(array[index]){
-            casilla.innerText = (array[index]);
-        }else{
-            casilla.innerText = (index+1);
-        }
+        casilla.innerText = (array[index]);
         casilla.onclick = reveal;
         container.appendChild(casilla);
     }
@@ -31,8 +27,12 @@ function generateArray(){
     }
 
     let array2 = array.slice();
+
+    if(array2.length){
+        array.push(j+1);
+    }
+
     array = array.concat(array2);
-    
 
     array.sort(function() { return Math.random() - 0.5 });
     console.log(array);
@@ -50,17 +50,20 @@ function reveal(evt){
     }
 
     if(pair==2){
-        first.classList.remove("botonVisible");
-        first.classList.add("botonNoVisible");
+        first.classList.replace("botonVisible","botonNoVisible");
+        //first.classList.add("botonNoVisible");
+        //first.classList.remove("botonVisible");
 
-        second.classList.remove("botonVisible");
-        second.classList.add("botonNoVisible");
+        second.classList.replace("botonVisible","botonNoVisible");
+        //second.classList.add("botonNoVisible");
+        //second.classList.remove("botonVisible");
 
         pair = 0;
     }
     
 
     let casilla = evt.target;
+    //casilla.classList.replace("botonNoVisible","botonVisible");
     casilla.classList.remove("botonNoVisible");
     casilla.classList.add("botonVisible");
 
@@ -84,6 +87,7 @@ function reveal(evt){
         alert("Muy Buena Crack, Subes De Nivel");
         nivel++;
         counter = 0;
+        pair = 0;
         crearCasillas();
     }
 }
