@@ -7,9 +7,32 @@
 </head>
 <body>
     <?php
-        include("PracticaExtra2.php");
 
-        var_dump($arrayNombres);
+        $sArr = file_get_contents('prueba.dad');
+        $arr = unserialize($sArr)?? [];
+
+        print_r($arr);
+        echo "<br>";
+
+        $name = $_POST["encuestado"];
+        require("fichero_array_nombres.php");
+        $puntos = [];
+
+        foreach ($arrNom as $key => $value) {
+            if(strtolower($value) != strtolower($name)){
+                $punto = $_POST[$key];
+                $puntos[$value] = $punto;
+            }
+        }
+
+        $arr[$name] = $puntos;
+
+        print_r($arr);
+        
+        $sArr = serialize($arr);
+        $f = "prueba.dad";
+
+        file_put_contents($f, $sArr);
     ?>
 </body>
 </html>

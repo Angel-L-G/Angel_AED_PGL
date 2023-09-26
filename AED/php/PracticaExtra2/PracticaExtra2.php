@@ -6,17 +6,20 @@
     <title>Document</title>
 </head>
 <body>
+    
     <form action="SecondFile.php" method="post">
+        <input type="text" placeholder="Nombre encuestado" id="encuestado" name="encuestado" >
+        <br>
         <?php
-            $arrayNombres = ["Nathan", "Saul", "Joao", "JavMarcego", "PatricioEstrellado", "Autista(Julio)", 
-                "inglaterrense(owen)", "po-po-po-poyben(Ruben)", "nauzet", "yoel", "Moi", "alberto", "cristian", "yo"];
+            require("fichero_array_nombres.php");
 
-            foreach ($arrayNombres as $key => $value) {
-                echo "<input type='number' name='$value' id='$value' placeholder='$value'/>";
+            foreach ($arrNom as $key => $value) {
+                echo "<label>$value</label>";
+                echo "<br>";
+                echo "<input type='number' name='$key' id='$key'/>";
                 echo "<br>";
             }
 
-            //$_POST["nombre"];
         ?>
         <input type="submit" value="enviar">
     </form>
