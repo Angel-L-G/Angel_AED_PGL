@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Array</title>
 </head>
 <body>
     <?php
-
-        $sArr = file_get_contents('prueba.dad');
+        $f = "prueba.dat";
+        $sArr = file_get_contents($f);
         $arr = unserialize($sArr)?? [];
 
         print_r($arr);
@@ -30,9 +30,11 @@
         print_r($arr);
         
         $sArr = serialize($arr);
-        $f = "prueba.dad";
+        
 
         file_put_contents($f, $sArr);
     ?>
+    <form action="" method="post"></form>
+    <input type="submit" value="">
 </body>
 </html>
