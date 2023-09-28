@@ -14,7 +14,7 @@
         print_r($arr);
         echo "<br>";
 
-        $name = $_POST["encuestado"];
+        $name = strtolower($_POST["encuestado"]);
         require("fichero_array_nombres.php");
         $puntos = [];
 

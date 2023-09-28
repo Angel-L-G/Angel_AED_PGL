@@ -1,20 +1,20 @@
 <?php
     $arrNom = [
-        "id01" => "JuanMa",
-        "id02" => "Javier",
-        "id03" => "Joel",
-        "id04" => "Julio",
+        "id01" => "juanma",
+        "id02" => "javier",
+        "id03" => "joel",
+        "id04" => "julio",
         "id05" => "owen",
-        "id06" => "Poyben",
-        "id07" => "Saul",
-        "id08" => "Nathan",
-        "id09" => "Nauzet",
-        "id10" => "Patricia",
-        "id11" => "Moises",
-        "id12" => "Alberto",
-        "id13" => "Cristian",
-        "id14" => "Angel",
-        "id15" => "JuanCarlos"
+        "id06" => "poyben",
+        "id07" => "saul",
+        "id08" => "nathan",
+        "id09" => "sauzet",
+        "id10" => "patricia",
+        "id11" => "moises",
+        "id12" => "alberto",
+        "id13" => "cristian",
+        "id14" => "angel",
+        "id15" => "juancarlos"
     ];
 
 ?>

@@ -10,6 +10,7 @@
     <form action="SecondFile.php" method="post">
         <input type="text" placeholder="Nombre encuestado" id="encuestado" name="encuestado" >
         <br>
+        
         <?php
             require("fichero_array_nombres.php");
 
