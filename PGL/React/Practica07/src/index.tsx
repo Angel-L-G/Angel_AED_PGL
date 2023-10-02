@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Contador from './Practica8';
+import FCContador from './Practica9';
+import Practica12 from './Practica12';
 import reportWebVitals from './reportWebVitals';
 import ComponenteApp from './ComponenteApp';
 
@@ -10,7 +12,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Contador />
+  <Practica12 />
 );
 
 // If you want to start measuring performance in your app, pass a function

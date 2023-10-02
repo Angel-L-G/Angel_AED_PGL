@@ -4,11 +4,15 @@ type Props = {}
 
 const FCContador = (props: Props) => {
     const [contador, incrementar] = useState(0);
+    if(contador > 10){
+        incrementar( contador - contador);
+    }
     return (
         <>
-            <p>Has hecho click {contador} veces</p>
+            <p>Solucion: </p>
+            <p>{contador*2}</p>
             <button onClick={() => incrementar( contador + 1) }>
-                Haz click!
+                sumar
             </button>
         </>
     );
