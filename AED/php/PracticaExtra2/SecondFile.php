@@ -34,7 +34,8 @@
 
         file_put_contents($f, $sArr);
     ?>
-    <form action="" method="post"></form>
-    <input type="submit" value="">
+    <form action="parejas.php" method="post">
+        <input type="submit" value="enviar">
+    </form>
 </body>
 </html>
