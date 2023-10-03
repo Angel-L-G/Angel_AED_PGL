@@ -8,11 +8,13 @@
 <body>
     <h1>Parejas: </h1>
     <?php
-        require("fichero_array_nombres.php");
-        $f = "prueba.dat";
+        require("../model/fichero_array_nombres.php");
+        $f = "../model/prueba.dat";
         $sArr = file_get_contents($f);
         $arr = unserialize($sArr)?? [];
         $arrDual = [];
+
+        //print_r($arr);
 
         foreach ($arr as $nomAl1 => $arrAl1) {
             $idAl1 = array_search($nomAl1,$arrNom);
@@ -22,7 +24,7 @@
                     $soloCounter++;
                     $idAl2 = array_search($nomAl2, $arrNom);
                     $arrAl2 = $arr[$nomAl2];
-                    $sum = $puntos + $arrAl2[$nomAl1];
+                    $sum = $puntos + ($arrAl2[$nomAl1]??0);
                     $idConcat = $idAl1."-".$idAl2;
                     $arrDual[$idConcat] = $sum;   
                     //echo $idAl2."<br>"; 
@@ -39,67 +41,52 @@
         arsort($arrDual);
         $idUsadas = [];
         $parejas = [];
-        //print_r($arrDual);
 
         foreach ($arrDual as $idConcat => $puntos) {
             $ids = explode("-",$idConcat);
             $idAl1 = $ids[0];
             $idAl2 = $ids[1];
             $aux;
-            /*echo $idAl1 < $idAl2;
-            echo "<br>";
-            echo $idAl1;
-            echo "<br>";
-            echo $idAl2;
-            echo "<br>";*/
-            //echo "id1: " . $idAl1 . " id2: " . $idAl2 . "<br>";
+
             if($idAl1 < $idAl2){
+                
                 //Pareja
                 $aux2;
-                $aux = array_search($idAl1,$idUsadas) ?? -1;
-                $aux2 = array_search($idAl2,$idUsadas) ?? -1;
-                echo $aux;
-                echo "<br>";
-                print_r($idUsadas);
-                echo "<br>";
-                // Problema aqui con las parejas el ultimo no se pone 
-                // y se repite el primero por el &&
-                if($aux <= 0 && $aux2 <= 0){
+                $aux = $idUsadas[$idAl1]??-1;
+                $aux2 = $idUsadas[$idAl2]??-1;
+                
+                if((!isset($aux) || $aux < 0 )&& (!isset($aux2) || $aux2 < 0)){
+
                     $nomConcat = $arrNom[$idAl1] . "-" . $arrNom[$idAl2];
+                   
                     $parejas[$idConcat] = $nomConcat;
-                    array_push($idUsadas,$idAl1);
-                    array_push($idUsadas,$idAl2);
+                   
+                    $idUsadas[$idAl1] = 1000;
+                    $idUsadas[$idAl2] = 1000;
                 }
             }else if($idAl1 == $idAl2){
                 //Solo
-                $aux = array_search($idAl1,$idUsadas) ?? -1;
-                if($aux <= 0){
-                    $parejas[$idAl1] = $arrNom[$idAl1] . " esta solo solito";
-                    array_push($idUsadas,$idAl1);
+
+                $aux = $idUsadas[$idAl1]??-1;
+                if($aux < 0){
+                    
+                    $parejas[$idAl1] = $arrNom[$idAl1] . " Decidio estar solo solito";
+                    $idUsadas[$idAl1] = 1000;
+                }
+            }else if(count($arr)-1 == count($idUsadas)){
+
+                $aux = $idUsadas[$idAl1]??-1;
+                if($aux < 0){
+
+                    $parejas[$idAl1] = $arrNom[$idAl1] . " Le toco estar solo solito";
+                    $idUsadas[$idAl1] = 1000;
                 }
             }
         }
-        echo "<br><br><br>";
+        //echo "<br><br><br>";
         print_r($parejas);
         echo "<br><br><br>";
         print_r($idUsadas);
-
-/*
-        julio [
-                a 1
-                b 2
-                c 3
-            ] 
-            
-            
-        a [
-            b 4 
-            c 1
-            julio 9
-           ]
-*/
-
-
     ?>
     
 </body>

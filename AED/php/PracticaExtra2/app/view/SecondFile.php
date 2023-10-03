@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-        $f = "prueba.dat";
+        $f = "../model/prueba.dat";
         $sArr = file_get_contents($f);
         $arr = unserialize($sArr)?? [];
 
@@ -15,7 +15,7 @@
         echo "<br>";
 
         $name = strtolower($_POST["encuestado"]);
-        require("fichero_array_nombres.php");
+        require("../model/fichero_array_nombres.php");
         $puntos = [];
 
         foreach ($arrNom as $key => $value) {
@@ -34,7 +34,7 @@
 
         file_put_contents($f, $sArr);
     ?>
-    <form action="parejas.php" method="post">
+    <form action="../controller/parejas.php" method="post">
         <input type="submit" value="enviar">
     </form>
 </body>

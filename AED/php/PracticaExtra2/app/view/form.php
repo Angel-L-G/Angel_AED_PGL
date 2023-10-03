@@ -7,12 +7,12 @@
 </head>
 <body>
     
-    <form action="SecondFile.php" method="post">
+    <form action="./SecondFile.php" method="post">
         <input type="text" placeholder="Nombre encuestado" id="encuestado" name="encuestado" >
         <br>
         
         <?php
-            require("fichero_array_nombres.php");
+            require("../model/fichero_array_nombres.php");
 
             foreach ($arrNom as $key => $value) {
                 echo "<label>$value</label>";
