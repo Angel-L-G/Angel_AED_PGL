@@ -1,5 +1,6 @@
 RewriteEngine on
 
+
 #si la ruta no coincide con un fichero físico 
 #lleva a index.php para gestionar
 RewriteCond %{REQUEST_FILENAME} !-f
