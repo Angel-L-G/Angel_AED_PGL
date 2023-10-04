@@ -16,13 +16,5 @@
                 $res -> generateRes();
             } 
         }
-
-        public static function mostrarNum($args){
-            if(file_exists("app/view/Win.php")){
-                require("app/view/Win.php");
-                $win = new Win();
-                $win -> generateWin();
-            }
-        }
     }
 ?>

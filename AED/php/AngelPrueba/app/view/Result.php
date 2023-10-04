@@ -30,9 +30,8 @@
                 $strRes = "";
 
                 if($guess == $rand){
-                    echo "<form action='adivinar/mostrarNum' method='post'>";
-                        echo "<input type='submit' value='Descubrir Num'>";
-                    echo "</form>";
+                    echo "<h2>Has Ganado</h2>";
+                    echo "<p>El numero era: $rand</p>";
                 }else{
                     if($guess < $rand){
                         $strRes = "$guess es menor que el anonimo<br>";
