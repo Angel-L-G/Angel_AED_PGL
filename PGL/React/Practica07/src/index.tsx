@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import Contador from './Practica8';
 import FCContador from './Practica9';
+import Practica10 from './Practica10';
 import Practica12 from './Practica12';
+import Practica17 from './Practica17';
 import reportWebVitals from './reportWebVitals';
 import ComponenteApp from './ComponenteApp';
 
@@ -12,7 +14,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Practica12 />
+  <FCContador />
 );
 
 // If you want to start measuring performance in your app, pass a function
