@@ -20,8 +20,7 @@
                 $randNum = -1;
 
                 if(file_exists($fileRand)){
-                    $sRandNum = file_get_contents($fileRand);
-                    $randNum = unserialize($sRandNum);
+                    $randNum = file_get_contents($fileRand);
                     if($randNum == false){
                         $randNum = -1;
                     }
@@ -29,9 +28,8 @@
 
                 if($randNum < 0){
                     $randNum = rand(1,10);
-
-                    $sRandNum = serialize($randNum);
-                    file_put_contents($fileRand, $sRandNum);
+                    
+                    file_put_contents($fileRand, $randNum);
                 }
 
             echo "</body>";

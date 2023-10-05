@@ -3,7 +3,8 @@ import Practica14 from './Practica14';
 import { userInfo } from 'os';
 
 type Props = {
-  userInput: any
+  userInput: any,
+  //const [first, setfirst] = useState(second): any
 }
 
 const Practica17 = (props: Props) => {

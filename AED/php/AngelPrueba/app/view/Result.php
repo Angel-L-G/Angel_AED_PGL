@@ -23,8 +23,7 @@
                     }
                 }
                 
-                $sRand = file_get_contents($fileRand);
-                $rand = unserialize($sRand);
+                $rand = file_get_contents($fileRand);
 
                 $guess = $_REQUEST["guess"];
                 $strRes = "";
@@ -32,6 +31,7 @@
                 if($guess == $rand){
                     echo "<h2>Has Ganado</h2>";
                     echo "<p>El numero era: $rand</p>";
+                    unlink($fileRand);
                 }else{
                     if($guess < $rand){
                         $strRes = "$guess es menor que el anonimo<br>";
@@ -49,7 +49,7 @@
                 }
 
                 echo "<form action='adivinar/index' method='post'>";
-                    echo "<input type='submit' value='Descubrir Num'>";
+                    echo "<input type='submit' value='Reiniciar'>";
                 echo "</form>";
 
             echo "</body>";

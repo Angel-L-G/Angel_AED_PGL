@@ -12,6 +12,7 @@ import Practica14 from './Practica14';
 import Practica15 from './Practica15';
 import Practica16 from './Practica16';
 import Practica17 from './Practica17';
+import EjEffect from './EjEffect';
 import reportWebVitals from './reportWebVitals';
 import ComponenteApp from './ComponenteApp';
 
@@ -19,7 +20,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Practica17 userInput={3}/>
+  <EjEffect />
 );
 
 // If you want to start measuring performance in your app, pass a function
