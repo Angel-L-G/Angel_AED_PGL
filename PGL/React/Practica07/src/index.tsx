@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Contador from './Practica8';
-import FCContador from './Practica9';
+import Tabla from './Practica9';
 import Practica10 from './Practica10';
+import ComponenteEstatico from "./Practica11";
 import Practica12 from './Practica12';
+import Practica13 from './Practica13';
+import Practica14 from './Practica14';
+import Practica15 from './Practica15';
+import Practica16 from './Practica16';
 import Practica17 from './Practica17';
 import reportWebVitals from './reportWebVitals';
 import ComponenteApp from './ComponenteApp';
@@ -14,7 +19,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <FCContador />
+  <Practica17 userInput={3}/>
 );
 
 // If you want to start measuring performance in your app, pass a function

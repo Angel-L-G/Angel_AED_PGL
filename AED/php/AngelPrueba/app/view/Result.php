@@ -48,7 +48,7 @@
                     echo "$value";
                 }
 
-                echo "<form action='adivinar' method='post'>";
+                echo "<form action='adivinar/index' method='post'>";
                     echo "<input type='submit' value='Descubrir Num'>";
                 echo "</form>";
 

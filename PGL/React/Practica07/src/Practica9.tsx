@@ -4,27 +4,26 @@ type Props = {
     tablaDel: number;
 }
 
-const [contador, incrementar] = useState(0);
-const tablaDel = 7;
+const Tabla = (props: Props) => {
+    const [contador, incrementar] = useState(0);
 
-function calcularTabla(){
-    if(contador >= 10){
-        incrementar( contador - contador);
-    }else{
-        incrementar( contador + 1);
+    function calcularTabla(){
+        if(contador >= 10){
+            incrementar( contador - contador);
+        }else{
+            incrementar( contador + 1);
+        }
     }
-}
 
-const FCContador = (props: Props) => {
     return (
-        <>
-            <p>Solucion: </p>
-            <p>{tablaDel} * {contador} = {tablaDel*2}</p>
-            <button onClick={ calcularTabla}>
+        <div className="container">
+            <p className="p">Solucion: </p>
+            <p className="p">{props.tablaDel} * {contador} = {props.tablaDel*contador}</p>
+            <button onClick={ calcularTabla} className=".button">
                 sumar
             </button>
-        </>
+        </div>
     );
 }
 
-export default FCContador;
+export default Tabla;
