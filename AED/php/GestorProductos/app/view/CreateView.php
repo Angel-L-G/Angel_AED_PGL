@@ -15,7 +15,7 @@
                 <label>Product price</label>
                 <input type="number" name="price" id="price">
                 <br/>
-                <input type="submit" value="enviar">
+                <input type="submit" value="enviar" class="button">
             </form>';
         }
     }

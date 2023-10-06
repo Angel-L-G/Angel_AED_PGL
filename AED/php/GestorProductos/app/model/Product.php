@@ -16,11 +16,11 @@
 
         public function __toString(){
             return  
-            $this->name."<br/>".
-            $this->id."<br/>".
-            $this->category."<br/>".
-            $this->stock."<br/>".
-            $this->price."<br/>";
+            "Name: ".$this->name.
+            " Id: ".$this->id."<br/>".
+            "Category: ".$this->category."<br/>".
+            "Stock: ".$this->stock."<br/>".
+            "Price: ".$this->price."<br/>";
         }
     }
 ?>
