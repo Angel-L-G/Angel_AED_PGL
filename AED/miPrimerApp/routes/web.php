@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo "normal function";
+    die();
+    //return view('welcome');
+});
+
+Route::get("/hola", function (){
+    echo "get function";
+    die();
 });
