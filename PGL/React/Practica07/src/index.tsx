@@ -17,16 +17,17 @@ import Practica15 from './components/Practica15';
 import Practica16 from './components/Practica16';
 import Practica17 from './components/Practica17';
 import Practica18 from './components/Practica18';
-import Practica19 from './components/Practica19';
-import Practica20 from './components/Practica20';*/
+import Practica19 from './components/Practica19';*/
+import Practica20 from './components/Practica20';
 import Practica21 from './components/Practica21';
+import Practica22 from './components/Practica22';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Practica21 />
+  <Practica22 />
 );
 
 // If you want to start measuring performance in your app, pass a function

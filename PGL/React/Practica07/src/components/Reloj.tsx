@@ -19,17 +19,18 @@ const Reloj = (props: Props) => {
       }, [])
       
       function tick(){
-          const newfecha = "" + new Date();
+          const newfecha = "" + new Date().toLocaleString("es-ES",{timeZone: zona });
           setfechaactual(newfecha);
           //console.log(newfecha);
       }
 
     return (
         <>
-            {zona}
-            {fecha}
+            <p>
+                {zona} - {fecha}
+            </p>
         </> 
     )
 }
 
-export default Reloj
+export default Reloj;

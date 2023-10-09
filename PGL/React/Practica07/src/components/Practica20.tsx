@@ -3,11 +3,16 @@ import '../index.css';
 
 type Props = {}
 
-
-
 const Practica20 = (props: Props) => {
+  const [strRes, setstrRes] = useState("");
   function apostar(num: number){
-    return num === rand;
+    if(num > rand){
+      setstrRes(strRes + "\r\n " + num + " es mayor que el numeor secreto");
+    }else if(num < rand){
+      setstrRes(strRes + "\r\n " + num + " es menor que el numeor secreto");
+    }else{
+      setstrRes(strRes + "\r\n " + "Buena crack has ganado el numero era: " + rand);
+    }
   }
 
   useEffect(() => {
@@ -15,9 +20,11 @@ const Practica20 = (props: Props) => {
       
     }
   }, [])
-  const [rand, setRand] = useState(0);
-  setRand(Math.floor(Math.random()*10));
+  const [rand, setRand] = useState(Math.floor(Math.random()*10));
 
+  function nuevoRand(){
+    setRand(Math.floor(Math.random()*10));
+  }  
 
   return (
     <div className='container'>
@@ -32,7 +39,9 @@ const Practica20 = (props: Props) => {
       <button onClick={() => apostar(7)} > 7 </button>
       <button onClick={() => apostar(8)} > 8 </button>
       <button onClick={() => apostar(9)} > 9 </button>
-      <p>{rand}</p>
+      
+      <button onClick={() => nuevoRand()}>Reiniciar</button>
+      <p>{strRes}</p>
     </div>
   )
 }

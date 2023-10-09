@@ -14,8 +14,9 @@ const Practica21 = (props: Props) => {
     }, [])
     
     function tick(){
-        const newfecha = ""+ new Date();
-        //setfechaactual(newfecha);
+        const newfecha = "" + new Date();
+        setfechaactual(newfecha);
+        //console.log(newfecha);
     }
 
     return (
