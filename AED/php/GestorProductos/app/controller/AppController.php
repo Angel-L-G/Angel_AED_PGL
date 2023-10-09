@@ -2,7 +2,7 @@
     class AppController{
 
         public static function index($args){
-            require("app/view/Main.php");
+            require_once("app/view/Main.php");
             $main = new MainView();
             $main -> head();
             self::loadProducts();
@@ -11,7 +11,7 @@
         }
 
         public static function loadProducts(){
-            require("app/model/Product.php");
+            require_once("app/model/Product.php");
             $f = "app/model/products.dat";
             $arr = [];
 
@@ -29,8 +29,8 @@
         }
 
         public static function showCreateProd($args){
-            require("app/view/Main.php");
-            require("app/view/CreateView.php");
+            require_once("app/view/Main.php");
+            require_once("app/view/CreateView.php");
             $main = new MainView();
             $secundary = new CreateView();
             $main -> head();
@@ -39,7 +39,7 @@
         }
 
         public static function createProd($args){
-            require("app/model/Product.php");
+            require_once("app/model/Product.php");
             $n = $_REQUEST["name"];
             $c = $_REQUEST["category"];
             $s = $_REQUEST["stock"];
@@ -65,8 +65,8 @@
         }
 
         public static function showDelProd($args){
-            require("app/view/Main.php");
-            require("app/view/DeleteView.php");
+            require_once("app/view/Main.php");
+            require_once("app/view/DeleteView.php");
             $main = new MainView();
             $secundary = new DeleteView();
             $main -> head();
@@ -75,9 +75,9 @@
         }
 
         public static function delProd($args){
-            //require("app/model/Product.php");
+            require_once("app/model/Product.php");
             $f = "app/model/products.dat";
-            $id = $_REQUEST["deleteId"];
+            $id = $_REQUEST["id"];
 
             if(file_exists($f)){
                 $sArr = file_get_contents($f);
@@ -91,10 +91,23 @@
                 file_put_contents($f,$sArr);
 
                 self::index($args);
-            }
+            }  
+        }
 
+        public static function showModProd($args){
+            require("app/view/Main.php");
+            require("app/view/ModifyView.php");
+            $main = new MainView();
+            $secundary = new ModifyView();
+            $main -> head();
+            $secundary -> form();
+            $main -> foot();
+        }
 
-            
+        public static function ModProd($args){
+            self::delProd($args);
+
+            self::createProd($args);
         }
 
         /*public static function fichero($args){

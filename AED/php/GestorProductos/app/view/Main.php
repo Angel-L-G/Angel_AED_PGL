@@ -20,6 +20,9 @@
             </form>
             <form action="app/showDelProd" method="post">
                 <input type="submit" value="Eliminar" class="button">
+            </form>
+            <form action="app/showModProd" method="post">
+                <input type="submit" value="modificar" class="button">
             </form>';
         }
 
