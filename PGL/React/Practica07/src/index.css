@@ -83,10 +83,10 @@ h2 {
 }
 
 /* Estilo para párrafos bonitos */
-.p {
+p {
   font-size: 1rem;
   line-height: 1.5;
-  color: #333; /* Cambia el color de texto según tus preferencias */
+  color: #333;
   margin-bottom: 20px;
 }
 
