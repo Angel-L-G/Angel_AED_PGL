@@ -8,13 +8,13 @@ const Practica22 = (props: Props) => {
 
   return (
     <div className='container'>
-        <p>
+        
             {
                 arr.map((valor,index) => {
-                    return <Reloj zona={valor}/>
+                    return <p><Reloj zona={valor}/></p>
                 })
             }
-        </p>
+        
     </div>
   )
 }
