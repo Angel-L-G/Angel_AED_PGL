@@ -1,8 +1,12 @@
 <?php
-    class CreateView{
+    class ModifyView{
         public static function form(){
             echo '
-            <form action="createProd" method="post">
+            <p>
+            <form action="/GestorProductos/app/ModProd" method="post">
+                <label>Product id</label>
+                <input type="number" name="id" id="id">
+                <br/>
                 <label>Product Name</label>
                 <input type="text" name="name" id="name">
                 <br/>
@@ -16,7 +20,8 @@
                 <input type="number" name="price" id="price">
                 <br/>
                 <input type="submit" value="enviar" class="button">
-            </form>';
+            </form>
+            </p>';
         }
     }
 ?>

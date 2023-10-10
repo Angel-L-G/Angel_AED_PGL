@@ -12,16 +12,19 @@
 
         public static function loadProducts(){
             require_once("app/model/Product.php");
+            require_once("app/model/FileManager.php");
+
+            $fileManager = new FileManager();
+
             $f = "app/model/products.dat";
             $arr = [];
 
             if(file_exists($f)){
-                $sArr = file_get_contents($f);
-                $arr = unserialize($sArr);
-
-                for ($i=0; $i < count($arr); $i++) { 
-                    echo "<p class='p'>".$arr[$i]."</p>";
-
+                $arr = $fileManager->readSerialized($f);
+                foreach ($arr as $key => $value) {
+                    if(isset($key)){
+                        echo "<p class='p'>".$value."</p>";
+                    }
                 }
             }else{
                 echo "No hay productos";
@@ -40,6 +43,10 @@
 
         public static function createProd($args){
             require_once("app/model/Product.php");
+            require_once("app/model/FileManager.php");
+
+            $fileManager = new FileManager();
+
             $n = $_REQUEST["name"];
             $c = $_REQUEST["category"];
             $s = $_REQUEST["stock"];
@@ -47,9 +54,10 @@
 
             $f = "app/model/products.dat";
             if(file_exists($f)){
-                $sArr = file_get_contents($f);
-                $arr = unserialize($sArr); 
-                $i = count($arr);
+                $arr = $fileManager->readSerialized($f)??[]; 
+                //if(filesize($f) == 0){
+                    $i = count($arr);
+                //}
             }else{
                 $i = 0;
             }
@@ -58,8 +66,7 @@
 
             $arr[$i] = $prod;
 
-            $sArr = serialize($arr);
-            file_put_contents($f,$sArr);
+            $fileManager->saveSerialized($f, $arr);
 
             self::index($args);
         }
@@ -76,31 +83,33 @@
 
         public static function delProd($args){
             require_once("app/model/Product.php");
+            require_once("app/model/FileManager.php");
+
+            $fileManager = new FileManager();
             $f = "app/model/products.dat";
             $id = $_REQUEST["id"];
 
             if(file_exists($f)){
-                $sArr = file_get_contents($f);
-                $arr = unserialize($sArr);
+                $arr = $fileManager->readSerialized($f);
                 
                 if (isset($arr[$id])){
                     unset($arr[$id]);
                 }
                 
-                $sArr = serialize($arr);
-                file_put_contents($f,$sArr);
+                $fileManager->saveSerialized($f, $arr);
 
                 self::index($args);
             }  
         }
 
         public static function showModProd($args){
-            require("app/view/Main.php");
-            require("app/view/ModifyView.php");
+            require_once("app/view/Main.php");
+            require_once("app/view/ModifyView.php");
             $main = new MainView();
             $secundary = new ModifyView();
             $main -> head();
             $secundary -> form();
+            self::loadProducts($args);
             $main -> foot();
         }
 
