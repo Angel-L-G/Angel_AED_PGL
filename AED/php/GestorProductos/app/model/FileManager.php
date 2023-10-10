@@ -1,19 +1,21 @@
 <?php
     class FileManager{
         public static function readSerialized(string $f){
-            
-            if(!file_exists($f)){
-                $arr = [];
-                file_put_contents($f,serialize($arr));
-            }
-
             $fp = fopen($f, "rw+");
 
-            if(filesize($f) == 0){
-                $arr = [];
-            }else{
-                $sArr = fread($fp,filesize($f));
-                $arr = unserialize($sArr);
+            while(!flock($fp,LOCK_EX)){
+                sleep(0.2);
+            }
+
+            if (flock($fp, LOCK_EX)) {  // adquirir un bloqueo exclusivo
+                if(filesize($f) == 0){
+                    $arr = [];
+                }else{
+                    $sArr = fread($fp,filesize($f));
+                    $arr = unserialize($sArr);
+                }
+            } else {
+                echo "¡No se pudo obtener el bloqueo!";
             }
 
             return $arr;
@@ -21,6 +23,10 @@
 
         public static function saveSerialized(string $f, $arr){
             $fp = fopen($f, "rw+");
+
+            while(!flock($fp,LOCK_EX)){
+                sleep(0.2);
+            }
 
             if (flock($fp, LOCK_EX)) {  // adquirir un bloqueo exclusivo
 
@@ -37,8 +43,6 @@
             }
 
             fclose($fp);
-
-            
         }
     }
 ?>

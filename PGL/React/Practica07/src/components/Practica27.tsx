@@ -1,54 +1,56 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 
+type EstadoTimer = "iniciar" | "parar";
 type Props = {}
+type NumeroRef = {
+  contador: number;
+}
 
 const Practica27 = (props: Props) => {
-    const inputSegs = useRef<HTMLInputElement>({} as HTMLInputElement);
-    const pRes = useRef<HTMLHeadingElement>({} as HTMLHeadingElement);
-    const [active, setActive] = useState<boolean>(false);
-    const [fecha, setFecha] = useState(0)
+    const inputNumber = useRef<HTMLInputElement>({} as HTMLInputElement);
+    let intervalRef = useRef<ReturnType<typeof setInterval>>();
+    const [pruebaState, setpruebaState] = useState(100);
+    const numeroRef = useRef({contador: 200} as NumeroRef);
+    const [iniciarparar,setiniciarparar ] = useState<boolean>(false);
 
-    function actualizarhora(){
-        //setFecha()
+  function tick(){
+    console.log("yepa");
+
+    numeroRef.current.contador--;
+    if(numeroRef.current.contador ==0){
+      clearInterval(intervalRef.current);
+      alert("Acabó");   
+    }else{
+      setpruebaState(numeroRef.current.contador); 
     }
-
-    useEffect(() => {
-        const timerId = setInterval(
-          tick,
-          1000
-        );
-      }, [])
+    
+  }
+ 
+ function iniciar(){
+    if( iniciarparar == false){
+      const contadorParaAlcanzar = Number(inputNumber.current.value);
+      numeroRef.current.contador = contadorParaAlcanzar;
       
-      function tick(){
-          const newfecha = "" + new Date();
-          //setFecha(newfecha);
-          //console.log(newfecha);
-      }
-
-
-    function playStop(){
-        if(!active){
-            setActive(true);
-            let inputSegsObj = inputSegs.current;
-            let num = parseInt(inputSegsObj.innerText);
-            setFecha(num);
-
-        }else{
-            setActive(false);
-
-        }
+      inputNumber.current.value=""+0;    
+      intervalRef.current = setInterval( tick,1000);
+      
+    }else{
+      clearInterval(intervalRef.current);  
     }
+    setiniciarparar(!iniciarparar);
 
-    return (
-        <div>
-            <h1>Introduzca los segundos</h1>
-            <br/>
-            <input type="number"></input>
-            <br/>
-            <button className='button' onClick={() => playStop()}>Enviar</button>
-            <h2 ref={pRes}></h2>
-        </div>
-    )
+ }
+
+  return (
+    <>
+      <h3>Prueba timer</h3>
+      
+      
+      <button onClick={iniciar}> {!iniciarparar?"iniciar":"parar"}</button>
+      <input type="text" ref={inputNumber}  />
+      <p>{pruebaState}</p>
+    </>
+  )
 }
 
 export default Practica27

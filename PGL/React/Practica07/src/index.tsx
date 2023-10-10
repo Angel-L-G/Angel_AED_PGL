@@ -23,13 +23,14 @@ import Practica21 from './components/Practica21';
 import Practica22 from './components/Practica22';
 import Practica23 from './components/Practica23';*/
 import Practica24 from './components/Practica24';
+import Practica27 from './components/Practica27';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Practica24 />
+  <Practica27 />
 );
 
 // If you want to start measuring performance in your app, pass a function
