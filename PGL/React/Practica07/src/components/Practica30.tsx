@@ -3,7 +3,7 @@ import '../index.css';
 
 type Props = {}
 
-const Practica24 = (props: Props) => {
+const Practica30 = (props: Props) => {
     const inputRef = useRef<HTMLInputElement>({} as HTMLInputElement);
     const [strRes, setstrRes] = useState("");
     const [num, setnum] = useState(-1);
@@ -46,4 +46,4 @@ const Practica24 = (props: Props) => {
     )
 }
 
-export default Practica24
+export default Practica30

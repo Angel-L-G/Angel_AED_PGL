@@ -90,6 +90,12 @@ p {
   margin-bottom: 20px;
 }
 
+p.highlight {
+  background-color: #ffffcc; /* Cambia el color de fondo de destacado según tus preferencias */
+  padding: 5px;
+  border-radius: 4px;
+}
+
 /* Estilo para listas desordenadas */
 ul {
   list-style: disc;
