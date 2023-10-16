@@ -30,6 +30,7 @@ import Practica28 from './components/Practica28';
 import Practica29 from './components/Practica29';
 import Practica30 from './components/Practica30';*/
 import Practica31 from './components/Practica31';
+import Practica32 from './components/Practica32';
 
 
 const root = ReactDOM.createRoot(
