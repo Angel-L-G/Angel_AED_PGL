@@ -22,6 +22,7 @@ function Practica31({ }: Props) {
       let aux = [];
       
       aux = [...arrDesor];
+      
       const timerID = setInterval(
         tick,
         1000
