@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 //use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\HomeController as PruebaController;
 use \App\Http\Controllers\ListarProductos;
+use \App\Http\Controllers\ControladorNumeros;
 use Illuminate\Http\Request;
 
 /*
@@ -34,13 +35,15 @@ Route::get('/', function (){ // Practica 4
     echo "Pagina Raiz response: ";
     PruebaController::P04();
     die();
-});*/
+});
 
 Route::any('/', function (){ // Practica 5
     echo "Ejecutando el controlador ListarProductos mediante: " . $_SERVER['REQUEST_METHOD'];
     ListarProductos::listar();
     die();
-});
+});*/
+
+Route::any("/nums",[ControladorNumeros::class, 'generar']);
 
 Auth::routes();
 
