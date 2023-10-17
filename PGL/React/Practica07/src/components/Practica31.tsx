@@ -2,12 +2,18 @@ import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {}
 
+type NumRef = {
+  contador: number;
+}
+
 function Practica31({ }: Props) {
     let intervalRef = useRef<ReturnType<typeof setInterval>>();
-    const [segs, setSegs] = useState<number>(0);
-    const [show, setShow] = useState<boolean>(true)
+    const numRef = useRef({contador: 0} as NumRef)
+    const [counter, setCounter] = useState<number>(0);
+    const [show, setShow] = useState<boolean>(true);
 
     const [next, setNext] = useState<number>(0);
+    const [winnedTimes, setWinnedTimes] = useState<number>(0);
     const [array, setArr] = useState<Array<number>>([]);
     const [tries, setTries] = useState<number>(0);
 
@@ -16,11 +22,21 @@ function Practica31({ }: Props) {
       arrDesor.sort(() => Math.random() - 0.5);
       let aux = [];
       
-      for (let i = 0; i < 8; i++) {
-        aux[i] = arrDesor[i];
-      }
+      aux = [...arrDesor];
+
+      const timerID = setInterval(
+        tick,
+        1000
+      );
       setArr(aux);
-    }, [])
+      setNext(0);
+
+      numRef.current.contador = 0;
+
+      if(next == 8){
+        setWinnedTimes(winnedTimes + 1);
+      }
+    }, [next == 8])
   
     function descubrir(id: number) {
       setTries(tries + 1);
@@ -38,30 +54,31 @@ function Practica31({ }: Props) {
     }
 
     function tick(){
-      if(segs < 3000){
-        console.log(segs);
-        setSegs(segs + 1);
-      }else{
-        setShow(false);
-      }
+      numRef.current.contador++;
+      setCounter(numRef.current.contador);
     }
 
     return (
       <div className='container'>
+        <div className='grid'>
         {
           array.map((valor, index) => {
-            return (    
-              (valor < next)
-              ?<button className="button" name={"" + index} id={"" + index} onClick={() => descubrir(valor)}>{valor}</button>
-              :<button className="button" name={"" + index} id={"" + index} onClick={() => descubrir(valor)}>-</button>
+            return (  
+              (numRef.current.contador < 3)//True Se muestra
+              ?<button className="button" name={"" + index} id={"" + index} onClick={() => descubrir(valor)}>{valor}</button>  
+              :(valor < next)//True Se muestra
+                ?<button className="button" name={"" + index} id={"" + index} onClick={() => descubrir(valor)}>{valor}</button>
+                :<button className="button" name={"" + index} id={"" + index} onClick={() => descubrir(valor)}>-</button>
             )
           })
         }
+        </div>
         {
           (show)??<p>{array}</p>
         }
         <p>Next: {next}</p>
         <p className='highlight'>Has Usado: {tries} Intentos</p>
+        <p>Has Ganado: {winnedTimes} Veces Crack</p>
       </div>
     )
 }
