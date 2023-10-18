@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-//use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\HomeController as PruebaController;
 use \App\Http\Controllers\ListarProductos;
 use \App\Http\Controllers\ControladorNumeros;
@@ -55,6 +55,8 @@ Route::any('/showHora', [HoraController::class, 'showHora']);
 Route::any('/horaFromBefore', [HoraController::class, 'horaFromBefore']);
 
 Route::any('/imagenes', [ImgController::class, 'showImg']);
+
+Route::any('/Pract13', [HomeController::class, 'P13']);
 
 Auth::routes();
 
