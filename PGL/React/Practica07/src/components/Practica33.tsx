@@ -1,35 +1,10 @@
 import React, { useState } from 'react'
+import usePractica33 from '../hooks/usePractica33'
 
 type Props = {}
 
 const Practica33 = (props: Props) => {
-    const [listaPrimos, setListaPrimos] = useState([]);
-
-    function processForm(evt: React.FormEvent<HTMLFormElement>){
-        evt.preventDefault();
-
-        let form = evt.currentTarget;
-        let mayor = Number(form.mayor.value);
-        let menor = Number(form.menor.value);
-        
-        let arrAux = [];
-
-        for (let i = menor; i < mayor; i++) {
-            let isPrimo:boolean = true;
-            
-            for (let j = 2; j < i; j++) {
-                if(!(i % j === 0)){
-                    isPrimo = true
-                    break;
-                }
-            }
-            
-            if(isPrimo){
-                arrAux.push(i);
-            }
-        }
-
-    }
+    const {listaPrimos, processForm}= usePractica33();
 
     return (
         <div className='container'>
@@ -40,8 +15,11 @@ const Practica33 = (props: Props) => {
                 <label>Primo Menor</label>
                 <input type="text" id="menor"/>
                 <br/>
-                <button>Send</button>
+                <button type="submit">Enviar</button>
             </form>
+
+            <textarea value={JSON.stringify(listaPrimos,null,2)} cols={100} rows={30}/>
+            <p>Numero de Primos: {listaPrimos.length}</p>
         </div>
     )
 }
