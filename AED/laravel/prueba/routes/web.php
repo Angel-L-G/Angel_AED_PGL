@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 //use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\HomeController as PruebaController;
 use \App\Http\Controllers\ListarProductos;
 use \App\Http\Controllers\ControladorNumeros;
-use Illuminate\Http\Request;
+use App\Http\Controllers\PrimosController;
+use App\Http\Controllers\HoraController;
+use App\Http\Controllers\ImgController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,14 @@ Route::any('/', function (){ // Practica 5
 });*/
 
 Route::any("/nums",[ControladorNumeros::class, 'generar']);
+
+Route::any('/primos', [PrimosController::class, 'primos']);
+
+Route::any('/showHora', [HoraController::class, 'showHora']);
+
+Route::any('/horaFromBefore', [HoraController::class, 'horaFromBefore']);
+
+Route::any('/imagenes', [ImgController::class, 'showImg']);
 
 Auth::routes();
 
