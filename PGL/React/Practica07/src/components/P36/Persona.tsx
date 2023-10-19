@@ -1,5 +1,5 @@
 class Persona{
-    id: Number = 0;
+    id: number = 0;
     nombre: String = "";
     apellido: String = "";
     altura: number = 0; 
@@ -7,13 +7,14 @@ class Persona{
     peso: number = 0;
     imc: number = 0;
 
-    construct(i: Number, n: String, ap: String, al: number, e: number, p: number) {
-        this.id = i ?? 0;
-        this.nombre = n ?? "";
-        this.apellido = ap ?? "";
-        this.altura = al ?? 0;
-        this.edad = e ?? 0;
-        this.peso = p ?? 0;
+    constructor(i: number, n: String, ap: String, al: number, e: number, p: number) {
+        this.id = i;
+        this.nombre = n;
+        this.apellido = ap;
+        this.altura = al;
+        this.edad = e;
+        this.peso = p;
+        this.calculateImc;
     }
 
     calculateImc() {
