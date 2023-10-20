@@ -3,16 +3,18 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-
-        </style>
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
     </head>
     <body class="antialiased">
-        <h1>User: {{session()->get("name")}}</h1>
-        <br/>
-        <form action="logOut">
-            <button>Log Out</button>
-        </form>
+        <div class="container">
+            <h1>User: {{session()->get("name")}}</h1>
+            <br/>
+            <div class="form-container">
+                <form action="logOut">
+                    <button type="submit" class="form-button">Log Out</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

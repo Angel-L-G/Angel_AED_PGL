@@ -8,13 +8,6 @@ use App\Http\Controllers\GestorFichero;
 use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller{
-    function showRegister(){
-        return view("Register");
-    }
-
-    function showLogin(){
-        return view("Login");
-    }
 
     function logIn(Request $request){
         $gf = new GestorFichero();
@@ -52,6 +45,7 @@ class UserController extends Controller{
         if(in_array([$name, $psswrd],$user)){
             echo "<script>alert('Usuario ya registrado')</script>";
             return view("Register");
+
         }else{
             session()->put("name",$name);
             session()->put("psswrd",$psswrd);
@@ -65,8 +59,8 @@ class UserController extends Controller{
     }
 
     function logOut(){
-        session()->forget("name");
-        session()->forget("passwrd");
+        session()->flush();
+        session()->regenerate();
 
         return view("Login");
     }

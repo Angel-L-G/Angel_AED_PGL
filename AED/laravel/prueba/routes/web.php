@@ -60,9 +60,9 @@ Route::any('/imagenes', [ImgController::class, 'showImg']); // Practica 12
 Route::any('/Pract13', [HomeController::class, 'P13']); // Practica 13-14
 
 // Practica 16 con ficheros
-Route::any('/showRegister', [UserController::class, 'showRegister']);
+Route::any('/showRegister', function() {return view("Register");});
 Route::any('/Register', [UserController::class,'Register']);
-Route::any('/showLogin', [UserController::class, 'showLogin']);
+Route::any('/showLogin', function() {return view("Login");});
 Route::any('/logIn', [UserController::class, 'logIn']);
 Route::any('/logOut', [UserController::class, 'logOut']);
 
