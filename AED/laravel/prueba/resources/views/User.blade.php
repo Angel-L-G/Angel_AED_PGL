@@ -3,15 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+
+        </style>
+
     </head>
     <body class="antialiased">
-        <img src="img/Javier.jpg" >
-        <img src="img/Joel.png" >
-        <img src="img/juanma.jpg" >
-        <img src="img/Julio.jpg" >
-        <img src="img/Owen.jpg" >
-        <img src="img/patricia.jpg" >
-
-        <p>{{ csrf_token() }}</p>
+        <h1>User: {{session()->get("name")}}</h1>
+        <br/>
+        <p>Description: {{session()->get("desc")}}</p>
     </body>
 </html>

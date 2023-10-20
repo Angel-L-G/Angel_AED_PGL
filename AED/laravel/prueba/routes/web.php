@@ -10,6 +10,7 @@ use \App\Http\Controllers\ControladorNumeros;
 use App\Http\Controllers\PrimosController;
 use App\Http\Controllers\HoraController;
 use App\Http\Controllers\ImgController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +55,12 @@ Route::any('/showHora', [HoraController::class, 'showHora']);
 
 Route::any('/horaFromBefore', [HoraController::class, 'horaFromBefore']);
 
-Route::any('/imagenes', [ImgController::class, 'showImg']);
+Route::any('/imagenes', [ImgController::class, 'showImg']); // Practica 12
 
-Route::any('/Pract13', [HomeController::class, 'P13']);
+Route::any('/Pract13', [HomeController::class, 'P13']); // Practica 13-14
+
+Route::any('/Pract15', [UserController::class, 'P15']);
+Route::any('/showUser', [UserController::class, 'showUser']);
 
 Auth::routes();
 
