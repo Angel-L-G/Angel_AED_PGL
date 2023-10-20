@@ -11,6 +11,8 @@
     <body class="antialiased">
         <h1>User: {{session()->get("name")}}</h1>
         <br/>
-        <p>Description: {{session()->get("desc")}}</p>
+        <form action="logOut">
+            <button>Log Out</button>
+        </form>
     </body>
 </html>
