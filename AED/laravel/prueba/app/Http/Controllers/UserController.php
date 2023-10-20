@@ -29,32 +29,39 @@ class UserController extends Controller{
         $name = $request->input("name");
         $psswrd = $request->input("psswrd");
 
-        foreach ($user as $key => $value) {
-            if(in_array([$name, $psswrd],$user)){
-                session()->put("name",$name);
-                session()->put("psswrd",$psswrd);
 
-                return view("User");
-            }
+        if(in_array([$name, $psswrd],$user)){
+            session()->put("name",$name);
+            session()->put("psswrd",$psswrd);
+
+            return view("User");
         }
+
 
         return view("Login");
     }
 
     function register(Request $request){
-        $users = session()->get("users") ?? [];
+        $gf = new GestorFichero();
+        $user = $gf->leerFichero();
+
         $name = $request->input("name");
         $psswrd = $request->input("psswrd");
 
-        session()->put("name",$name);
-        session()->put("psswrd",$psswrd);
-        $users[] = [$name, $psswrd];
 
-        $gf = new GestorFichero();
+        if(in_array([$name, $psswrd],$user)){
+            echo "<script>alert('Usuario ya registrado')</script>";
+            return view("Register");
+        }else{
+            session()->put("name",$name);
+            session()->put("psswrd",$psswrd);
+            $users[] = [$name, $psswrd];
 
-        $gf->guardarFichero($users);
+            $gf->guardarFichero($users);
 
-        return view("User");
+            return view("User");
+        }
+
     }
 
     function logOut(){
