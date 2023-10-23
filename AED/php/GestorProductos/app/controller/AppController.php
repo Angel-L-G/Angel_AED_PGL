@@ -5,12 +5,12 @@
             require_once("app/view/Main.php");
             $main = new MainView();
             $main -> head();
-            self::loadProducts();
+            self::loadProducts($args);
             $main -> loadButtons();
             $main -> foot();
         }
 
-        public static function loadProducts(){
+        public static function loadProducts($args){
             require_once("app/model/Product.php");
             require_once("app/model/FileManager.php");
 
@@ -68,7 +68,8 @@
 
             $fileManager->saveSerialized($f, $arr);
 
-            self::index($args);
+            header("Location: /practicas/GestorProductos/");
+            //self::index($args);
         }
 
         public static function showDelProd($args){
@@ -98,7 +99,8 @@
                 
                 $fileManager->saveSerialized($f, $arr);
 
-                self::index($args);
+                header("Location: /practicas/GestorProductos/");
+                //self::index($args);
             }  
         }
 

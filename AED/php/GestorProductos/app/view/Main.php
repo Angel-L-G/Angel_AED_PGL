@@ -7,7 +7,7 @@
                 echo "<meta charset='UTF-8'>";
                 echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
                 echo "<title>Intento</title>";
-                echo '<link rel="stylesheet" href="css/index.css" />';
+                echo '<link rel="stylesheet" href="css/index2.css" />';
             echo "</head>";
             echo "<body>";
                 echo "<div class='container'>";
