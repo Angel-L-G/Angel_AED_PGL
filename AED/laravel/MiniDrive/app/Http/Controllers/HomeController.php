@@ -21,23 +21,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    //public function index(){
-
-    //}
-
-    public static function show(Request $request){
-        $arrColors = session()->get("arrColors");
-        print_r($arrColors);
-        if(!(isset($arrColors)) && $arrColors == null){
-            echo "bbbbbbbb";
-            $arrColors = [];
-        }else{
-            echo "aaaaaaaaaa";
-            $color = $request->input("color");
-            array_push($arrColors,$color);
-        }
-        session()->put("arrColors",$arrColors);
-
-        return view("colorView",compact($arrColors));
+    public function index()
+    {
+        return view('home');
     }
 }

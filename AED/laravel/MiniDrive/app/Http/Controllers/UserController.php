@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\GestorFichero;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
-use User;
 use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller{
 
     function logIn(Request $request){
-        $gf = new GestorFichero();
+        require_once("app\Models\User.php");$gf = new GestorFichero();
         $users = $gf->leerFichero();
 
         if(session()->has("user")){
@@ -37,6 +38,7 @@ class UserController extends Controller{
     }
 
     function register(Request $request){
+        
         $gf = new GestorFichero();
         $users = $gf->leerFichero();
 
@@ -50,15 +52,16 @@ class UserController extends Controller{
             echo "<script>alert('Usuario ya registrado')</script>";
             return view("Register");
 
-        }else{
-            session()->put("user",$u);
-
-            $newUsers[] = [$nick, $u];
-
-            $gf->guardarFichero($newUsers);
-
-            return view("Home");
         }
+        session()->put("user",$u);
+
+        $newUsers[] = [$nick, $u];
+
+        $gf->guardarFichero($newUsers);
+
+        Storage::makeDirectory("/".$nick , 0755, true);
+        
+        return view("Home");
     }
 
     function logOut(){
