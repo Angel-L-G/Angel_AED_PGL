@@ -12,10 +12,13 @@
                 <form action="logIn" method="post">
                     @csrf
                     <label class="form-label">Name</label>
-                    <input type="text" name="name" class="form-input" required>
+                    <input type="text" name="name" required>
+                    <br/>
+                    <label class="form-label">Nick</label>
+                    <input type="text" name="nick" required>
                     <br/>
                     <label class="form-label">password</label>
-                    <input type="password" name="psswrd" class="form-input" required>
+                    <input type="password" name="psswrd" required>
                     <br/>
                     <button type="submit" class="form-button">Log In</button>
                 </form>
