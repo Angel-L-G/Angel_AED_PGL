@@ -10,6 +10,11 @@ namespace App\Models;
             $this->name = $name;
             $this->psswrd = $psswrd;
         }
-    }
 
+        public function __toString(){
+            return "nick: " . $this->nick 
+            . " name: " . $this->name
+            . " psswrd: " . $this->psswrd;
+        }
+    }
 ?>

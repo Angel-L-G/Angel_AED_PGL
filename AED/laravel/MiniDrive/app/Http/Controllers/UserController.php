@@ -12,12 +12,12 @@ use function PHPUnit\Framework\isEmpty;
 class UserController extends Controller{
 
     function logIn(Request $request){
-        require_once("app\Models\User.php");$gf = new GestorFichero();
+        $gf = new GestorFichero();
         $users = $gf->leerFichero();
 
         if(session()->has("user")){
             if(!isEmpty(session()->has("user"))){
-                return view("Home");
+                return view("Files");
             }
         }
 
@@ -30,7 +30,7 @@ class UserController extends Controller{
         if(in_array([$nick, $u],$users)){
             session()->put("user",$u);
 
-            return view("Home");
+            return view("Files");
         }
 
         echo "<script>alert('Error al iniciar sesion')</script>";
@@ -48,7 +48,7 @@ class UserController extends Controller{
 
         $u = new User($nick, $name, $psswrd);
 
-        if($users[$nick] == null){
+        if(isset($users[$nick])){
             echo "<script>alert('Usuario ya registrado')</script>";
             return view("Register");
 
