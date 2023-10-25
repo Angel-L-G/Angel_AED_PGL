@@ -9,12 +9,12 @@
     <body class="antialiased">
         <div class="container">
             <div class="form-container">
-                <form action="Upload" method="post">
+                <form action="Upload" enctype="multipart/form-data" method="post">
                     @csrf
                     <label for="fichero">sube fichero</label>
                     <input type="file" name="myfile" id="fichero">
                     <br/>
-                    <button type="submit" class="form-button">Log In</button>
+                    <button type="submit" class="form-button">Upload</button>
                 </form>
             </div>
             <a href="/showFiles">Home</a>

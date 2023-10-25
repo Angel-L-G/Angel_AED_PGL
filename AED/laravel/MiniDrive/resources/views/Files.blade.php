@@ -8,14 +8,17 @@
     </head>
     <body class="antialiased">
         <div class="container">
-            @if({{$ficheros}} != null)
+            <h2>{{session()->get("user")}}</h2>
+            @isset($ficheros)
                 <ul>
                 @foreach($ficheros as $fich)
-                    <li>$fich</li>
+                    <li><a href="/Download/{{ basename($fich) }}">{{ $fich }}</a></li>
+                    <a href="/Delete" class="Button">Delete</a>
                 @endforeach
                 </ul>
-            @endif
-        </div>
+            @endisset
 
+            <a href="/showUpload">Upload Files</a>
+        </div>
     </body>
 </html>

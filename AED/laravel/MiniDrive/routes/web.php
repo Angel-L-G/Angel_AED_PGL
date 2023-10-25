@@ -24,9 +24,11 @@ Route::any('/showLogin', function() {return view("Login");});
 Route::any('/logIn', [UserController::class, 'logIn']);
 Route::any('/logOut', [UserController::class, 'logOut']);
 
-Route::any('/ShowUpload', function() {return view("Upload");});
-Route::any('/Upload', [FileController::class, 'UploadFile']);
+Route::any('/showUpload', function() {return view("Upload");});
+Route::any('/Upload', [FileController::class, 'uploadFile']);
 Route::any('/showFiles', [FileController::class, 'showFiles']);
+Route::any('/Delete/{fich}', [FileController::class, 'deleteFile']);
+Route::any('/Download/{fich}', [FileController::class, 'downloadFile']);
 
 Auth::routes();
 

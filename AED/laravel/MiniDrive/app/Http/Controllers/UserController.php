@@ -17,7 +17,8 @@ class UserController extends Controller{
 
         if(session()->has("user")){
             if(!isEmpty(session()->has("user"))){
-                return view("Files");
+                $ficheros = [];
+                return view("Files",compact($ficheros));
             }
         }
 
@@ -30,7 +31,8 @@ class UserController extends Controller{
         if(in_array([$nick, $u],$users)){
             session()->put("user",$u);
 
-            return view("Files");
+            $ficheros = [];
+            return view("Files",compact($ficheros));
         }
 
         echo "<script>alert('Error al iniciar sesion')</script>";
@@ -61,7 +63,8 @@ class UserController extends Controller{
 
         Storage::makeDirectory("/".$nick , 0755, true);
         
-        return view("Home");
+        $ficheros = [];
+        return view("Files",compact($ficheros));
     }
 
     function logOut(){
