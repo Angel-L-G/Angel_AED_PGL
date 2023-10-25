@@ -27,14 +27,16 @@ class fileController extends Controller{
     }
 
     function deleteFile($fich){
-        if( Storage::exists($fich)){
-            Storage::delete($fich);
-        }
+        $u = session()->get('user');
+        echo storage_path("app/".$u->nick."/".$fich);
+
+        Storage::delete(storage_path("app/".$u->nick."/".$fich));
+
     }
 
-    function DownloadFile($fich){
-        if( Storage::exists($fich)){
-            return response()->download(storage_path($fich));
-        }
+    function downloadFile($fich, Request $request){
+        $u = session()->get('user');
+
+        return response()->download(storage_path("app/".$u->nick."/".$fich));
     }
 }

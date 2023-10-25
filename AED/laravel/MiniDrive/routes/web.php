@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FileController;
 
+use App\Http\Controllers\PersonaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::any("/personas/mostrar", [PersonaController::class, "obtenerPersonas"]);
+Route::any("/personas/save", [PersonaController::class, "guardarPersonas"]);
+Route::any("/personas/update", [PersonaController::class, "updatePersona"]);
+Route::any("/personas/delete", [PersonaController::class, "deletePersona"]);

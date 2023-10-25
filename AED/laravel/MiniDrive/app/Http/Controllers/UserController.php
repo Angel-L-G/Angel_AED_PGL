@@ -29,10 +29,10 @@ class UserController extends Controller{
         $u = new User($nick, $name, $psswrd);
 
         if(in_array([$nick, $u],$users)){
-            session()->put("user",$u);
+            session()->put("User",$u);
 
             $ficheros = [];
-            return view("Files",compact($ficheros));
+            return redirect()->action([FileController::class, 'showFiles']);
         }
 
         echo "<script>alert('Error al iniciar sesion')</script>";
@@ -40,7 +40,7 @@ class UserController extends Controller{
     }
 
     function register(Request $request){
-        
+
         $gf = new GestorFichero();
         $users = $gf->leerFichero();
 
@@ -62,7 +62,7 @@ class UserController extends Controller{
         $gf->guardarFichero($newUsers);
 
         Storage::makeDirectory("/".$nick , 0755, true);
-        
+
         $ficheros = [];
         return view("Files",compact($ficheros));
     }

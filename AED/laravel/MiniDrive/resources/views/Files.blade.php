@@ -12,8 +12,8 @@
             @isset($ficheros)
                 <ul>
                 @foreach($ficheros as $fich)
-                    <li><a href="/Download/{{ basename($fich) }}">{{ $fich }}</a></li>
-                    <a href="/Delete" class="Button">Delete</a>
+                    <li><a href="/Download/{{basename($fich)}}">{{ $fich }}</a></li>
+                    <a href="/Delete/{{basename($fich)}}" class="Button">Delete</a>
                 @endforeach
                 </ul>
             @endisset
