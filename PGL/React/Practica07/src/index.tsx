@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-/*
-import App from './components/App';
+
+/*import App from './components/App';
 import EjEffect from './components/EjEffect';
 import ComponenteApp from './components/ComponenteApp';
 import Contador from './components/Practica8';
@@ -28,13 +28,15 @@ import Practica26 from './components/Practica26';
 import Practica27 from './components/Practica27';
 import Practica28 from './components/Practica28';
 import Practica29 from './components/Practica29';
-import Practica30 from './components/Practica30';*/
+import Practica30 from './components/Practica30';
 import Practica31 from './components/P31/Practica31';
 import Practica32 from './components/Practica32';
-import Practica33 from './components/Practica33';
+import Practica33 from './components/Practica33';*/
 
 import Practica35 from './components/P35/Practica35';
 import Practica36 from './components/P36/Practica36';
+
+import Practica38 from './components/P38/Practica38';
 
 import Practica40 from './components/P40-(PokeApi)/ListPokemonCard';
 
@@ -43,7 +45,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Practica40 />
+  <Practica38 />
 );
 
 // If you want to start measuring performance in your app, pass a function

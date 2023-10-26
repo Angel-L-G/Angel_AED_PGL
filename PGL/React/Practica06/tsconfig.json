@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "../Practica07/src/components/P38/Reloj.tsx"  ]
 }
