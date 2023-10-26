@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Practica11 from '../Practica11';
 import RelojesMundiales from './RelojesMundiales';
 
 function Practica38() {
-    return (
+    return(
         <div className="App">
             <BrowserRouter>
                 <h3>Mi primer router</h3>
