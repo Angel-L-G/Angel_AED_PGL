@@ -56,7 +56,7 @@
             if(file_exists($f)){
                 $arr = $fileManager->readSerialized($f)??[]; 
                 //if(filesize($f) == 0){
-                    $i = count($arr);
+                    $i = end($arr)->id+1;
                 //}
             }else{
                 $i = 0;
@@ -68,7 +68,8 @@
 
             $fileManager->saveSerialized($f, $arr);
 
-            header("Location: /practicas/GestorProductos/");
+            header("Location: /GestorProductos");
+            //header("Location: /practicas/GestorProductos/");
             //self::index($args);
         }
 
@@ -99,7 +100,8 @@
                 
                 $fileManager->saveSerialized($f, $arr);
 
-                header("Location: /practicas/GestorProductos/");
+                header("Location: /GestorProductos");
+                //header("Location: /practicas/GestorProductos");
                 //self::index($args);
             }  
         }
@@ -121,46 +123,28 @@
             self::createProd($args);
         }
 
-        /*public static function fichero($args){
-            $f = "app/model/prueba.txt";
+        /*
+        public function filtrar($args) {
+            $filtro = $args["filtro"];
+            $array = [];
 
-            if(file_exists($f)){
-                $counter = file_get_contents($f);
-                $counter++;
-                file_put_contents($f,$counter);
-            }else{
-                file_put_contents($f,$counter);
-            }
-
-            $fp = fopen($f, "rw+");
-
-            if (flock($fp, LOCK_EX)) {  // adquirir un bloqueo exclusivo
-                if(filesize($f) == 0){
-                    $counter = 0;
-                }else{
-                    $counter = fread($fp,filesize($f));
+            foreach (self::$productos as $key => $value) {
+                if (strpos($value["nombre"], $filtro)) {
+                    $array[] = $value;
                 }
-                
-                $counter = $counter??0;
-                $counter++;
-
-                ftruncate($fp, 0);      // truncar el fichero
-                rewind($fp);
-
-                fwrite($fp, $counter);
-                //fflush($fp);            // volcar la salida antes de liberar el bloqueo
-                flock($fp, LOCK_UN);    // libera el bloqueo
-            } else {
-                echo "¡No se pudo obtener el bloqueo!";
             }
 
-            fclose($fp);
-
-            echo "\n";
-            echo $counter;
-            echo "\n";
-            
+            if (file_exists('app/view/Listar.php')) {
+                require_once('app/view/Listar.php');
+                require_once('app/view/Main.php');
+                $vista = new MainView();
+                $vistaListar = new ListarView();
+                $vista->head();
+                $vistaListar->listar($array);
+                $vista->foot();
+            } else {
+                echo "el fichero no existe";
+            }
         }*/
-
     }
 ?>
