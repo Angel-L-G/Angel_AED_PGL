@@ -3,7 +3,7 @@
         public static function form(){
             echo '
             <p>
-            <form action="/GestorProductos/app/ModProd" method="post">
+            <form action="ModProd" method="post">
                 <label>Product id</label>
                 <input type="number" name="id" id="id">
                 <br/>

@@ -68,7 +68,7 @@
 
             $fileManager->saveSerialized($f, $arr);
 
-            header("Location: /GestorProductos");
+            header("Location: ../");
             //header("Location: /practicas/GestorProductos/");
             //self::index($args);
         }
@@ -100,7 +100,7 @@
                 
                 $fileManager->saveSerialized($f, $arr);
 
-                header("Location: /GestorProductos");
+                header("Location: ../");
                 //header("Location: /practicas/GestorProductos");
                 //self::index($args);
             }  

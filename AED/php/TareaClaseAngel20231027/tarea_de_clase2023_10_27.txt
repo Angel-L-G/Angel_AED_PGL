@@ -1,0 +1,87 @@
+Tarea de clase 2023-10-27 mvc textos
+
+La app permite crear textos ( al estilo de anotaciones ) a los diferentes usuarios
+
+NO se preocupen de sesiones, ni de que un usuario pueda ver o borrar lo de los demás
+
+
+Habrá un formulario con un input para autor, otro para título y un textarea para contenido
+Cuando el formulario lo procesa el servidor  debe crear un objeto de la clase llamada: Anotacion,  Entrada o similar 
+que mantendrá la información recibida más la fechaactual ( autor, titulo, contenido, fechaactual)
+
+Luego a nivel de manejo de fichero se agregará una nueva línea CSV en un formato similar a:
+autor;titulo;contenido;fechaactualunix
+
+
+
+Como manejar la fecha actual unix está descrito en una nota
+
+
+
+
+Rutás como mínimo, que debe tener la app:
+
+//muestra un formulario con un input para autor, otro para título y un textarea para el contenido
+textos/crear  
+
+
+//devuelve todos los textos
+textos/mostrar 
+
+//devuelve los textos de ana
+textos/mostrar?autor=ana
+
+
+
+//borrar todos los textos de un autor
+textos/borrar?autor=ana
+
+
+
+Recordar que, si bien el router envía en: $args como primer parámetro la subruta de path y el resto de parámetros después
+( recuperables con: $args["nombreparametro"]) y que de esta forma separamos más nuestro controlador del manejo de request de php
+Siempre se puede seguir usando los habituales: $_GET, $_POST y $_REQUEST si se prefiere
+
+
+
+
+
+
+
+Nota 1: es posible que sea preciso pasar por: htmlspecialchars() o por htmlentities() el contenido
+del textarea cuando se quiera mostrar el texto introducido.
+
+
+Nota: manejo  de fechas:
+//tomar fecha actual en unix epoch
+$unixtime = time();
+
+//convertir en una string fecha un unix epoch
+$fechaFormateada = date('Y-m-d H:i:s', $unixtime);
+
+echo "fecha actual en unix epoch: $unixtime <br>";
+echo "Fecha formateada: $fechaFormateada <br>";
+
+
+//convertir una string fecha en unix epoch
+$unixtimeFromString = strtotime($fechaFormateada);
+echo "pasamos el texto anterior de nuevo a unix epoch: $unixtimeFromString";
+
+
+
+Calificaciones:
+
+SI NO HAY SEPARACIÓN CORRECTA MVC ( especialmente importante separar la parte de manejo de ficheros del controller) se suspende -> 2.5
+Recordar: Para una correcta separación los datos del formulario pasan a una clase del modelo. Debe haber una clase específica para
+la interacción con ficheros. Esa clase ( por ejemplo GestorFichero )  si va a guardar en el fichero lo que recibe es un objeto del 
+modelo ( objeto Anotacion, Entrada o el nombre que le hayas dado )
+
+2.5 entregar
+
+5 se consigue crear textos desde el formulario con las rutas solicitadas y queda almacenado en un fichero csv el contenido de todos los formularios enviados junto con su correspondiente fecha
+
+7.5 se consigue mostrar todos los textos con sus datos al ejecutar la ruta: textos/mostrar
+
+10 funcionan correctamente las otras dos rutas: 
+textos/mostrar?autor=ana
+textos/borrar?autor=ana
