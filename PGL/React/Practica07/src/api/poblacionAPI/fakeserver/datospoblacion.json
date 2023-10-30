@@ -5252,17 +5252,6 @@
         }
       ],
       "foto": "zaragoza.png"
-    },
-    {
-      "id": "abc",
-      "nombre": "abc",
-      "datos": [
-        {
-          "anio": 1234,
-          "poblacion": 12345
-        }
-      ],
-      "foto": "abc.png"
     }
   ]
 }
