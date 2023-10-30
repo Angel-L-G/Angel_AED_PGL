@@ -45,12 +45,14 @@ import Practica42 from './components/P42/Practica42';
 import Practica43 from './components/P43/Practica43';
 import Practica44 from './components/P44/Practica44';
 
+import Practica47 from './components/P47/Practica47';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <Practica44 />
+  <Practica47 />
 );
 
 // If you want to start measuring performance in your app, pass a function
