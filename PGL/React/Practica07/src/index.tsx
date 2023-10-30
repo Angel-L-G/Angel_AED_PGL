@@ -39,14 +39,16 @@ import Practica36 from './components/P36/Practica36';
 import Practica38 from './components/P38/Practica38';
 
 import Practica40 from './components/P40-(PokeApi)/ListPokemonCard';
-import Practica41 from './components/P41/Practica41';
+import ApiCapitales from './components/Adicional2';
+import Practica42 from './components/P42/Practica42';
+import Practica43 from './components/P43/Practica43';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <Practica41 />
+  <Practica43 />
 );
 
 // If you want to start measuring performance in your app, pass a function
