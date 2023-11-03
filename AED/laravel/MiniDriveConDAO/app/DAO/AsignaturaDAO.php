@@ -15,7 +15,7 @@
         }
 
         public function save($asignatura){
-            $error = false;
+            $res = null;
 
             $tablename = AsignaturaContract::TABLE_NAME;
             $colid = AsignaturaContract::COL_ID;
@@ -40,15 +40,21 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                if($filasAfectadas > 0){
+                    $res = $asignatura;
+                    $id = $this->myPDO->lastInsertId();
+                    $res->setId($id);
+                }
+
+                //echo "<br>afectadas: ".$filasAfectadas;
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
-                $error = true;
+
             }
             $stmt = null;
 
-            return $error;
+            return $res;
         }
 
         public function update($asignatura){
@@ -96,8 +102,9 @@
 
             while ($row = $stmt->fetch()){
                 $a = new Asignatura();
-                $a->setId($row[AsignaturaContract::COL_ID]);
+
                 $a->setNombre($row[AsignaturaContract::COL_NOMBRE]);
+                $a->setId($row[AsignaturaContract::COL_ID]);
                 $a->setCurso($row[AsignaturaContract::COL_CURSO]);
 
                 $asignatura[] = $a;
@@ -126,17 +133,15 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
-
                 $this->myPDO->commit();
 
-                if($row = $stmt->fetch()){
+                while($row = $stmt->fetch()){
+                    echo "aaaaaaaaaaaaaaaaaaa";
                     $a = new Asignatura();
                     $a->setId($row[AsignaturaContract::COL_ID]);
                     $a->setNombre($row[AsignaturaContract::COL_NOMBRE]);
                     $a->setCurso($row[AsignaturaContract::COL_CURSO]);
                 }
-                return $a;
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";

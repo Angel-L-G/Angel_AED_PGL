@@ -15,7 +15,7 @@
         }
 
         public function save($alumno){
-            $error = false;
+            $res = null;
 
             $tablename = AlumnoContract::TABLE_NAME;
             $colid = AlumnoContract::COL_ID;
@@ -42,15 +42,22 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+
+
+                if($filasAfectadas > 0){
+                    $res = $alumno;
+                    $id = $this->myPDO->lastInsertId();
+                    $res->setDni($id);
+                }
+
+                //echo "<br>afectadas: ".$filasAfectadas;
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
-                $error = true;
             }
             $stmt = null;
 
-            return $error;
+            return $res;
         }
 
         public function update($alumno){
@@ -81,14 +88,14 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                //echo "<br>afectadas: ".$filasAfectadas;
 
                 $this->myPDO->commit();
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
                 $this->myPDO->rollback();
-                $error = false;
+                $error = true;
             }
             return $error;
         }
@@ -132,7 +139,7 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                //echo "<br>afectadas: ".$filasAfectadas;
 
                 $this->myPDO->commit();
 
@@ -173,7 +180,7 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                //echo "<br>afectadas: ".$filasAfectadas;
 
                 $this->myPDO->commit();
 
