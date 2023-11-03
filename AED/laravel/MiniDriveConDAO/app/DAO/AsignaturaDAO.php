@@ -60,7 +60,7 @@
             $colcurso = AsignaturaContract::COL_CURSO;
 
             $sql = "UPDATE $tablename SET $colnombre = :nombre,
-            $colcurso = :curso WHERE $colid = $asignatura->id";
+            $colcurso = :curso WHERE $colid = $asignatura->getId()";
 
             try{
                 $this->myPDO->beginTransaction();
@@ -109,7 +109,7 @@
             $a = null;
 
             $tablename = AsignaturaContract::TABLE_NAME;
-            $colid = AsignaturaContract::COL_ID; 
+            $colid = AsignaturaContract::COL_ID;
 
             $sql = "SELECT * FROM $tablename WHERE $colid = :id";
 
@@ -149,7 +149,7 @@
             $error = false;
 
             $tablename = AsignaturaContract::TABLE_NAME;
-            $colid = AsignaturaContract::COL_ID;     
+            $colid = AsignaturaContract::COL_ID;
 
             $sql = "DELETE FROM $tablename WHERE $colid = :id";
 

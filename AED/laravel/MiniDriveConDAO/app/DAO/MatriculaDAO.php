@@ -2,29 +2,28 @@
     namespace App\DAO;
 
     use App\DAO\ICrud;
-    use App\Models\Alumno;
-    use App\Contracts\AlumnoContract;
+    use App\Models\Matricula;
+    use App\Contracts\MatriculaContract;
     use Exception;
     use PDO;
 
-    class AlumnoDAO implements ICrud{
+    class MatriculaDAO implements ICrud{
         private $myPDO;
 
         public function __construct($pdo){
             $this->myPDO = $pdo;
         }
 
-        public function save($alumno){
+        public function save($matricula){
             $error = false;
 
-            $tablename = AlumnoContract::TABLE_NAME;
-            $colid = AlumnoContract::COL_ID;
-            $colnombre = AlumnoContract::COL_NOMBRE;
-            $colap = AlumnoContract::COL_APELLIDOS;
-            $colfecha = AlumnoContract::COL_FECHA_NAC;
+            $tablename = MatriculaContract::TABLE_NAME;
+            $colid = MatriculaContract::COL_ID;
+            $coldni = MatriculaContract::COL_DNI;
+            $colyear = MatriculaContract::COL_YEAR;
 
-            $sql = "INSERT INTO $tablename ($colid, $colnombre, $colap, $colfecha)
-            VALUES(:id, :nombre, :apellidos, :fecha)";
+            $sql = "INSERT INTO $tablename ($colid, $coldni, $colyear)
+            VALUES(:id, :nombre, :curso)";
 
             try{
                 $this->myPDO->beginTransaction();
@@ -32,10 +31,9 @@
 
                 $stmt->execute(
                     [
-                        ':id' => $alumno->getDni(),
-                        ':nombre' => $alumno->getNombre(),
-                        ':apellidos' => $alumno->getApellidos(),
-                        ':fecha' => $alumno->getFechaNac()
+                        ':id' => $matricula->getIdmatricula(),
+                        ':dni' => $matricula->getDni(),
+                        ':year' => $matricula->getYear()
                     ]
                 );
 
@@ -53,18 +51,16 @@
             return $error;
         }
 
-        public function update($alumno){
+        public function update($matricula){
             $error = false;
 
-            $tablename = AlumnoContract::TABLE_NAME;
-            $colid = AlumnoContract::COL_ID;
-            $colnombre = AlumnoContract::COL_NOMBRE;
-            $coleap = AlumnoContract::COL_APELLIDOS;
-            $colfecha = AlumnoContract::COL_FECHA_NAC;
+            $tablename = MatriculaContract::TABLE_NAME;
+            $colid = MatriculaContract::COL_ID;
+            $coldni = MatriculaContract::COL_DNI;
+            $colyear = MatriculaContract::COL_YEAR;
 
-
-            $sql = "UPDATE $tablename SET $colnombre = :nombre,
-            $coleap = :apellidos, $colfecha = :fecha WHERE $colid = $alumno->getDni()";
+            $sql = "UPDATE $tablename SET $coldni = :dni,
+            $colyear = :year WHERE $colid = $matricula->getIdmatricula()";
 
             try{
                 $this->myPDO->beginTransaction();
@@ -72,9 +68,8 @@
 
                 $stmt->execute(
                     [
-                        ':nombre' => $alumno->getNombre(),
-                        ':apellidos' => $alumno->getApellidos(),
-                        ':fecha' => $alumno->getFechaNac()
+                        ':dni' => $matricula->getDni(),
+                        ':year' => $matricula->getYear()
                     ]
                 );
 
@@ -94,28 +89,27 @@
         }
 
         public function findAll(){
-            $stmt = $this->myPDO->prepare("SELECT * FROM ".AlumnoContract::TABLE_NAME);
+            $stmt = $this->myPDO->prepare("SELECT * FROM ".MatriculaContract::TABLE_NAME);
             $stmt->setFetchMode(PDO::FETCH_ASSOC); //devuelve array asociativo
             $stmt->execute(); // Ejecutamos la sentencia
-            $alumnos = [];
+            $asignatura = [];
 
             while ($row = $stmt->fetch()){
-                $a = new Alumno();
-                $a->setDni($row[AlumnoContract::COL_ID]);
-                $a->setNombre($row[AlumnoContract::COL_NOMBRE]);
-                $a->setApellidos($row[AlumnoContract::COL_APELLIDOS]);
-                $a->setFechaNac($row[AlumnoContract::COL_FECHA_NAC]);
+                $a = new Matricula();
+                $a->setIdmatricula($row[MatriculaContract::COL_ID]);
+                $a->setDni($row[MatriculaContract::COL_DNI]);
+                $a->setYear($row[MatriculaContract::COL_YEAR]);
 
-                $alumnos[] = $a;
+                $asignatura[] = $a;
             }
-            return $alumnos;
+            return $asignatura;
         }
 
         public function findById($id){
             $a = null;
 
-            $tablename = AlumnoContract::TABLE_NAME;
-            $colid = AlumnoContract::COL_ID;
+            $tablename = MatriculaContract::TABLE_NAME;
+            $colid = MatriculaContract::COL_ID;
 
             $sql = "SELECT * FROM $tablename WHERE $colid = :id";
 
@@ -137,11 +131,10 @@
                 $this->myPDO->commit();
 
                 if($row = $stmt->fetch()){
-                    $a = new Alumno();
-                    $a->setDni($row[AlumnoContract::COL_ID]);
-                    $a->setNombre($row[AlumnoContract::COL_NOMBRE]);
-                    $a->setApellidos($row[AlumnoContract::COL_APELLIDOS]);
-                    $a->setFechaNac($row[AlumnoContract::COL_FECHA_NAC]);
+                    $a = new Matricula();
+                    $a->setIdmatricula($row[MatriculaContract::COL_ID]);
+                    $a->setDni($row[MatriculaContract::COL_DNI]);
+                    $a->setYear($row[MatriculaContract::COL_YEAR]);
                 }
                 return $a;
 
@@ -155,8 +148,8 @@
         public function delete($id){
             $error = false;
 
-            $tablename = AlumnoContract::TABLE_NAME;
-            $colid = AlumnoContract::COL_ID;
+            $tablename = MatriculaContract::TABLE_NAME;
+            $colid = MatriculaContract::COL_ID;
 
             $sql = "DELETE FROM $tablename WHERE $colid = :id";
 
@@ -184,5 +177,7 @@
             }
             return $error;
         }
+
     }
+
 ?>
