@@ -64,6 +64,21 @@ class AsignaturaDAOTest extends TestCase{
         assertTrue( (1 == $obtenido->getId() ) );
     }
 
+    public function test_4_update(){
+        $pdo = DB::getPdo();
+
+        $asignaturaDAO = new AsignaturaDAO($pdo);
+
+        $a = new Asignatura();
+        $a->setId(1);
+        $a->setNombre("Updated");
+        $a->setCurso("Updated");
+
+        $bool = $asignaturaDAO->update($a);
+
+        assertTrue(!$bool);
+    }
+
     //public function
 }
 

@@ -66,7 +66,7 @@
             $colcurso = AsignaturaContract::COL_CURSO;
 
             $sql = "UPDATE $tablename SET $colnombre = :nombre,
-            $colcurso = :curso WHERE $colid = $asignatura->getId()";
+            $colcurso = :curso WHERE $colid = :id";
 
             try{
                 $this->myPDO->beginTransaction();
@@ -75,14 +75,18 @@
                 $stmt->execute(
                     [
                         ':nombre' => $asignatura->getNombre(),
-                        ':curso' => $asignatura->getCurso()
+                        ':curso' => $asignatura->getCurso(),
+                        ':id' => $asignatura->getId()
                     ]
                 );
 
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                //echo "<br>afectadas: ".$filasAfectadas;
+                //if(){
+
+                //}
 
                 $this->myPDO->commit();
 

@@ -2,9 +2,9 @@
     namespace App\Models;
 
     class Asignatura{
-        private $id;
-        private $nombre;
-        private $curso;
+        public $id;
+        public $nombre;
+        public $curso;
 
         public function getId(){
             return $this->id;

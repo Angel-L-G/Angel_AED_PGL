@@ -71,7 +71,8 @@
 
 
             $sql = "UPDATE $tablename SET $colnombre = :nombre,
-            $coleap = :apellidos, $colfecha = :fecha WHERE $colid = $alumno->getDni()";
+            $coleap = :apellidos, $colfecha = :fecha WHERE
+            $colid = :dni";
 
             try{
                 $this->myPDO->beginTransaction();
@@ -81,7 +82,8 @@
                     [
                         ':nombre' => $alumno->getNombre(),
                         ':apellidos' => $alumno->getApellidos(),
-                        ':fecha' => $alumno->getFechaNac()
+                        ':fecha' => $alumno->getFechaNac(),
+                        ':dni' => $alumno->getDni()
                     ]
                 );
 

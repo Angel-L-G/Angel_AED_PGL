@@ -65,4 +65,20 @@ class AlumnoDaoTest extends TestCase{
 
         assertTrue( ("12345678Z" == $obtenido->getDni() ) );
     }
+
+    public function test_4_update(){
+        $pdo = DB::getPdo();
+
+        $asignaturaDAO = new AlumnoDAO($pdo);
+
+        $a = new Alumno();
+        $a->setDni("12345678A");
+        $a->setNombre("Updated");
+        $a->setApellidos("Updated");
+        $a->setFechaNac(000000000);
+
+        $bool = $asignaturaDAO->update($a);
+
+        assertTrue(!$bool);
+    }
 }
