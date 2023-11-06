@@ -2,8 +2,11 @@
     namespace App\DAO;
 
     use App\DAO\ICrud;
+    use App\DAO\MatriculaDAO;
     use App\Models\Alumno;
     use App\Contracts\AlumnoContract;
+    use App\Contracts\MatriculaContract;
+    use App\Contracts\Asignatura_MatriculaContract;
     use Exception;
     use PDO;
 
@@ -161,34 +164,45 @@
             return $a;
         }
 
-        public function delete($id){
+        public function delete($dni){
             $error = false;
 
             $tablename = AlumnoContract::TABLE_NAME;
             $colid = AlumnoContract::COL_ID;
 
-            $sql = "DELETE FROM $tablename WHERE $colid = :id";
+            $sqlAlum = "DELETE FROM $tablename WHERE $colid = :id";
 
+            echo "1";
             try{
-                $this->myPDO->beginTransaction();
-                $stmt = $this->myPDO->prepare($sql);
 
-                $stmt->execute(
-                    [
-                        ':id' => $id
-                    ]
-                );
+                $stmt = $this->myPDO->prepare($sqlAlum);
+                echo "2";
+                $matriculaDAO = new MatriculaDAO($this->myPDO);
+
+                $matr = $matriculaDAO->findByDni($dni);
+                echo "3";
+                var_dump($matr);
+                if($matr != null){
+                    echo "4";
+                    foreach ($matr as $key => $value) {
+                        echo "5";
+                        $matriculaDAO->delete($value->getIdmatricula());
+                        echo "6";
+                    }
+                }
+                
+                echo "7";
 
                 //si filasAfectadas > 0 => hubo éxito consulta
+               
                 $filasAfectadas = $stmt->rowCount();
 
                 //echo "<br>afectadas: ".$filasAfectadas;
 
-                $this->myPDO->commit();
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
-                $this->myPDO->rollback();
+                //$this->myPDO->rollback();
                 $error = true;
             }
             return $error;

@@ -1,9 +1,11 @@
 <?php
     namespace App\Models;
 
+    use App\Models\Alumno;
+
     class Matricula{
         private $idmatricula;
-        private $dni;
+        private Alumno $alumno;
         private $year;
         private $asignaturas = [];
         
@@ -15,12 +17,12 @@
             $this->idmatricula = $id;
         }
 
-        public function getDni(){
-            return $this->dni;
+        public function getAlumno(){
+            return $this->alumno;
         }
 
-        public function setDni($d){
-            $this->dni = $d;
+        public function setAlumno($a){
+            $this->alumno = $a;
         }
 
         public function getYear(){

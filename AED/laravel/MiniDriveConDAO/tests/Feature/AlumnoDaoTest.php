@@ -39,15 +39,15 @@ class AlumnoDaoTest extends TestCase{
     public function test_2_save(): void {
         $pdo = DB::getPdo();
 
-        $AlumnoDAO = new AlumnoDAO($pdo);
+        $alumnoDAO = new AlumnoDAO($pdo);
         $a = new Alumno();
         $a->setNombre("unaasignatura");
         $a->setApellidos("unapellidos");
         $a->setFechaNac(1234567890);
 
-        $alumno = $AlumnoDAO->save($a);
-        $alumnos = $AlumnoDAO->findAll();
-        echo count($alumnos);
+        $alumno = $alumnoDAO->save($a);
+        $alumnos = $alumnoDAO->findAll();
+        
         assertTrue(count($alumnos) == 4);
         assertTrue(null != $alumno->getDni());
         assertTrue($alumno->getDni() > 0 );
@@ -57,9 +57,9 @@ class AlumnoDaoTest extends TestCase{
     public function test_3_findbyid(): void {
         $pdo = DB::getPdo();
 
-        $asignaturaDAO = new AlumnoDAO($pdo);
+        $alumnoDAO = new AlumnoDAO($pdo);
 
-        $obtenido = $asignaturaDAO->findById("12345678Z");
+        $obtenido = $alumnoDAO->findById("12345678Z");
 
         assertTrue(isset($obtenido));
 
@@ -69,7 +69,7 @@ class AlumnoDaoTest extends TestCase{
     public function test_4_update(){
         $pdo = DB::getPdo();
 
-        $asignaturaDAO = new AlumnoDAO($pdo);
+        $alumnoDAO = new AlumnoDAO($pdo);
 
         $a = new Alumno();
         $a->setDni("12345678A");
@@ -77,8 +77,17 @@ class AlumnoDaoTest extends TestCase{
         $a->setApellidos("Updated");
         $a->setFechaNac(000000000);
 
-        $bool = $asignaturaDAO->update($a);
+        $bool = $alumnoDAO->update($a);
+        assertTrue(!$bool);
+    }
 
+    public function test_5_delete(){
+        $pdo = DB::getPdo();
+
+        $alumnoDAO = new AlumnoDAO($pdo);
+
+        $bool = $alumnoDAO->delete("12345678Z");
+        echo "Bool = ".!$bool;
         assertTrue(!$bool);
     }
 }

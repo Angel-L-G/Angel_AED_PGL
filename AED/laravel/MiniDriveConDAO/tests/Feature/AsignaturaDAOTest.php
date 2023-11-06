@@ -79,6 +79,12 @@ class AsignaturaDAOTest extends TestCase{
         assertTrue(!$bool);
     }
 
-    //public function
+    public function test_5_delete(){
+        $pdo = DB::getPdo();
+
+        $asignaturaDAO = new AsignaturaDAO($pdo);
+
+        assertTrue(!($asignaturaDAO->delete(1)));
+    }
 }
 
