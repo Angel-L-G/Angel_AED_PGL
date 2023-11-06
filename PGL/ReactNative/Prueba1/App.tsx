@@ -26,6 +26,9 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Practica04 from './src/screens/Practica04-5';
+import Practica07 from './src/screens/Practica07';
+import Practica09 from './src/screens/Practica09';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -38,6 +41,17 @@ function Section({ children, title }: SectionProps): JSX.Element {
     );
 }
 
+function App(): JSX.Element {
+    const [contador,setContador] = useState(0);
+
+    return (
+        <Practica09 />
+    );
+}
+
+export default App;
+
+/*
 function App(): JSX.Element {
     const [contador,setContador] = useState(0);
 
@@ -55,5 +69,4 @@ function App(): JSX.Element {
         </View>
     );
 }
-
-export default App;
+*/
