@@ -29,5 +29,11 @@
         public function setCurso($c){
             $this->curso = $c;
         }
+
+        public function __toString(){
+            return "Nombre: " . $this->nombre . "<br/>" .
+            " Curso: " . $this->curso . "<br/>" .
+            " Id: " . $this->id;
+        }
     }
 ?>

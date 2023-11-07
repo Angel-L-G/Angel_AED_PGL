@@ -4,6 +4,7 @@
     use App\DAO\ICrud;
     use App\Models\Asignatura;
     use App\Contracts\AsignaturaContract;
+    use App\Contracts\Asignatura_MatriculaContract;
     use Exception;
     use PDO;
 
@@ -160,7 +161,12 @@
             $tablename = AsignaturaContract::TABLE_NAME;
             $colid = AsignaturaContract::COL_ID;
 
+            $tablenameSecundary = Asignatura_MatriculaContract::TABLE_NAME;
+            $colIdSecun = Asignatura_MatriculaContract::COL_ID_ASIGNATURA;
+
             $sql = "DELETE FROM $tablename WHERE $colid = :id";
+
+            $sqlSecun = "DELETE FROM $tablenameSecundary WHERE $colIdSecun = :idSecun";
 
             try{
                 $this->myPDO->beginTransaction();
@@ -176,6 +182,14 @@
                 $filasAfectadas = $stmt->rowCount();
 
                 echo "<br>afectadas: ".$filasAfectadas;
+
+                $stmt = $this->myPDO->prepare($sqlSecun);
+
+                $stmt->execute(
+                    [
+                        ':idSecun' => $id
+                    ]
+                );
 
                 $this->myPDO->commit();
 

@@ -129,22 +129,19 @@
             $stmt = $this->myPDO->prepare("SELECT * FROM ".MatriculaContract::TABLE_NAME);
             $stmt->setFetchMode(PDO::FETCH_ASSOC); //devuelve array asociativo
             $stmt->execute(); // Ejecutamos la sentencia
-            $asignatura = [];
+            $asignaturas = [];
 
             while ($row = $stmt->fetch()){
                 $a = new Matricula();
-                echo "1";
                 $alumnoDAO = new AlumnoDAO($this->myPDO);
-                echo "2";
                 $alum = $alumnoDAO->findById($row[MatriculaContract::COL_DNI]);
-                //echo "$alum";
                 $a->setAlumno($alum);
                 $a->setYear($row[MatriculaContract::COL_YEAR]);
                 $a->setIdmatricula($row[MatriculaContract::COL_ID]);
-                echo "4";
-                $asignatura[] = $a;
+                $asignaturas[] = $a;
             }
-            return $asignatura;
+
+            return $asignaturas;
         }
 
         public function findById($id){

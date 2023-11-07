@@ -1,5 +1,13 @@
 <?php
 $pdo->exec("
+create table users(
+    nick CHARACTER,
+    password CHARACTER(255),
+
+    CONSTRAINT pk_users PRIMARY KEY(nick)
+)
+");
+$pdo->exec("
 create table alumnos(
     dni CHARACTER(20),
     nombre CHARACTER(50),

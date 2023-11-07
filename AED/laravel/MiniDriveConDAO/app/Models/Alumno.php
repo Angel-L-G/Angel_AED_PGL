@@ -38,5 +38,12 @@
         public function setFechaNac($f){
             $this->fechaNac = $f;
         }
+
+        public function __toString(){
+            return "Nombre: " . $this->nombre .
+            " Dni: " . $this->dni . "<br/>" .
+            " Apellidos: " . $this->apellidos . "<br/>" .
+            " Fecha: " . $this->fechaNac;
+        }
     }
 ?>

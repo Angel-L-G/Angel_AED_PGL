@@ -40,5 +40,18 @@
         public function setAsignaturas($arr){
             $this->asignaturas = $arr;
         }
+
+        public function __toString(){
+            $asinaturasStr = "";
+            foreach ($this->asignaturas as $key => $value) {
+                $asinaturasStr .= $value->getNombre() . "<br/>";
+            }
+
+            return "Alumno: " .
+            $this->alumno->getnombre() . " " . $this->alumno->getApellidos() .
+            " Id: " . $this->getIdmatricula() . 
+            " Year:" . $this->getYear() . 
+            " Asignaturas: " . $asinaturasStr;
+        }
     }
 ?>
