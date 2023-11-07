@@ -13,7 +13,9 @@
                 <form action="" method="post">
                     <label>Year:</label><input type="text" id="nombre" name="nombre"><br/>
                     <label>Dni Alumno:</label><input type="text" id="curso" name="curso"><br/>
-                    <!-- Falta los checkbox de las asignaturas -->
+                    <!--@foreach($asignaturas as $a)
+                        <input type="checkbox" name="asignaturas[]" id="asignaturas[]">
+                    @endforeach-->
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
                 </form>
             </div>
