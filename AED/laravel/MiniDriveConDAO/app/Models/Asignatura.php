@@ -31,8 +31,8 @@
         }
 
         public function __toString(){
-            return "Nombre: " . $this->nombre . "<br/>" .
-            " Curso: " . $this->curso . "<br/>" .
+            return "Nombre: " . $this->nombre .
+            " Curso: " . $this->curso .
             " Id: " . $this->id;
         }
     }

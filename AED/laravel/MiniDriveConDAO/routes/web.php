@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\AsignaturaController;
+use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +32,22 @@ Route::any("/personas/delete", [PersonaController::class, "deletePersona"]);
 */
 
 Auth::routes();
-Route::any('/',[MatriculaController::class, 'index']);
+Route::any('/',[MatriculaController::class, 'showIndex']);
 
+Route::any('/asignaturas',[AsignaturaController::class, 'index']);
+Route::any('/createAsig',[AsignaturaController::class, 'create']);
+Route::any('/deleteAsig',[AsignaturaController::class, 'delete']);
+Route::any('/updateAsig',[AsignaturaController::class, 'update']);
+Route::any('/showAsig',[AsignaturaController::class, 'show']);
+
+Route::any('/alumnos',[AlumnoController::class, 'index']);
+Route::any('/createAlum',[AlumnoController::class, 'create']);
+Route::any('/deleteAlum',[AlumnoController::class, 'delete']);
+Route::any('/updateAlum',[AlumnoController::class, 'update']);
+Route::any('/showAlum',[AlumnoController::class, 'show']);
+
+Route::any('/matriculas',[MatriculaController::class, 'index']);
+Route::any('/createMatr',[MatriculaController::class, 'create']);
+Route::any('/deleteMatr',[MatriculaController::class, 'delete']);
+Route::any('/updateMatr',[MatriculaController::class, 'update']);
+Route::any('/showMatr',[MatriculaController::class, 'show']);

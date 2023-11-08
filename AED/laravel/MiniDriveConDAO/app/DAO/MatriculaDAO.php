@@ -6,7 +6,11 @@
     use App\Models\Matricula;
     use App\Contracts\MatriculaContract;
     use App\Contracts\Asignatura_MatriculaContract;
-    use Exception;
+    use App\Contracts\AsignaturaContract;
+    use App\DAO\AsignaturaDAO;
+use App\Http\Controllers\AsignaturaController;
+use App\Models\Asignatura;
+use Exception;
     use PDO;
 
     class MatriculaDAO implements ICrud{
@@ -17,27 +21,27 @@
         }
 
         public function save($matricula){
-            $a = null;
-            echo "SAAAAVVVEEE::::: ";
+            $m = null;
+
             $tablename = MatriculaContract::TABLE_NAME;
             $colid = MatriculaContract::COL_ID;
             $coldni = MatriculaContract::COL_DNI;
             $colyear = MatriculaContract::COL_YEAR;
-            echo "1";
+
             $tablenameSecundary = Asignatura_MatriculaContract::TABLE_NAME;
             $colIdMatr = Asignatura_MatriculaContract::COL_ID_MATRICULA;
             $colIdAsig = Asignatura_MatriculaContract::COL_ID_ASIGNATURA;
-            echo "2";
+
             $sql = "INSERT INTO $tablename ($colid, $coldni, $colyear)
             VALUES(:id, :dni, :year)";
-            echo "3";
+
             $sqlSecundary = "INSERT INTO $tablenameSecundary ($colIdMatr, $colIdAsig)
             VALUES(:idMatr,:idAsig)";
-            echo "4";
+
             try{
                 $this->myPDO->beginTransaction();
                 $stmt = $this->myPDO->prepare($sql);
-                echo "5";
+
                 $stmt->execute(
                     [
                         ':id' => $matricula->getIdmatricula(),
@@ -45,17 +49,17 @@
                         ':year' => $matricula->getYear()
                     ]
                 );
-                echo "6";
+
                 //si filasAfectadas > 0 => hubo éxito consulta
-                //$filasAfectadas = $stmt->rowCount();
+                $filasAfectadas = $stmt->rowCount();
 
                 //echo "<br>afectadas: ".$filasAfectadas;
 
                 $asignaturas = $matricula->getAsignaturas();
                 $stmt = $this->myPDO->prepare($sqlSecundary);
-                echo "7";
+
                 foreach ($asignaturas as $key => $value) {
-                    echo "8";
+
                     $stmt->execute(
                         [
                             ':idMatr' => $matricula->getIdmatricula(),
@@ -64,27 +68,19 @@
                     );
                 }
                 
-                echo "9";
-                while($row = $stmt->fetch()){
-                    $a = new Matricula();
-                    echo "-10";
-                    $alumnoDAO = new AlumnoDAO($this->myPDO);
-                    $alum = $alumnoDAO->findById($row[MatriculaContract::COL_DNI]);
-                    $a->setAlumno($alum);
-                    echo "-11";
-                    //$a->setAsignaturas($row[MatriculaContract::COL]);
-                    echo "-12";
-                    $a->setYear($row[MatriculaContract::COL_YEAR]);
-                    $a->setIdmatricula($row[MatriculaContract::COL_ID]);
-                }
-                echo "-13";
+                $this->myPDO->commit();
+                $m = $matricula;
+                $id = $this->myPDO->lastInsertId();
+                $m->setIdmatricula($id);
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
+                echo "Error: " . $ex->getMessage();
+                $this->myPDO->rollback();
             }
             $stmt = null;
 
-            return $a;
+            return $m;
         }
 
         public function update($matricula){
@@ -95,13 +91,43 @@
             $coldni = MatriculaContract::COL_DNI;
             $colyear = MatriculaContract::COL_YEAR;
 
+            $tablenameSecundary = Asignatura_MatriculaContract::TABLE_NAME;
+            $colIdMatr = Asignatura_MatriculaContract::COL_ID_MATRICULA;
+            $colIdAsig = Asignatura_MatriculaContract::COL_ID_ASIGNATURA;
+
             $sql = "UPDATE $tablename SET $coldni = :dni,
             $colyear = :year WHERE $colid = :id";
 
             try{
                 $this->myPDO->beginTransaction();
-                $stmt = $this->myPDO->prepare($sql);
+                $stmt = $this->myPDO->prepare(
+                    "Delete from " .
+                        Asignatura_MatriculaContract::TABLE_NAME . 
+                    " where " . 
+                        Asignatura_MatriculaContract::COL_ID_MATRICULA . 
+                        " = :id"
+                );
 
+                $asignaturas = $matricula->getAsignaturas();
+                foreach ($asignaturas as $key => $value) {
+                    $stmt->execute([
+                        ':id' => $matricula->getIdmatricula()
+                    ]);
+                }
+
+                $sqlSecundary = "INSERT INTO $tablenameSecundary ($colIdMatr, $colIdAsig)
+                VALUES(:idMatr,:idAsig)";
+                $stmt = $this->myPDO->prepare($sqlSecundary);
+                foreach ($asignaturas as $key => $value) {
+                    $stmt->execute(
+                        [
+                            ':idMatr' => $matricula->getIdmatricula(),
+                            ':idAsig' => $value->getId()
+                        ]
+                    );
+                }
+                
+                $stmt = $this->myPDO->prepare($sql);
                 $stmt->execute(
                     [
                         ':dni' => $matricula->getAlumno()->getDni(),
@@ -113,7 +139,7 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                //echo "<br>afectadas: ".$filasAfectadas;
 
                 $this->myPDO->commit();
 
@@ -129,19 +155,52 @@
             $stmt = $this->myPDO->prepare("SELECT * FROM ".MatriculaContract::TABLE_NAME);
             $stmt->setFetchMode(PDO::FETCH_ASSOC); //devuelve array asociativo
             $stmt->execute(); // Ejecutamos la sentencia
-            $asignaturas = [];
+            $matriculas = [];
 
             while ($row = $stmt->fetch()){
-                $a = new Matricula();
+                $m = new Matricula();
                 $alumnoDAO = new AlumnoDAO($this->myPDO);
                 $alum = $alumnoDAO->findById($row[MatriculaContract::COL_DNI]);
-                $a->setAlumno($alum);
-                $a->setYear($row[MatriculaContract::COL_YEAR]);
-                $a->setIdmatricula($row[MatriculaContract::COL_ID]);
-                $asignaturas[] = $a;
+                $m->setAlumno($alum);
+                $m->setYear($row[MatriculaContract::COL_YEAR]);
+                $m->setIdmatricula($row[MatriculaContract::COL_ID]);
+
+                $asignaturas = [];
+                $sql = "select " .
+                    AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_ID . ", " .
+                    AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_NOMBRE . ", " .
+                    AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_CURSO .
+                " from " .
+                    Asignatura_MatriculaContract::TABLE_NAME . 
+                " join " .
+                    AsignaturaContract::TABLE_NAME .
+                " on " .
+                    AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_ID . " = " . 
+                    Asignatura_MatriculaContract::TABLE_NAME . "." . Asignatura_MatriculaContract::COL_ID_ASIGNATURA .
+                " where " . 
+                    Asignatura_MatriculaContract::TABLE_NAME . "." . Asignatura_MatriculaContract::COL_ID_MATRICULA . " = :id;";
+
+
+                $stmtSecundary = $this->myPDO->prepare($sql);
+                $stmtSecundary->setFetchMode(PDO::FETCH_ASSOC);
+
+                $stmtSecundary->execute([
+                    ':id' => $m->getIdmatricula()
+                ]);
+
+                while ($row2 = $stmtSecundary->fetch()){
+                    $asig = new Asignatura();
+                    $asig->setNombre($row2[AsignaturaContract::COL_NOMBRE]);
+                    $asig->setCurso($row2[AsignaturaContract::COL_CURSO]);
+                    $asig->setId($row2[AsignaturaContract::COL_ID]);
+                    $asignaturas[] = $asig;
+                }
+
+                $m->setAsignaturas($asignaturas);
+                $matriculas[] = $m;
             }
 
-            return $asignaturas;
+            return $matriculas;
         }
 
         public function findById($id){
@@ -177,6 +236,39 @@
                     $a->setAlumno($alum);
                     $a->setIdmatricula($row[MatriculaContract::COL_ID]);
                     $a->setYear($row[MatriculaContract::COL_YEAR]);
+
+                    $asignaturas = [];
+                    $sql = "select " .
+                        AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_ID . ", " .
+                        AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_NOMBRE . ", " .
+                        AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_CURSO .
+                    " from " .
+                        Asignatura_MatriculaContract::TABLE_NAME . 
+                    " join " .
+                        AsignaturaContract::TABLE_NAME .
+                    " on " .
+                        AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_ID . " = " . 
+                        Asignatura_MatriculaContract::TABLE_NAME . "." . Asignatura_MatriculaContract::COL_ID_ASIGNATURA .
+                    " where " . 
+                        Asignatura_MatriculaContract::TABLE_NAME . "." . Asignatura_MatriculaContract::COL_ID_MATRICULA . " = :id;";
+
+
+                    $stmtSecundary = $this->myPDO->prepare($sql);
+                    $stmtSecundary->setFetchMode(PDO::FETCH_ASSOC);
+
+                    $stmtSecundary->execute([
+                        ':id' => $a->getIdmatricula()
+                    ]);
+
+                    while ($row2 = $stmtSecundary->fetch()){
+                        $asig = new Asignatura();
+                        $asig->setNombre($row2[AsignaturaContract::COL_NOMBRE]);
+                        $asig->setCurso($row2[AsignaturaContract::COL_CURSO]);
+                        $asig->setId($row2[AsignaturaContract::COL_ID]);
+                        $asignaturas[] = $asig;
+                    }
+
+                    $a->setAsignaturas($asignaturas);
                 }
                 return $a;
 

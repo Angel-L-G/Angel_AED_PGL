@@ -10,31 +10,34 @@
         <div class="container">
             <div>
                 <h2>Agregar Asignatura</h2>
-                <form action="" method="post">
+                <form action="createAsig" method="post">
                     <label>Nombre:</label><input type="text" id="nombre" name="nombre"><br/>
                     <label>Curso:</label><input type="text" id="curso" name="curso"><br/>
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             <div>
                 <h2>Borrar Asignatura</h2>
-                <form action="" method="post">
+                <form action="deleteAsig" method="post">
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             <div>
                 <h2>Editar Asignatura</h2>
-                <form action="" method="post">
+                <form action="updateAsig" method="post">
                     <label>Nombre:</label><input type="text" id="nombre" name="nombre"><br/>
                     <label>Curso:</label><input type="text" id="curso" name="curso"><br/>
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             <div>
                 <h2>Mostrar Asignatura</h2>
-                <form action="" method="post">
-                    <label>Nombre:</label><input type="text" id="nombre" name="nombre"><br/>
+                <form action="showAsig" method="post">
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             @isset($asignaturas)

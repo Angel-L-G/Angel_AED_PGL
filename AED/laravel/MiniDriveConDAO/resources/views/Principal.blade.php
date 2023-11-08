@@ -8,9 +8,9 @@
     </head>
     <body class="antialiased">
         <div class="container">
-            <!-- 
-                faltan tres a's que me lleven a las otras vistas
-            -->
+            <a href="asignaturas">Asignaturas</a><br/>
+            <a href="alumnos">Alumnos</a><br/>
+            <a href="matriculas">Matriculas</a><br/>
         </div>
     </body>
 </html>

@@ -43,8 +43,10 @@
 
         public function __toString(){
             $asinaturasStr = "";
+
+            //print_r($this->asignaturas);die();
             foreach ($this->asignaturas as $key => $value) {
-                $asinaturasStr .= $value->getNombre() . "<br/>";
+                $asinaturasStr .= $value->getNombre() . " ";
             }
 
             return "Alumno: " .
