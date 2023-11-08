@@ -14,46 +14,52 @@
             $this->myPDO = $pdo;
         }
 
-        public function save($user){
-            $res = null;
-
+        public function save($p){
             $tablename = UserContract::TABLE_NAME;
             $colid = UserContract::COL_ID;
-            $colpsswrd = UserContract::COL_PSSWRD;
+            $colnombre = UserContract::COL_NICK;
+            $colpsswd = UserContract::COL_PSSWRD;
 
-            $sql = "INSERT INTO $tablename ($colid, $colpsswrd)
-            VALUES(:id, :psswrd)";
-
-            try{
+            $sql = "INSERT INTO $tablename ($colid, $colnombre, $colpsswd)
+            VALUES(NULL,:nombre, :password);";
+    
+            try {
+    
                 $this->myPDO->beginTransaction();
+    
                 $stmt = $this->myPDO->prepare($sql);
-
+    
                 $stmt->execute(
                     [
-                        ':id' => $user->getNick(),
-                        ':psswrd' => $user->getPassword()
+                        ':nombre' => $p->getNick(),
+                        ':password' => $p->getPassword(),
                     ]
+    
                 );
-
-                //si filasAfectadas > 0 => hubo éxito consulta
+                $idgenerado = $this->myPDO->lastInsertId();
+                $nombre = $p->nick;
+                $password = $p->password;
+                $p = new User();
+                $p->setId($idgenerado);
+                $p->setNick($nombre);
+                $p->setPassword($password);
                 $filasAfectadas = $stmt->rowCount();
 
-                if($filasAfectadas > 0){
-                    $res = $user;
+                if ($filasAfectadas > 0) {
+                    $this->myPDO->commit();
+                    return $p;
+                } else {
+                    return null;
                 }
-
-                //echo "<br>afectadas: ".$filasAfectadas;
-
-            }catch(Exception $ex){
-                echo "ha habido una excepción se lanza rollback automático";
+            } catch (Exception $ex) {
+                echo "Error: " . $ex->getMessage();
+                $this->myPDO->rollback();
             }
             $stmt = null;
-
-            return $res;
         }
 
         public function update($user){
-            $error = false;
+            /*$error = false;
 
             $tablename = UserContract::TABLE_NAME;
             $colid = UserContract::COL_ID;
@@ -68,8 +74,8 @@
 
                 $stmt->execute(
                     [
-                        ':psswrd' => $user->getNick(),
-                        ':id' => $user->getPassword()
+                        ':id' => $user->getId(),
+                        ':psswrd' => $user->getPassword()
                     ]
                 );
 
@@ -85,7 +91,7 @@
                 $this->myPDO->rollback();
                 $error = true;
             }
-            return $error;
+            return $error;*/
         }
 
         public function findAll(){
@@ -95,13 +101,14 @@
             $alumnos = [];
 
             while ($row = $stmt->fetch()){
-                /*
+                
                 $a = new User();
-                $a->setNick($row[UserContract::COL_ID]);
+                $a->setId($row[UserContract::COL_ID]);
+                $a->setNick($row[UserContract::COL_NICK]);
                 $a->setPassword($row[UserContract::COL_PSSWRD]);
 
                 $alumnos[] = $a;
-                */
+                
             }
             return $alumnos;
         }
@@ -129,11 +136,10 @@
                 //echo "<br>afectadas: ".$filasAfectadas;
 
                 if($row = $stmt->fetch()){
-                    /*
                     $a = new User();
-                    $a->setDni($row[UserContract::COL_ID]);
-                    $a->setNombre($row[UserContract::COL_PSSWRD]);
-                    */
+                    $a->setId($row[UserContract::COL_ID]);
+                    $a->setNick($row[UserContract::COL_NICK]);
+                    $a->setPassword($row[UserContract::COL_PSSWRD]);
                 }
                 return $a;
 

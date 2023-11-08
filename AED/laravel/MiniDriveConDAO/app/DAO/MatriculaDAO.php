@@ -166,6 +166,12 @@ use Exception;
                 $m->setIdmatricula($row[MatriculaContract::COL_ID]);
 
                 $asignaturas = [];
+                /*
+                    select asignaturas.id, asignaturas.nombre, asignaturas.curso 
+                    from asignatura_matricula join asignaturas 
+                    on asignaturas.id = asignatura_matricula.idasignatura 
+                    where asignatura_matricula.idmatricula = 2;
+                */
                 $sql = "select " .
                     AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_ID . ", " .
                     AsignaturaContract::TABLE_NAME . "." . AsignaturaContract::COL_NOMBRE . ", " .

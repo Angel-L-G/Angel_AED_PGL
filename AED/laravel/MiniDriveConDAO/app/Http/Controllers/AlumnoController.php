@@ -21,7 +21,7 @@ class AlumnoController extends Controller
     public function create(Request $request){
         $nombre = request()->get("nombre");
         $curso = request()->get("apellidos");
-        $nacimiento = strtotime(request()->get("nacimiento"));
+        $nacimiento = request()->get("nacimiento");
         $dni = request()->get("dni");
 
         $a = new Alumno();

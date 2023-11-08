@@ -32,7 +32,14 @@ Route::any("/personas/delete", [PersonaController::class, "deletePersona"]);
 */
 
 Auth::routes();
-Route::any('/',[MatriculaController::class, 'showIndex']);
+
+Route::any('/',function() {return view("Login");});
+Route::any('/showLogin',function() {return view("Login");});
+Route::any('/showRegister',function() {return view("Register");});
+Route::any('/Register',[UserController::class, 'register']);
+Route::any('/LogIn',[UserController::class, 'logIn']);
+
+Route::any('/home',[MatriculaController::class, 'showIndex']);
 
 Route::any('/asignaturas',[AsignaturaController::class, 'index']);
 Route::any('/createAsig',[AsignaturaController::class, 'create']);

@@ -38,7 +38,7 @@
                         ':id' => $alumno->getDni(),
                         ':nombre' => $alumno->getNombre(),
                         ':apellidos' => $alumno->getApellidos(),
-                        ':fecha' => intval($alumno->getFechaNac())
+                        ':fecha' => $alumno->getFechaNac()
                     ]
                 );
 
@@ -85,7 +85,7 @@
                     [
                         ':nombre' => $alumno->getNombre(),
                         ':apellidos' => $alumno->getApellidos(),
-                        ':fecha' => intval($alumno->getFechaNac()),
+                        ':fecha' => $alumno->getFechaNac(),
                         ':dni' => $alumno->getDni()
                     ]
                 );

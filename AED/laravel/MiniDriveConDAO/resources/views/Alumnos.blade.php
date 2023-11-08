@@ -13,7 +13,8 @@
                 <form action="createAlum" method="post">
                     <label>Nombre:</label><input type="text" id="nombre" name="nombre"><br/>
                     <label>Apellidos:</label><input type="text" id="apellidos" name="apellidos"><br/>
-                    <label>Nacimiento:</label><input type="date" id="fecha" name="fecha"><br/>
+                    <!--<label>Nacimiento:</label><input type="date" id="fecha" name="fecha"><br/>-->
+                    <label>Nacimiento:</label><input type="text" id="fecha" name="fecha"><br/>
                     <label>DNI:</label><input type="text" id="dni" name="dni"><br/>
                     <input type="submit" value="enviar">
                 </form>
@@ -30,7 +31,8 @@
                 <form action="updateAlum" method="post">
                     <label>Nombre:</label><input type="text" id="nombre" name="nombre"><br/>
                     <label>Apellidos:</label><input type="text" id="apellidos" name="apellidos"><br/>
-                    <label>Nacimiento:</label><input type="date" id="fecha" name="fecha"><br/>
+                    <!--<label>Nacimiento:</label><input type="date" id="fecha" name="fecha"><br/>-->
+                    <label>Nacimiento:</label><input type="text" id="fecha" name="fecha"><br/>
                     <label>DNI:</label><input type="text" id="dni" name="dni"><br/>
                     <input type="submit" value="enviar">
                 </form>

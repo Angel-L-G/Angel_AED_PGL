@@ -11,11 +11,11 @@
             <div class="form-container">
                 <form action="Register" method="post">
                     @csrf
+                    <label class="form-label">Id</label>
+                    <input type="text" name="id" required>
+                    <br/>
                     <label class="form-label">Name</label>
                     <input type="text" name="name" required>
-                    <br/>
-                    <label class="form-label">Nick</label>
-                    <input type="text" name="nick" required>
                     <br/>
                     <label class="form-label">password</label>
                     <input type="password" name="psswrd" required>
