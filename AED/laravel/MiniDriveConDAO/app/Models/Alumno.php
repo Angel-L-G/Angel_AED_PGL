@@ -41,9 +41,9 @@
 
         public function __toString(){
             return "Nombre: " . $this->nombre .
-            " Dni: " . $this->dni . "<br/>" .
-            " Apellidos: " . $this->apellidos . "<br/>" .
-            " Fecha: " . $this->fechaNac;
+            " Dni: " . $this->dni .
+            " Apellidos: " . $this->apellidos .
+            " Fecha: " . date("Y-m-d",$this->fechaNac);
         }
     }
 ?>

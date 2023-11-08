@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class AsignaturaController extends Controller
 {
+    public function index(Request $request){
+        $pdo = DB::getPdo();
+        $asignaturaDAO = new AsignaturaDAO($pdo);
+
+        $asignaturas = $asignaturaDAO->findAll();
+        
+        return view("Asignaturas",compact("asignaturas"));
+    }
+
     public function create(Request $request){
         $nombre = request()->get("nombre");
         $curso = request()->get("curso");
@@ -29,7 +38,9 @@ class AsignaturaController extends Controller
             echo "Algo salio mal";
         }
 
-        return view("Principal");
+        $asignaturas = $asignaturaDAO->findAll();
+        
+        return view("Asignaturas",compact("asignaturas"));
     }
 
     public function delete(Request $request){
@@ -43,7 +54,9 @@ class AsignaturaController extends Controller
             echo "Algo salio mal";
         }
 
-        return view("Principal");
+        $asignaturas = $asignaturaDAO->findAll();
+        
+        return view("Asignaturas",compact("asignaturas"));
     }
 
     public function update(Request $request){
@@ -52,28 +65,24 @@ class AsignaturaController extends Controller
         $pdo = DB::getPdo();
         $asignaturaDAO = new AsignaturaDAO($pdo);
 
-        $bool = $asignaturaDAO->delete($id);
+        $nombre = request()->get("nombre");
+        $curso = request()->get("curso");
 
-        if($bool == true){
+        $a = new Asignatura();
+
+        $a->setNombre($nombre);
+        $a->setCurso($curso);
+        $a->setId($id);
+
+        $res = $asignaturaDAO->update($a);
+
+        if($res == true){
             echo "Algo salio mal";
-        }else{
-            $nombre = request()->get("nombre");
-            $curso = request()->get("curso");
-
-            $a = new Asignatura();
-
-            $a->setNombre($nombre);
-            $a->setCurso($curso);
-            $a->setId($id);
-
-            $res = $asignaturaDAO->save($a);
-
-            if($res == null){
-                echo "Algo salio mal";
-            }
         }
 
-        return view("Principal");
+        $asignaturas = $asignaturaDAO->findAll();
+        
+        return view("Asignaturas",compact("asignaturas"));
     }
 
     public function show(Request $request){
@@ -82,6 +91,8 @@ class AsignaturaController extends Controller
         $pdo = DB::getPdo();
         $asignaturaDAO = new AsignaturaDAO($pdo);
 
+        $asignaturas[] = $asignaturaDAO->findById($id);
 
+        return view("Asignaturas",compact("asignaturas"));
     }
 }

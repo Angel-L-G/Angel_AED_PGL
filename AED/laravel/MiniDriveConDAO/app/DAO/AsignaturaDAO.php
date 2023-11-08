@@ -47,11 +47,12 @@
                     $res->setId($id);
                 }
 
+                $this->myPDO->commit();
                 //echo "<br>afectadas: ".$filasAfectadas;
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
-
+                $this->myPDO->rollback();
             }
             $stmt = null;
 
@@ -141,7 +142,6 @@
                 $this->myPDO->commit();
 
                 while($row = $stmt->fetch()){
-                    echo "aaaaaaaaaaaaaaaaaaa";
                     $a = new Asignatura();
                     $a->setId($row[AsignaturaContract::COL_ID]);
                     $a->setNombre($row[AsignaturaContract::COL_NOMBRE]);
@@ -181,7 +181,7 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-                echo "<br>afectadas: ".$filasAfectadas;
+                //echo "<br>afectadas: ".$filasAfectadas;
 
                 $stmt = $this->myPDO->prepare($sqlSecun);
 

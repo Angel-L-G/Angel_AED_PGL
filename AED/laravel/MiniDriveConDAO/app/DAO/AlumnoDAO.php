@@ -45,18 +45,18 @@
                 //si filasAfectadas > 0 => hubo éxito consulta
                 $filasAfectadas = $stmt->rowCount();
 
-
-
                 if($filasAfectadas > 0){
                     $res = $alumno;
                     $id = $this->myPDO->lastInsertId();
                     $res->setDni($id);
                 }
 
+                $this->myPDO->commit();
                 //echo "<br>afectadas: ".$filasAfectadas;
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
+                echo "Error: " . $ex->getMessage();
             }
             $stmt = null;
 
@@ -99,6 +99,7 @@
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
+                echo "Error: " . $ex->getMessage();
                 $this->myPDO->rollback();
                 $error = true;
             }
@@ -156,49 +157,35 @@
 
             }catch(Exception $ex){
                 echo "ha habido una excepción se lanza rollback automático";
+                echo "Error: " . $ex->getMessage();
             }
             return $a;
         }
 
         public function delete($dni){
             $error = false;
+            $this->myPDO->beginTransaction();
 
-            $tablename = AlumnoContract::TABLE_NAME;
-            $colid = AlumnoContract::COL_ID;
+            try {
+    
+                $stmt = $this->myPDO->prepare("DELETE FROM " . Asignatura_MatriculaContract::TABLE_NAME . " WHERE " . Asignatura_MatriculaContract::COL_ID_MATRICULA . " IN (SELECT " . MatriculaContract::COL_ID . " FROM " . MatriculaContract::TABLE_NAME . " WHERE " . MatriculaContract::COL_DNI . " = '" . $dni . "');");
 
-            $sqlAlum = "DELETE FROM $tablename WHERE $colid = :id";
+                $stmt->execute();
+    
+                $stmt = $this->myPDO->prepare("DELETE FROM " . MatriculaContract::TABLE_NAME . " WHERE " . MatriculaContract::COL_DNI . " = '" . $dni . "';");
+    
+                if ($stmt->execute()) {
+                    $stmt = $this->myPDO->prepare("DELETE FROM " . AlumnoContract::TABLE_NAME . " WHERE " . AlumnoContract::COL_ID . " = '" . $dni . "';");
+                    $stmt->execute();
+    
+                    $filasAfectadas = $stmt->rowCount();
+    
+                    $this->myPDO->commit();
 
-
-            try{
-                $stmt = $this->myPDO->prepare($sqlAlum);
-
-                $matriculaDAO = new MatriculaDAO($this->myPDO);
-
-                $matr = $matriculaDAO->findByDni($dni);
-
-                var_dump($matr);
-                if($matr != null){
-                    foreach ($matr as $key => $value) {
-                        $matriculaDAO->delete($value->getIdmatricula());
-                    }
                 }
-                
-                $stmt->execute(
-                    [
-                        ':id' => $dni
-                    ]
-                );
-
-                //si filasAfectadas > 0 => hubo éxito consulta
-               
-                $filasAfectadas = $stmt->rowCount();
-
-                //echo "<br>afectadas: ".$filasAfectadas;
-
-
-            }catch(Exception $ex){
-                echo "ha habido una excepción se lanza rollback automático";
-                //$this->myPDO->rollback();
+            } catch (Exception $ex) {
+                echo "Error: " . $ex->getMessage();
+                $this->myPDO->rollback();
                 $error = true;
             }
             return $error;

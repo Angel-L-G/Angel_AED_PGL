@@ -10,34 +10,43 @@
         <div class="container">
             <div>
                 <h2>Agregar Matricula</h2>
-                <form action="" method="post">
-                    <label>Year:</label><input type="text" id="nombre" name="nombre"><br/>
-                    <label>Dni Alumno:</label><input type="text" id="curso" name="curso"><br/>
-                    <!--@foreach($asignaturas as $a)
-                        <input type="checkbox" name="asignaturas[]" id="asignaturas[]">
-                    @endforeach-->
-                    <label>Id:</label><input type="text" id="id" name="id"><br/>
+                <form action="createMatr" method="post">
+                    <label>Year:</label><input type="text" id="year" name="year"><br/>
+                    <label>Dni Alumno:</label><input type="text" id="dni" name="dni"><br/>
+                    @foreach($asignaturas as $a)
+                        <label>{{$a->getNombre()}}</label>
+                        <input type="checkbox" name="asignaturas[]" id="asignaturas[]" value={{$a->getId()}}/><!--Esto funciona-->
+                    @endforeach
+                    <br/><label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             <div>
                 <h2>Borrar Matricula</h2>
-                <form action="" method="post">
+                <form action="deleteMatr" method="post">
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             <div>
                 <h2>Editar Matricula</h2>
-                <form action="" method="post">
-                    <label>Year:</label><input type="text" id="nombre" name="nombre"><br/>
-                    <label>Dni Alumno:</label><input type="text" id="curso" name="curso"><br/>
+                <form action="updateMatr" method="post">
+                    <label>Year:</label><input type="text" id="year" name="year"><br/>
+                    <label>Dni Alumno:</label><input type="text" id="dni" name="dni"><br/>
+                    @foreach($asignaturas as $a)
+                        <label>{{$a->getNombre()}}</label>
+                        <input type="checkbox" name="asignaturas[]" id="asignaturas[]" value={{$a->getId()}}/><!--Esto funciona-->
+                    @endforeach
+                    <br/>
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             <div>
                 <h2>Mostrar Matricula</h2>
-                <form action="" method="post">
-                    <label>Nombre:</label><input type="text" id="nombre" name="nombre"><br/>
+                <form action="showMatr" method="post">
                     <label>Id:</label><input type="text" id="id" name="id"><br/>
+                    <input type="submit" value="enviar">
                 </form>
             </div>
             @isset($matriculas)

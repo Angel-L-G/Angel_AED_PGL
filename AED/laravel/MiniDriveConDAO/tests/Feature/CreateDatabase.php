@@ -1,10 +1,11 @@
 <?php
 $pdo->exec("
-create table users(
-    nick CHARACTER,
+create table usuarios(
+    id INT auto_increment,
+    nick CHARACTER(30),
     password CHARACTER(255),
 
-    CONSTRAINT pk_users PRIMARY KEY(nick)
+    CONSTRAINT pk_users PRIMARY KEY(id)
 )
 ");
 $pdo->exec("
