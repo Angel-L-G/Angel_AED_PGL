@@ -7,9 +7,11 @@
 		<class>es.iespto.angel.monedas.entity.Rol</class>
 		<class>es.iespto.angel.monedas.entity.Usuario</class>
 		<class>es.iespto.angel.monedas.entity.UsuarioRol</class>
+		<class>model.Coche</class>
+		<class>model.Conductor</class>
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/northwind?serverTimezone=UTC"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/seguimientomonedas?serverTimezone=UTC"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.password" value="1q2w3e4r"/>

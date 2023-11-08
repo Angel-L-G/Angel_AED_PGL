@@ -29,7 +29,12 @@
 			<artifactId>javax.persistence-api</artifactId>
 			<version>2.2</version>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>es.iespto.angel</groupId>
+			<artifactId>Northwind</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+  </dependencies>
   <build>
     <resources>
       <resource>
