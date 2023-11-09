@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import es.iespto.angel.monedas.entity.Historicocambioeuro;
 import es.iespto.angel.monedas.entity.Moneda;
 import model.Coche;
 import model.Conductor;
@@ -73,6 +74,6 @@ public class Main {
 			tr.commit();
 			System.out.println(h);
 			return h;
-			}
+		}
 
 }

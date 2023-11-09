@@ -29,6 +29,10 @@ import {
 import Practica04 from './src/screens/Practica04-5';
 import Practica07 from './src/screens/Practica07';
 import Practica09 from './src/screens/Practica09';
+import Practica10 from './src/screens/Practica10';
+import Practica12 from './src/screens/Practica12';
+import Practica13 from './src/screens/Practica13';
+import Practica15 from './src/screens/Practica15';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -45,7 +49,7 @@ function App(): JSX.Element {
     const [contador,setContador] = useState(0);
 
     return (
-        <Practica09 />
+        <Practica15 />
     );
 }
 
