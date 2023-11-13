@@ -33,6 +33,8 @@ import Practica10 from './src/screens/Practica10';
 import Practica12 from './src/screens/Practica12';
 import Practica13 from './src/screens/Practica13';
 import Practica15 from './src/screens/Practica15';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -45,11 +47,28 @@ function Section({ children, title }: SectionProps): JSX.Element {
     );
 }
 
+function HomeSreen(){
+    return (
+        <SafeAreaView>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Home</Text>
+            </View>
+        </SafeAreaView>
+    );
+}
+
+const Stack = createNativeStackNavigator();
+
 function App(): JSX.Element {
     const [contador,setContador] = useState(0);
 
     return (
-        <Practica15 />
+
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={HomeSreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 

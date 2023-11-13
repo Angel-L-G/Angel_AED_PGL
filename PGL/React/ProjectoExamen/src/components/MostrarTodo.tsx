@@ -1,5 +1,6 @@
 import React from 'react'
 import UseFindAllPeli from '../hooks/UseFindAllPeli';
+import PeliculaCard from './PeliculaCard';
 
 type Props = {}
 
@@ -9,9 +10,13 @@ const MostrarTodo = (props: Props) => {
     return (
         <div>MostrarTodo
             <br/>   
-            <p>{
-                JSON.stringify(peliculas[0])
-            }</p>
+            <p>
+            {
+                peliculas.map(pelicula => (
+                    <PeliculaCard peli={pelicula} />
+                ))
+            }
+            </p>
         </div>
     )
 }
