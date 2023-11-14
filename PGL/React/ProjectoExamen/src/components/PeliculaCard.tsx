@@ -6,7 +6,9 @@ type Pelicula = {
     direccion: string,
     actores: string,
     argumento: string,
-    imagen: string
+    imagen: string,
+    video: string,
+    categoria: string
 }
 
 type Props = {
@@ -20,7 +22,9 @@ const PeliculaCard = (props: Props) => {
             <h1>{props.peli.titulo}</h1><br />
             <p>{props.peli.direccion}</p><br />
             <p>{props.peli.actores}</p><br />
-            <p>{props.peli.argumento}</p>
+            <p>{props.peli.argumento}</p><br />
+            <p>{props.peli.categoria}</p><br />
+            <p>{props.peli.video}</p>
         </div>
     )
 }

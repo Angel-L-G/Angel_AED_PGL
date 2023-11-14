@@ -30,7 +30,15 @@ const UpdatePelicula = (props: Props) => {
                 <br/>
 
                 <label htmlFor="imagen">Imagen: </label>
-                <input type="text" name="imagen" id="imagen" required/>
+                <input type="text" name="imagen" id="imagen" />
+                <br/>
+
+                <label htmlFor="video">Video: </label>
+                <input type="text" name="video" id="video" />
+                <br/>
+
+                <label htmlFor="categoria">Categoria: </label>
+                <input type="text" name="categoria" id="categoria" required/>
                 <br/>
 
                 <input type="submit" value="enviar" />

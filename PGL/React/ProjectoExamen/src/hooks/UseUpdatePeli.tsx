@@ -7,7 +7,9 @@ type Pelicula = {
     direccion: string,
     actores: string,
     argumento: string,
-    imagen: string
+    imagen: string,
+    video: string,
+    categoria: string
 }
 
 const UseUpdatePeli = () => {
@@ -20,6 +22,8 @@ const UseUpdatePeli = () => {
         let inputactores: HTMLInputElement = form.actores;
         let inputargumento: HTMLInputElement = form.argumento;
         let inputimagen: HTMLInputElement = form.imagen;
+        let inputvideo: HTMLInputElement = form.video;
+        let inputcategoria: HTMLInputElement = form.categoria;
 
         let id = inputid.value;
         let titulo = inputtitulo.value;
@@ -27,6 +31,8 @@ const UseUpdatePeli = () => {
         let actores = inputactores.value;
         let argumento = inputargumento.value;
         let imagen = inputimagen.value;
+        let video = inputvideo.value;
+        let categoria = inputcategoria.value;
 
         let pelicula: Pelicula = {
             id: id,
@@ -34,7 +40,9 @@ const UseUpdatePeli = () => {
             direccion: direccion,
             actores: actores,
             argumento: argumento,
-            imagen: imagen        
+            imagen: imagen,
+            video: video,
+            categoria: categoria         
         };
 
         let ruta = "http://localhost:3000/peliculas/";

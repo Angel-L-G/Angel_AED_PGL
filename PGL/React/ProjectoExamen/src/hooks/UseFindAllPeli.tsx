@@ -8,7 +8,9 @@ type Pelicula = {
     direccion: string,
     actores: string,
     argumento: string,
-    imagen: string
+    imagen: string,
+    video: string,
+    categoria: string
 }
 
 const UseFindAllPeli = () => {
