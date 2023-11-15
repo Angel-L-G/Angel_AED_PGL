@@ -14,45 +14,41 @@ type Pelicula = {
 
 const UseCreatePeli = () => {
     function createPeli(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
         let form: HTMLFormElement = event.currentTarget;
 
-        let inputid: HTMLInputElement = form.idpeli;
-        let inputtitulo: HTMLInputElement = form.titulo;
-        let inputdireccion: HTMLInputElement = form.direccion;
-        let inputactores: HTMLInputElement = form.actores;
-        let inputargumento: HTMLInputElement = form.argumento;
-        let inputimagen: HTMLInputElement = form.imagen;
-        let inputvideo: HTMLInputElement = form.video;
-        let inputcategoria: HTMLInputElement = form.categoria;
+        let id = form.idpeli.value;
+        let titulo = form.titulo.value;
+        let direccion = form.direccion.value;
+        let actores = form.actores.value;
+        let argumento = form.argumento.value;
+        let imagen = form.imagen.value;
+        let video = form.video.value;
+        let categoria = form.categoria.value;
 
-        let id = inputid.value;
-        let titulo = inputtitulo.value;
-        let direccion = inputdireccion.value;
-        let actores = inputactores.value;
-        let argumento = inputargumento.value;
-        let imagen = inputimagen.value;
-        let video = inputvideo.value;
-        let categoria = inputcategoria.value;
+        //console.log(id, titulo, direccion, actores, argumento, imagen, video);
 
-        let pelicula: Pelicula = {
+        const pelicula: Pelicula = {
             id: id,
             titulo: titulo,
             direccion: direccion,
             actores: actores,
             argumento: argumento,
-            imagen: imagen//,
-            //video: video,
-            //categoria: categoria        
+            imagen: imagen,
+            categoria: categoria   
         };
+
+        console.log(pelicula);
 
         let ruta = "http://localhost:3000/peliculas";
 
-        console.log(pelicula);
+        console.log(ruta);
 
         const axiospost = async (ruta: string) => {
             try{
                 const response = await axios.post(ruta, pelicula);
                 console.log(response.data);
+                //navigate("/mostrarPeliculas");
             } catch (error){
                 console.log(error);
             }

@@ -54,7 +54,7 @@ public class AlumnoRepositoryTest {
 	@Order(2)
 	void testFindAll() {
 		List<Alumno> todos = alumnoRepository.findAll();
-		assertTrue(todos.size()==2);
+		assertTrue(todos.size()==3);
 		
 		Alumno a = todos.stream().filter(c->c.getNombre().equals("Ana")).findFirst().get();
 		assertTrue(a.getApellidos().equals("Martín"));
@@ -73,7 +73,7 @@ public class AlumnoRepositoryTest {
 		a.setDni("999999999D");
 		a.setNombre("nombrePrueba");
 		a.setApellidos("apellidoPrueba");
-		a.setFechanacimiento(111111111111L);
+		a.setFechanacimiento(968972400000L);
 		Alumno save = alumnoRepository.save(a);
 		assertNotNull(save);
 		
@@ -81,7 +81,7 @@ public class AlumnoRepositoryTest {
 		assertNotNull(findById);
 		assertTrue(findById.getApellidos().equals("apellidoPrueba"));
 		assertTrue(findById.getNombre().equals("nombrePrueba"));
-		assertTrue(findById.getFechanacimiento() == 111111111111L);
+		assertTrue(findById.getFechanacimiento() == 968972400000L);
 	}
 	
 	@Test
@@ -99,15 +99,15 @@ public class AlumnoRepositoryTest {
 		Alumno findById = alumnoRepository.findById("999999999D");
 		assertTrue(a.getNombre().equals(findById.getNombre()));
 		assertTrue(a.getApellidos().equals(findById.getApellidos()));
-		assertTrue(a.getFechanacimiento() == findById.getFechanacimiento());
+		assertTrue(a.getFechanacimiento().longValue() == findById.getFechanacimiento().longValue());
 	}
 	
 	@Test
 	@Order(5)
 	void testRemove() {
-		boolean okBorrado = alumnoRepository.deleteById("12345678Z");
+		boolean okBorrado = alumnoRepository.deleteById("87654321X");
 		assertTrue(okBorrado);
-		Alumno findById1 = alumnoRepository.findById("12345678Z");
+		Alumno findById1 = alumnoRepository.findById("87654321X");
 		assertNull(findById1);
 
 	}

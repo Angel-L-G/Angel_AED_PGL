@@ -43,7 +43,25 @@ public class AlumnoRepository  implements ICRUD<Alumno, String>{
 	@Override
 	public boolean deleteById(String id) {
 		boolean ok = false;
+		System.out.println("id: " + id);
+		if(id != null) {
+			EntityManager em = emf.createEntityManager();
+			
+			Alumno find = em.find(Alumno.class, id);
+			if(find != null) {
+				em.getTransaction().begin();
+				em.remove(find);
+				em.getTransaction().commit();
+				ok = true;
+			}
+		}
 		
+		return ok;
+	}
+	
+	public boolean deleteByIdAndMatricula(String id) {
+		boolean ok = false;
+		System.out.println("id: " + id);
 		if(id != null) {
 			EntityManager em = emf.createEntityManager();
 			
@@ -82,6 +100,7 @@ public class AlumnoRepository  implements ICRUD<Alumno, String>{
 				//(MATRICULA) 
 				em.getTransaction().commit();
 				em.close();
+				ok = true;
 			}
 		}
 		
@@ -91,12 +110,14 @@ public class AlumnoRepository  implements ICRUD<Alumno, String>{
 	@Override
 	public Alumno save(Alumno entity) {
 		Alumno res = null;
-		
+
 		try{
 			EntityManager em = emf.createEntityManager();
 			
 			em.getTransaction().begin();
+			
 			em.persist(entity);
+			
 			em.getTransaction().commit();
 			em.close();
 			

@@ -48,16 +48,16 @@ public class MatriculaRepositoryTest {
 		assertTrue(findById.getAsignaturaMatriculas().size() == 1);
 	}
 	
-	/*@Test
+	@Test
 	@Order(2)
 	void testFindAll() {
 		List<Matricula> todos = matriculaRepository.findAll();
 		assertTrue(todos.size()==2);
 		
-		Asignatura a = todos.stream().filter(c->c.getNombre().equals("BAE")).findFirst().get();
+		/*Asignatura a = todos.stream().filter(c->c.getYear() == BAE).findFirst().get();
 		assertTrue(a.getCurso().equals("1º DAM"));	
 		
 		a = todos.stream().filter(c->c.getNombre().equals("PGV")).findFirst().get();
-		assertTrue(a.getCurso().equals("2º DAM"));	
-	}*/
+		assertTrue(a.getCurso().equals("2º DAM"));	*/
+	}
 }

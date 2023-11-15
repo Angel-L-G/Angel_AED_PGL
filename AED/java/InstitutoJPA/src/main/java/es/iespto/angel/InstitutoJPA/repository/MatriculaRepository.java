@@ -40,8 +40,12 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 		return res;
 	}
 
-	@Override
+	/*@Override
 	public boolean deleteById(Integer id) {
+	}
+	
+	
+	public boolean deleteByIdEIntermedia(Integer id) {
 		boolean ok = false;
 		
 		if(id != null) {
@@ -50,6 +54,7 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 			Matricula find = em.find(Matricula.class, id);
 			if(find != null) {
 				em.getTransaction().begin();
+				//find.get
 				em.remove(find);
 				List<AsignaturaMatricula> lista = find.getAsignaturaMatriculas();
 				if(lista.size() > 0) {
@@ -57,13 +62,14 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 						em.remove(am);
 					}
 				}
+				find.getAsignaturaMatriculas().clear();
 				em.getTransaction().commit();
 				ok = true;
 			}
 		}
 		
 		return ok;
-	}
+	}*/
 
 	@Override
 	public boolean update(Matricula entity) {

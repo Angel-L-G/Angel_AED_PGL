@@ -14,11 +14,10 @@ type Pelicula = {
 
 const UseDeletePeli = () => {
     function deletePeli(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
         let form: HTMLFormElement = event.currentTarget;
 
-        let inputid: HTMLInputElement = form.idpeli;
-
-        let id = inputid.value;
+        let id = form.idpeli.value;
 
         let ruta = "http://localhost:3000/peliculas/";
 

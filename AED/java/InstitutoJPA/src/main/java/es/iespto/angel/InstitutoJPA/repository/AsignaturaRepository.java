@@ -69,16 +69,16 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 		
 		if(entity != null) {
 			EntityManager em = emf.createEntityManager();
-			
+			em.getTransaction().begin();
 			Asignatura update = em.find(Asignatura.class, entity.getId());
 			//Revisar esta linea
 			if(update != null && update.getAsignaturaMatriculas() != null) {
-				em.getTransaction().begin();
 				update.setCurso(entity.getCurso());
 				update.setNombre(entity.getNombre());
-				em.getTransaction().commit();
-				em.close();
+				ok = true;
 			}
+			em.getTransaction().commit();
+			em.close();
 		}
 		
 		return ok;

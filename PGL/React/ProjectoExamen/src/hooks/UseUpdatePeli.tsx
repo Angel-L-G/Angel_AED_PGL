@@ -14,25 +14,17 @@ type Pelicula = {
 
 const UseUpdatePeli = () => {
     function updatePeli(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
         let form: HTMLFormElement = event.currentTarget;
 
-        let inputid: HTMLInputElement = form.idpeli;
-        let inputtitulo: HTMLInputElement = form.titulo;
-        let inputdireccion: HTMLInputElement = form.direccion;
-        let inputactores: HTMLInputElement = form.actores;
-        let inputargumento: HTMLInputElement = form.argumento;
-        let inputimagen: HTMLInputElement = form.imagen;
-        let inputvideo: HTMLInputElement = form.video;
-        let inputcategoria: HTMLInputElement = form.categoria;
-
-        let id = inputid.value;
-        let titulo = inputtitulo.value;
-        let direccion = inputdireccion.value;
-        let actores = inputactores.value;
-        let argumento = inputargumento.value;
-        let imagen = inputimagen.value;
-        let video = inputvideo.value;
-        let categoria = inputcategoria.value;
+        let id = form.idpeli.value;
+        let titulo = form.titulo.value;
+        let direccion = form.direccion.value;
+        let actores = form.actores.value;
+        let argumento = form.argumento.value;
+        let imagen = form.imagen.value;
+        let video = form.video.value;
+        let categoria = form.categoria.value;
 
         let pelicula: Pelicula = {
             id: id,

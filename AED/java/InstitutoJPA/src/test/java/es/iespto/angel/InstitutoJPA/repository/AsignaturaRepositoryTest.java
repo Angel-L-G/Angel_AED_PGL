@@ -60,7 +60,7 @@ public class AsignaturaRepositoryTest {
 	@Order(2)
 	void testFindAll() {
 		List<Asignatura> todos = asignaturaRepository.findAll();
-		assertTrue(todos.size()==2);
+		assertTrue(todos.size()==8);
 		
 		Asignatura a = todos.stream().filter(c->c.getNombre().equals("BAE")).findFirst().get();
 		assertTrue(a.getCurso().equals("1º DAM"));	
@@ -79,7 +79,7 @@ public class AsignaturaRepositoryTest {
 		Asignatura save = asignaturaRepository.save(a);
 		assertNotNull(save);
 		
-		Asignatura findById = asignaturaRepository.findById(1);
+		Asignatura findById = asignaturaRepository.findById(9);
 		assertNotNull(findById);
 		assertTrue(findById.getCurso().equals("cursoPrueba"));
 		assertTrue(findById.getNombre().equals("asigPrueba"));
