@@ -5,32 +5,34 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import es.iespto.angel.InstitutoJPA.entity.Alumno;
 import es.iespto.angel.InstitutoJPA.entity.Asignatura;
 import es.iespto.angel.InstitutoJPA.entity.AsignaturaMatricula;
+import es.iespto.angel.InstitutoJPA.entity.Matricula;
 
-public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
+public class AlumnoRepository  implements ICRUD<Alumno, String>{
 	private EntityManagerFactory emf;
 	
-	public AsignaturaRepository(EntityManagerFactory emf) {
+	public AlumnoRepository(EntityManagerFactory emf){
 		this.emf = emf;
 	}
 
 	@Override
-	public List<Asignatura> findAll() {
+	public List<Alumno> findAll() {
 		EntityManager em = emf.createEntityManager();
-		List<Asignatura> lista = em.createNamedQuery("Asignatura.findAll",Asignatura.class).getResultList();
+		List<Alumno> lista = em.createNamedQuery("Alumno.findAll",Alumno.class).getResultList();
 		
 		em.close();
 		return lista;
 	}
 
 	@Override
-	public Asignatura findById(Integer id) {
-		Asignatura res = null;
+	public Alumno findById(String id) {
+		Alumno res = null;
 		
 		if(id != null) {
 			EntityManager em = emf.createEntityManager();
-			res = em.find(Asignatura.class, id);
+			res = em.find(Alumno.class, id);
 			
 			em.close();
 		}
@@ -39,19 +41,19 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 	}
 
 	@Override
-	public boolean deleteById(Integer id) {
+	public boolean deleteById(String id) {
 		boolean ok = false;
 		
 		if(id != null) {
 			EntityManager em = emf.createEntityManager();
 			
-			Asignatura find = em.find(Asignatura.class, id);
+			Alumno find = em.find(Alumno.class, id);
 			if(find != null) {
 				em.getTransaction().begin();
 				em.remove(find);
-				List<AsignaturaMatricula> lista = find.getAsignaturaMatriculas();
+				List<Matricula> lista = find.getMatriculas();
 				if(lista.size() > 0) {
-					for (AsignaturaMatricula am : lista) {
+					for (Matricula am : lista) {
 						em.remove(am);
 					}
 				}
@@ -64,18 +66,20 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 	}
 
 	@Override
-	public boolean update(Asignatura entity) {
+	public boolean update(Alumno entity) {
 		boolean ok = false;
 		
 		if(entity != null) {
 			EntityManager em = emf.createEntityManager();
 			
-			Asignatura update = em.find(Asignatura.class, entity.getId());
-			//Revisar esta linea
-			if(update != null && update.getAsignaturaMatriculas() != null) {
+			Alumno update = em.find(Alumno.class, entity.getDni());
+			if(update != null && update.getMatriculas() != null) {
 				em.getTransaction().begin();
-				update.setCurso(entity.getCurso());
 				update.setNombre(entity.getNombre());
+				update.setApellidos(entity.getApellidos());
+				update.setFechanacimiento(entity.getFechanacimiento());
+				//Mirar si hay que ponerlo por el otro lado tambien
+				//(MATRICULA) 
 				em.getTransaction().commit();
 				em.close();
 			}
@@ -85,8 +89,8 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 	}
 
 	@Override
-	public Asignatura save(Asignatura entity) {
-		Asignatura res = null;
+	public Alumno save(Alumno entity) {
+		Alumno res = null;
 		
 		try{
 			EntityManager em = emf.createEntityManager();
@@ -103,6 +107,6 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 		
 		return res;
 	}
-	
+
 	
 }

@@ -8,8 +8,8 @@ type Pelicula = {
     actores: string,
     argumento: string,
     imagen: string,
-    video: string,
-    categoria: string
+    video?: string,
+    categoria?: string
 }
 
 const UseCreatePeli = () => {
@@ -40,12 +40,14 @@ const UseCreatePeli = () => {
             direccion: direccion,
             actores: actores,
             argumento: argumento,
-            imagen: imagen,
-            video: video,
-            categoria: categoria        
+            imagen: imagen//,
+            //video: video,
+            //categoria: categoria        
         };
 
         let ruta = "http://localhost:3000/peliculas";
+
+        console.log(pelicula);
 
         const axiospost = async (ruta: string) => {
             try{
@@ -57,6 +59,7 @@ const UseCreatePeli = () => {
         }
 
         axiospost(ruta);
+        //ECONNABORTED
     }
 
     return {
