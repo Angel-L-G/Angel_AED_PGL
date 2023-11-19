@@ -4,7 +4,6 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	
 		<class>es.iespto.angel.InstitutoJPA.entity.Alumno</class>
-		<class>es.iespto.angel.InstitutoJPA.entity.AsignaturaMatricula</class>
 		<class>es.iespto.angel.InstitutoJPA.entity.Asignatura</class>
 		<class>es.iespto.angel.InstitutoJPA.entity.Matricula</class>
 		

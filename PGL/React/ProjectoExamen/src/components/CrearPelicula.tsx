@@ -10,10 +10,6 @@ const CrearPelicula = (props: Props) => {
     return (
         <div>
             <form method="post" onSubmit={createPeli}>
-                <label htmlFor="idpeli">Id: </label>
-                <input type="text" name="idpeli" id="idpeli" required/>
-                <br/>
-
                 <label htmlFor="titulo">Titulo: </label>
                 <input type="text" name="titulo" id="titulo" required/>
                 <br/>

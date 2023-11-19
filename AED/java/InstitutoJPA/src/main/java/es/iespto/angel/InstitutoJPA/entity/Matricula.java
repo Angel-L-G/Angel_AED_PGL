@@ -2,6 +2,7 @@ package es.iespto.angel.InstitutoJPA.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -22,14 +23,14 @@ public class Matricula implements Serializable {
 
 	private int year;
 
-	//bi-directional many-to-one association to AsignaturaMatricula
-	@OneToMany(mappedBy="matricula")
-	private List<AsignaturaMatricula> asignaturaMatriculas;
-
 	//bi-directional many-to-one association to Alumno
 	@ManyToOne
 	@JoinColumn(name="dni")
 	private Alumno alumno;
+
+	//bi-directional many-to-many association to Asignatura
+	@ManyToMany(mappedBy="matriculas")
+	private List<Asignatura> asignaturas;
 
 	public Matricula() {
 	}
@@ -50,34 +51,20 @@ public class Matricula implements Serializable {
 		this.year = year;
 	}
 
-	public List<AsignaturaMatricula> getAsignaturaMatriculas() {
-		return this.asignaturaMatriculas;
-	}
-
-	public void setAsignaturaMatriculas(List<AsignaturaMatricula> asignaturaMatriculas) {
-		this.asignaturaMatriculas = asignaturaMatriculas;
-	}
-
-	public AsignaturaMatricula addAsignaturaMatricula(AsignaturaMatricula asignaturaMatricula) {
-		getAsignaturaMatriculas().add(asignaturaMatricula);
-		asignaturaMatricula.setMatricula(this);
-
-		return asignaturaMatricula;
-	}
-
-	public AsignaturaMatricula removeAsignaturaMatricula(AsignaturaMatricula asignaturaMatricula) {
-		getAsignaturaMatriculas().remove(asignaturaMatricula);
-		asignaturaMatricula.setMatricula(null);
-
-		return asignaturaMatricula;
-	}
-
 	public Alumno getAlumno() {
 		return this.alumno;
 	}
 
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
+	}
+
+	public List<Asignatura> getAsignaturas() {
+		return this.asignaturas;
+	}
+
+	public void setAsignaturas(List<Asignatura> asignaturas) {
+		this.asignaturas = asignaturas;
 	}
 
 }

@@ -13,6 +13,11 @@ import java.util.List;
 @Entity
 @Table(name="alumnos")
 @NamedQuery(name="Alumno.findAll", query="SELECT a FROM Alumno a")
+@NamedNativeQuery(name="Alumno.findByAsignaturaAndYear", query="SELECT a.*, matriculas.year, asignaturas.nombre FROM alumnos"
+		+ "    JOIN matriculas ON alumnos.dni = matriculas.dni"
+		+ "    JOIN asignatura_matricula ON matriculas.id = asignatura_matricula.idmatricula"
+		+ "    JOIN asignaturas ON asignatura_matricula.idasignatura = asignaturas.id"
+		+ "    WHERE matriculas.year = ? AND asignaturas.nombre = ?;")
 public class Alumno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
