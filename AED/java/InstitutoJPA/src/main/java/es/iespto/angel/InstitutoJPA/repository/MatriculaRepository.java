@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import es.iespto.angel.InstitutoJPA.entity.Asignatura;
-import es.iespto.angel.InstitutoJPA.entity.AsignaturaMatricula;
 import es.iespto.angel.InstitutoJPA.entity.Matricula;
 
 public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
@@ -20,7 +19,17 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 	public List<Matricula> findAll() {
 		EntityManager em = emf.createEntityManager();
 		List<Matricula> lista = em.createNamedQuery("Matricula.findAll",Matricula.class).getResultList();
-		//Mirar si hay que traerse toda la tabla intermedia aqui
+		em.close();
+		return lista;
+	}
+	
+	
+	public List<Matricula> findAllRel() {
+		EntityManager em = emf.createEntityManager();
+		List<Matricula> lista = em.createNamedQuery("Matricula.findAll", Matricula.class).getResultList();
+		for (Matricula m: lista) {
+			m.getAsignaturas().size();
+		}
 		em.close();
 		return lista;
 	}
@@ -32,45 +41,53 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 		if(id != null) {
 			EntityManager em = emf.createEntityManager();
 			res = em.find(Matricula.class, id);
-			if(res.getAsignaturaMatriculas().size()>0)
 			
 			em.close();
 		}
 		
 		return res;
 	}
-
-	/*@Override
-	public boolean deleteById(Integer id) {
+	
+	public Matricula findByIdRel(Integer id) {
+		Matricula res = null;
+		
+		if(id != null) {
+			EntityManager em = emf.createEntityManager();
+			res = em.find(Matricula.class, id);
+			if(res.getAsignaturas().size() > 0){}
+			em.close();
+		}
+		
+		return res;
 	}
-	
-	
-	public boolean deleteByIdEIntermedia(Integer id) {
+
+	@Override
+	public boolean deleteById(Integer id) {
 		boolean ok = false;
 		
 		if(id != null) {
 			EntityManager em = emf.createEntityManager();
-			
+			em.getTransaction().begin();
 			Matricula find = em.find(Matricula.class, id);
 			if(find != null) {
-				em.getTransaction().begin();
-				//find.get
-				em.remove(find);
-				List<AsignaturaMatricula> lista = find.getAsignaturaMatriculas();
-				if(lista.size() > 0) {
-					for (AsignaturaMatricula am : lista) {
-						em.remove(am);
+				if(find.getAsignaturas() != null && find.getAsignaturas().size() > 0) {
+					List<Asignatura> asignaturas = find.getAsignaturas();
+					for (Asignatura asignatura : asignaturas) {
+						asignatura.getMatriculas().remove(find);
 					}
+					find.getAsignaturas().clear();;
 				}
-				find.getAsignaturaMatriculas().clear();
-				em.getTransaction().commit();
+				em.remove(find);
+				
 				ok = true;
 			}
+			em.getTransaction().commit();
+			em.close();
 		}
 		
 		return ok;
-	}*/
-
+	}
+	
 	@Override
 	public boolean update(Matricula entity) {
 		boolean ok = false;
@@ -79,14 +96,17 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 			EntityManager em = emf.createEntityManager();
 			
 			Matricula update = em.find(Matricula.class, entity.getId());
-			//Revisar esta linea
-			if(update != null && update.getAsignaturaMatriculas() != null) {
+			if(update != null) {
 				em.getTransaction().begin();
 				update.setYear(entity.getYear());
-				update.setAsignaturaMatriculas(entity.getAsignaturaMatriculas());
-				//Posibilidad de updatear el alumno?
+				if(entity.getAsignaturas() != null && !(entity.getAsignaturas().equals(update.getAsignaturas()))) {
+					update.getAsignaturas().clear();
+					update.setAsignaturas(entity.getAsignaturas());
+				}
 				em.getTransaction().commit();
 				em.close();
+
+				ok = true;
 			}
 		}
 		
@@ -101,11 +121,7 @@ public class MatriculaRepository  implements ICRUD<Matricula, Integer>{
 			EntityManager em = emf.createEntityManager();
 			
 			em.getTransaction().begin();
-			//Preguntar si al ser un id autoincremental te lo 
-			//devuelve auto o lo tienes que recojer tu
 			em.persist(entity);
-			//Revisar linea siguiente
-			//em.persist(entity.getAsignaturaMatriculas());
 			em.getTransaction().commit();
 			em.close();
 			

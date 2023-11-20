@@ -3,7 +3,7 @@
   <groupId>es.iespto.angel</groupId>
   <artifactId>InstitutoJPA</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <dependencies>
+<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
@@ -57,7 +57,9 @@
             <version>5.8.0-M1</version>
             <scope>test</scope>
         </dependency> 
-        
+
+
+
 	</dependencies>
   <build>
     <resources>

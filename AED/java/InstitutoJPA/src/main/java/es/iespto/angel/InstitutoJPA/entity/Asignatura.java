@@ -2,6 +2,7 @@ package es.iespto.angel.InstitutoJPA.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -13,8 +14,6 @@ import java.util.List;
 @Table(name="asignaturas")
 @NamedQuery(name="Asignatura.findAll", query="SELECT a FROM Asignatura a")
 public class Asignatura implements Serializable {
-	//public static final String TABLE_NAME = "asignaturas";
-	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,15 +21,24 @@ public class Asignatura implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(length=50, name="curso")
+	@Column(length=50)
 	private String curso;
 
 	@Column(length=50)
 	private String nombre;
 
-	//bi-directional many-to-one association to AsignaturaMatricula
-	@OneToMany(mappedBy="asignatura")
-	private List<AsignaturaMatricula> asignaturaMatriculas;
+	//bi-directional many-to-many association to Matricula
+	@ManyToMany
+	@JoinTable(
+			name="asignatura_matricula"
+			, joinColumns={
+				@JoinColumn(name="idasignatura")
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="id")
+				}
+			)
+	private List<Matricula> matriculas;
 
 	public Asignatura() {
 	}
@@ -59,26 +67,12 @@ public class Asignatura implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<AsignaturaMatricula> getAsignaturaMatriculas() {
-		return this.asignaturaMatriculas;
+	public List<Matricula> getMatriculas() {
+		return this.matriculas;
 	}
 
-	public void setAsignaturaMatriculas(List<AsignaturaMatricula> asignaturaMatriculas) {
-		this.asignaturaMatriculas = asignaturaMatriculas;
-	}
-
-	public AsignaturaMatricula addAsignaturaMatricula(AsignaturaMatricula asignaturaMatricula) {
-		getAsignaturaMatriculas().add(asignaturaMatricula);
-		asignaturaMatricula.setAsignatura(this);
-
-		return asignaturaMatricula;
-	}
-
-	public AsignaturaMatricula removeAsignaturaMatricula(AsignaturaMatricula asignaturaMatricula) {
-		getAsignaturaMatriculas().remove(asignaturaMatricula);
-		asignaturaMatricula.setAsignatura(null);
-
-		return asignaturaMatricula;
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 
 }

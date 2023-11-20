@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 type Pelicula = {
     id: string,
@@ -13,11 +14,14 @@ type Pelicula = {
 }
 
 const UseUpdatePeli = () => {
+    let { id } = useParams();
+    const navigate = useNavigate();
     function updatePeli(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         let form: HTMLFormElement = event.currentTarget;
 
-        let id = form.idpeli.value;
+        let idPeli = id ?? "";
+        
         let titulo = form.titulo.value;
         let direccion = form.direccion.value;
         let actores = form.actores.value;
@@ -27,7 +31,7 @@ const UseUpdatePeli = () => {
         let categoria = form.categoria.value;
 
         let pelicula: Pelicula = {
-            id: id,
+            id: idPeli,
             titulo: titulo,
             direccion: direccion,
             actores: actores,
@@ -39,10 +43,11 @@ const UseUpdatePeli = () => {
 
         let ruta = "http://localhost:3000/peliculas/";
 
-        const axiosput = async (rutaDeMoneda: string) => {
+        const axiosput = async (ruta: string) => {
             try {
-                const response = await axios.put(rutaDeMoneda+id, pelicula)
+                const response = await axios.put(ruta+idPeli, pelicula)
                 console.log(response.data);
+                navigate("/");
             } catch (error) {
                 console.log(error);
             }

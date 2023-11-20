@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import es.iespto.angel.InstitutoJPA.entity.Asignatura;
-import es.iespto.angel.InstitutoJPA.entity.AsignaturaMatricula;
 
 public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 	private EntityManagerFactory emf;
@@ -49,12 +48,12 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 			if(find != null) {
 				em.getTransaction().begin();
 				em.remove(find);
-				List<AsignaturaMatricula> lista = find.getAsignaturaMatriculas();
+				/*List<AsignaturaMatricula> lista = find.getAsignaturaMatriculas();
 				if(lista.size() > 0) {
 					for (AsignaturaMatricula am : lista) {
 						em.remove(am);
 					}
-				}
+				}*/
 				em.getTransaction().commit();
 				ok = true;
 			}
@@ -72,7 +71,7 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 			em.getTransaction().begin();
 			Asignatura update = em.find(Asignatura.class, entity.getId());
 			//Revisar esta linea
-			if(update != null && update.getAsignaturaMatriculas() != null) {
+			if(update != null /*&& update.getAsignaturaMatriculas() != null*/) {
 				update.setCurso(entity.getCurso());
 				update.setNombre(entity.getNombre());
 				ok = true;
@@ -89,14 +88,16 @@ public class AsignaturaRepository implements ICRUD<Asignatura, Integer>{
 		Asignatura res = null;
 		
 		try{
-			EntityManager em = emf.createEntityManager();
-			
-			em.getTransaction().begin();
-			em.persist(entity);
-			em.getTransaction().commit();
-			em.close();
-			
-			res = entity;
+			if(entity.getMatriculas() == null){
+				EntityManager em = emf.createEntityManager();
+
+				em.getTransaction().begin();
+				em.persist(entity);
+				em.getTransaction().commit();
+				em.close();
+
+				res = entity;
+			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

@@ -1,22 +1,40 @@
 import React from 'react'
 import UseFindAllPeli from '../hooks/UseFindAllPeli';
 import PeliculaCard from './PeliculaCard';
+import { useAppContext } from './AppContextProvider';
 
 type Props = {}
 
 const MostrarTodo = (props: Props) => {
-    const { peliculas, setPeliculas} = UseFindAllPeli();
-
+    const { peliculas, setPeliculas, filtrar, peliculas2} = UseFindAllPeli();
+    const { peliculasFavoritas, setPeliculasFavoritas } = useAppContext();
+    console.log(peliculasFavoritas.length);
     return (
-        <div>MostrarTodo
+        <div>
+            <div>
+                <input type="text" onChange={filtrar}/>
+            </div>
+            {
+                (peliculasFavoritas.length > 0)
+                ??<div>Peliculas Favoritas</div>
+            }
+            <br/><br/><br/>
+            <div>
+                {
+                    peliculasFavoritas.map(pelicula => (
+                        <PeliculaCard peli={pelicula} />
+                    ))
+                }
+            </div>
+
             <br/>   
-            <p>
+            <div>
             {
                 peliculas.map(pelicula => (
                     <PeliculaCard peli={pelicula} />
                 ))
             }
-            </p>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,8 @@
+es\iespto\angel\InstitutoJPA\Main.class
+es\iespto\angel\InstitutoJPA\repository\ICRUD.class
+es\iespto\angel\InstitutoJPA\repository\AsignaturaRepository.class
+es\iespto\angel\InstitutoJPA\entity\Asignatura.class
+es\iespto\angel\InstitutoJPA\repository\AlumnoRepository.class
+es\iespto\angel\InstitutoJPA\entity\Matricula.class
+es\iespto\angel\InstitutoJPA\repository\MatriculaRepository.class
+es\iespto\angel\InstitutoJPA\entity\Alumno.class
