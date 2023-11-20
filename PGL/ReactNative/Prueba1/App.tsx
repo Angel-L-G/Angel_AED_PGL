@@ -47,11 +47,16 @@ function Section({ children, title }: SectionProps): JSX.Element {
     );
 }
 
-function HomeSreen(){
+type Props = {
+    navigation: any;
+}
+
+function HomeSreen({navigation}: Props) {
     return (
         <SafeAreaView>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text>Home</Text>
+                <Button title="Tareas" onPress={() => navigation.navigate('Practica23')}/>
             </View>
         </SafeAreaView>
     );
