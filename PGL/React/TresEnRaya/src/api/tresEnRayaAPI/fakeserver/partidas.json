@@ -1,0 +1,35 @@
+{
+  "Partidas": [
+    {
+      "id": "001",
+      "winner": "Player",
+      "moves": [
+        {
+        "id": 0,
+        "user": "Player",
+        "casilla": "1"
+        },
+        {
+          "id": 1,
+          "user": "IA",
+          "casilla": "8"
+        },
+        {
+          "id": 2,
+          "user": "Player",
+          "casilla": "2"
+        },
+        {
+          "id": 3,
+          "user": "IA",
+          "casilla": "5"
+        },
+        {
+          "id": 4,
+          "user": "Player",
+          "casilla": "3"
+        }
+      ]
+    }
+  ]
+}
