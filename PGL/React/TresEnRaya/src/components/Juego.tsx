@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import UseJugarPartida from '../hooks/UseJugarPartida';
 
 type Props = {}
 
+type Moves = {
+    id: number,
+    user: string,
+    cassilla: string
+}
+
+type Partida = {
+    id: string,
+    winner: string,
+    moves: Array<Moves>
+}
+
 const Juego = (props: Props) => {
     const arrBotones = [1,2,3,4,5,6,7,8,9];
-    const arrMoves = ["Player - 2", "IA - 8", "Player - 6"];
-
-    function jugar(id: number){
-        
-    }
+    let { jugar, moves } = UseJugarPartida();
 
     return (
         <div className='container'>
@@ -16,7 +25,7 @@ const Juego = (props: Props) => {
             <div className='grid'>
                 {
                     arrBotones.map((value, index) => {
-                        return <button onClick={() => jugar(value)} className='button'></button>
+                        return <button onClick={() => jugar(index, "Player")} className='button'></button>
                     })
                 }
             </div>
@@ -24,9 +33,9 @@ const Juego = (props: Props) => {
                 <h2>Movimientos</h2>
                 <ul>
                     {
-                        arrMoves.map((value, index) => {
+                        moves.map((value, index) => {
                             return <li>
-                                {value}
+                                {JSON.stringify(value)}
                             </li>
                         })
                     }

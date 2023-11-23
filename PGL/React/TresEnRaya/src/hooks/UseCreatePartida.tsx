@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 type Props = {}
 
+
 const UseCreatePartida = (props: Props) => {
-    function createPartida() {
+    function savePartida() {
         
     }
 
     return  {
-        createPartida
+        savePartida,
     }
 }
 
