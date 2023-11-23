@@ -194,9 +194,9 @@
                         $jefe = self::findById($idJefe);
                         $a->setJefe($jefe);
                     }else{
-                        $jAux = new Empleado();
-                        $jAux->setId(null);
-                        $a->setJefe($jAux);
+                        //$jAux = new Empleado();
+                        //$jAux->setId(null);
+                        $a->setJefe(null);
                     }
 
                     $a->setNumero($row[EmpleadoContract::COL_NUMERO]);

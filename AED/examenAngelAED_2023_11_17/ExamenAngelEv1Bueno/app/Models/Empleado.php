@@ -7,7 +7,7 @@ class Empleado{
     public $nombre;
     public $apellidos;
     public $fechaContrato;
-    public Empleado $jefe;
+    public $jefe;
     public $numero;
     public $calle;
     public $municipio;
