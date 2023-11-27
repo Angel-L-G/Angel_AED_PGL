@@ -44,6 +44,14 @@ header {
   background-color: #0056b3;
 }
 
+.primary{
+  background-color: burlywood;
+}
+
+.secundary {
+  background-color: cadetblue;
+}
+
 /* Estilo para enlaces */
 a {
   color: #007BFF;
