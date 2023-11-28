@@ -1,4 +1,6 @@
+import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {}
 
@@ -16,28 +18,99 @@ type Partida = {
 
 const UseJugarPartida = () => {
     const [moves, setMoves] = useState<Array<Moves>>([] as Array<Moves>);
-    const [partida, setPartida] = useState<Partida>({} as Partida);
-    const [clicked, setClicked] = useState<Array<String>>({} as Array<String>);
+    const [clicked, setClicked] = useState<Array<String>>([] as Array<String>);
     const [contadorMoves, setContadorMoves] = useState(0);
+    const [playerNumber, setPlayerNumber] = useState(1);
     const [winned, setWinned] = useState(0);
+    const [id, setId] = useState("");
+    const ruta = "http://localhost:3000/partidas";
+    let navigate = useNavigate();
+
+    async function getId() {
+        const response = await axios.get(ruta);
+        let partidas = response.data;
+        let idAux;
+
+        for (let i = 0; i < partidas.length; i++) {
+            idAux = partidas[i].id;
+        }
+
+        let id2;
+
+        if (Number(idAux) < 10) {
+            id2 = "00" + (Number(idAux) + 1);
+        } else if (Number(idAux) < 100) {
+            id2 = "0" + (Number(idAux) + 1);
+        } else {
+            id2 = (Number(idAux) + 1);
+        }
+
+        setId("" + id2);
+    }
+
+    function savePartida(){
+        getId();
+
+        let aux: Partida;
+        aux = {
+            id: id,
+            winner: "Player"+playerNumber,
+            moves: moves
+        }
+
+        const axiospost = async (ruta: string) => {
+            try{
+                const response = await axios.post(ruta, aux);
+                //console.log(response.data);
+                navigate("/showPartidas");
+            } catch (error){
+                console.log(error);
+            }
+        }
+
+        axiospost(ruta);
+    }
 
     function checkPosition(id: number, player: string) {
         let ok = true;
-        clicked.map((value, index) => {
-            if (index == id && value != null && value != undefined) {
-                ok = false;
-            } else {
-                clicked[index] = player;
 
-                let move: Moves;
+        if(!clicked[id]) {
+            let aux = clicked;
+            aux[id] = player;
+            setClicked(aux);
+            setPlayerNumber(2);
+            setContadorMoves(contadorMoves + 1);
+        }
 
-                move = {
-                    id: contadorMoves,
-                    user: player,
-                    cassilla: index+"" 
-                };
+        let value = clicked[id];
+
+        if (value != null && value != undefined) {
+            setContadorMoves(contadorMoves + 1);
+
+            let move: Moves;
+            move = {
+                id: contadorMoves,
+                user: player,
+                cassilla: id+"" 
+            };
+
+            console.log(moves);
+            setMoves([...moves, move]);
+            console.log(moves);
+
+            if(playerNumber == 1) {
+                setPlayerNumber(2);
+                console.log("5-1");
+            }else if (playerNumber == 2) {
+                setPlayerNumber(1);
+                console.log("5-2");
             }
-        })
+            
+        } else {
+            console.log("ya pulsado");
+            ok = false;
+        }
+
         return ok;
     }
 
@@ -57,7 +130,8 @@ const UseJugarPartida = () => {
             const [a, b, c] = lines[i];
             if (clicked[a] && clicked[a] === clicked[b] && clicked[a] === clicked[c]) {           
                 setWinned(1);
-                return clicked[a];
+                savePartida();
+                navigate("/showPartidas");
             }
         }
     }
@@ -69,9 +143,6 @@ const UseJugarPartida = () => {
 
         if (checkPosition(id, player)) {
             let aux = checkWinner(player);
-            if(aux != null){
-                return player;
-            }
         } else {
             return null;
         }
@@ -79,7 +150,9 @@ const UseJugarPartida = () => {
 
     return {
         jugar,
-        moves
+        moves,
+        playerNumber,
+        winned
     }
 }
 

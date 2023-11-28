@@ -1,36 +1,52 @@
 import React from 'react'
+import UseFindAllPartida from '../hooks/UseFindAllPartida'
+import UseDeletePartida from '../hooks/UseDeletePartida'
 
 type Props = {}
-type Partida = {
+type Moves = {
+    id: number,
+    user: string,
+    cassilla: string
+}
 
+type Partida = {
+    id: string,
+    winner: string,
+    moves: Array<Moves>
 }
 
 const MostrarPartidas = (props: Props) => {
-    const arrPartidas: Array<Partida> = [];
+    let {partidas} = UseFindAllPartida();
+    let {deletePartida} = UseDeletePartida();
 
     return (
         <div>
-            <ul>
+            <ol>
                 {
-                    arrPartidas.map((value, index) => {
-                        return <li><div>
-                            {/*
-                                //<h2>{value.id}</h2>
+                    partidas.map((value, index) => {
+                        return <li>
+                            {
+                            <div>
+                                <h2>{value.winner}</h2>
 
-                                {
-                                    value.moves.map((move, indice) => {
-                                        return <ol>
+                                <div>
+                                    {  
+                                        value.moves.map((move, indice) => {
+                                        return <ul>
                                             <li>
-                                                <p>{move.user + " - " + move.casilla}</p>
+                                                <p>{move.user + " - " + move.cassilla}</p>
                                             </li>
-                                        </ol>
-                                    })
-                                }
-                            */}
-                        </div></li>;
+                                        </ul>
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            }
+                            <button onClick={() => deletePartida(value.id)}>Eliminar</button>
+                        </li>;
                     })
                 }
-            </ul>
+            </ol>
         </div>
     )
 }
