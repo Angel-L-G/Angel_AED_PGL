@@ -28,19 +28,16 @@ const Practica23 = ({navigation}: Props) => {
                             <TouchableOpacity onPress={() => cambiarValor(index)}>
                                 <Icon name={(value.terminada == true)?'chevron-down-circle-outline':'close-circle-outline'} size={30}/>
                             </TouchableOpacity>
-                            <Text>
+                            <Text style={{textDecorationLine: value.terminada ? 'line-through' : 'none'}}>
                                 {value.desc}
                             </Text>
-                            <TouchableOpacity onPress={() => {navigation.navigate("Practica23Modify")}}>
+                            <TouchableOpacity onPress={() => {navigation.navigate("ModificarTarea", {id: index})}}>
                                 <Icon name="hammer-outline" size={30}/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => deleteTarea(index)}>
                                 <Icon name="trash-outline" size={30}/>
                             </TouchableOpacity>
-                            
-                            
                         </View>
-                        
                     })
                 }
             </View>

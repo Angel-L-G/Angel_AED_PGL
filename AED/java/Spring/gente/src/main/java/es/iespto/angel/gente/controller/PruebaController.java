@@ -12,31 +12,32 @@ import org.springframework.web.bind.annotation.RestController;
 import es.iespto.angel.gente.entity.Persona;
 import es.iespto.angel.gente.repository.IPersonaRepository;
 
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/personas")
 public class PruebaController {
 	@Autowired IPersonaRepository personaRepository;
 	
-	@RequestMapping("/api/personas/getAll")
+	@RequestMapping("/getAll")
 	public ResponseEntity<?> getAll(){
 		List<Persona> findAll = personaRepository.findAll();
 		
 		return ResponseEntity.ok(findAll);
 	}
 	
-	@RequestMapping("/api/personas/getById")
+	@RequestMapping("/getById")
 	public ResponseEntity<?> getById(@RequestParam Integer id){
 		return ResponseEntity.ok(personaRepository.findById(id));
 	}
 	
-	@RequestMapping("/api/personas/getDeleteById")
+	@RequestMapping("/getDeleteById")
 	public ResponseEntity<?> deleteById(@RequestParam Integer id){
 		personaRepository.deleteById(id);
 		return ResponseEntity.ok("No se que ha pasado");
 	}
 	
-	@RequestMapping("/api/personas/getById")
+	@RequestMapping("/getById")
 	public ResponseEntity<?> save(@RequestParam Integer id, @RequestParam int edad, @RequestParam String nombre){
 		Persona p = new Persona();
 		
@@ -47,7 +48,7 @@ public class PruebaController {
 		return ResponseEntity.ok(personaRepository.save(p));
 	}
 	
-	@RequestMapping("/api/personas/getById")
+	@RequestMapping("/getById")
 	public ResponseEntity<?> getByName(@RequestParam String name){
 		return ResponseEntity.ok(personaRepository.findByName(name));
 	}

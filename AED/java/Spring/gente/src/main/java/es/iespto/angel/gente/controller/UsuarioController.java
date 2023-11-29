@@ -19,25 +19,25 @@ import es.iespto.angel.gente.repository.IUsuarioRepository;
 public class UsuarioController {
 	@Autowired IUsuarioRepository usuarioRepository;
 
-	@RequestMapping("/api/usuarios/getAll")
+	@RequestMapping("/getAll")
 	public ResponseEntity<?> getAll(){
 		List<Usuario> findAll = usuarioRepository.findAll();
 		
 		return ResponseEntity.ok(findAll);
 	}
 	
-	@RequestMapping("/api/usuarios/getById")
+	@RequestMapping("/getById")
 	public ResponseEntity<?> getById(@RequestParam Integer id){
 		return ResponseEntity.ok(usuarioRepository.findById(id));
 	}
 	
-	@RequestMapping("/api/usuarios/getDeleteById")
+	@RequestMapping("/getDeleteById")
 	public ResponseEntity<?> deleteById(@RequestParam Integer id){
 		usuarioRepository.deleteById(id);
 		return ResponseEntity.ok("No se que ha pasado");
 	}
 	
-	@RequestMapping("/api/usuarios/getById")
+	@RequestMapping("/getById")
 	public ResponseEntity<?> save(@RequestParam Integer id, @RequestParam String rol, @RequestParam String nombre, @RequestParam String psswd){
 		Usuario u = new Usuario();
 		

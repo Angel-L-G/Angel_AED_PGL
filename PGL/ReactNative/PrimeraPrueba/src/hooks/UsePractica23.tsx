@@ -14,6 +14,8 @@ const UsePractica23 = () => {
     let {setTareasContext, tareasContext} = useAppContext();
 
     function cambiarValor(id: number) {
+        console.log(id);
+        console.log(tareasContext);
         let t = tareasContext[id];
         t.terminada = !t.terminada;
         let trs = tareasContext;
