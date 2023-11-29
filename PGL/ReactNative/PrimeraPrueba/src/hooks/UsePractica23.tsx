@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { useState } from 'react';
+import { useAppContext } from '../context/AppContextProvider';
 
 type Props = {}
 
@@ -10,40 +11,58 @@ type Tarea = {
 }
 
 const UsePractica23 = () => {
-    const [tareas, setTareas] = useState<Array<Tarea>>([] as Array<Tarea>)
+    let {setTareasContext, tareasContext} = useAppContext();
 
     function cambiarValor(id: number) {
-        tareas[id].terminada = !tareas[id].terminada;
+        let t = tareasContext[id];
+        t.terminada = !t.terminada;
+        let trs = tareasContext;
+        trs[id] = t;
+        setTareasContext(trs);
     }
 
-    function createTarea(d: string, t: boolean){
+    function createTarea(){
         let tarea: Tarea;
 
         tarea = {
-            desc: d,
-            terminada: t
+            desc: "Por Actualizar",
+            terminada: false
         }
 
-        setTareas([...tareas, tarea]);
+        setTareasContext([...tareasContext, tarea]);
     }
 
     function modificarTarea(id: number, d: string, t: boolean){
-        let tarea = tareas[id];
+        let tarea = tareasContext[id];
 
         tarea = {
             desc: d,
             terminada: t
         }
 
-        setTareas([...tareas, tarea]);
+        setTareasContext([...tareasContext, tarea]);
+    }
 
+    function deleteTarea(id: number){
+        let aux: Array<Tarea>;
+        aux = [];
 
+        tareasContext.map((value, index) => {
+            if(index != id){
+                aux = [...aux, value];
+            }
+        })
+
+        if(aux.length > 0){
+            setTareasContext(aux);
+        }
     }
 
     return {
-        tareas,
         modificarTarea,
-        createTarea
+        createTarea,
+        cambiarValor,
+        deleteTarea
     }
 }
 

@@ -1,9 +1,8 @@
 import React, { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
 type Tarea = {
-    id: number,
-    titulo: string,
-    estado: boolean
+    desc: string,
+    terminada: boolean
 }
 
 export interface AppContextType {

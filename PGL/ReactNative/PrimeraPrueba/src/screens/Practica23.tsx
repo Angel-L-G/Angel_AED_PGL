@@ -1,28 +1,51 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import UsePractica23 from '../hooks/UsePractica23'
+import Icon from 'react-native-vector-icons/Ionicons'
+import ModificarTarea from './ModificarTarea'
+import { useNavigation } from '@react-navigation/native'
+import { useAppContext } from '../context/AppContextProvider'
 
-type Props = {}
+type Props = {
+    navigation: any
+}
+
 type Tarea = {
     desc: string,
     terminada: boolean
 }
 
-const Practica23 = (props: Props) => {
-    const [tareas, setTareas] = useState<Array<Tarea>>([] as Array<Tarea>)
+const Practica23 = ({navigation}: Props) => {
+    let {tareasContext} = useAppContext();
+    let {createTarea, cambiarValor, modificarTarea, deleteTarea} = UsePractica23();
 
     return (
         <View style={{flex: 1}}>
             <View style={{flex: 1}}>
                 {
-                    tareas.map((value,index) => {
-                        return <span>
-                            <Text>{value.desc}</Text>
-                        </span>
+                    tareasContext.map((value,index) => {
+                        return <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                            <TouchableOpacity onPress={() => cambiarValor(index)}>
+                                <Icon name={(value.terminada == true)?'chevron-down-circle-outline':'close-circle-outline'} size={30}/>
+                            </TouchableOpacity>
+                            <Text>
+                                {value.desc}
+                            </Text>
+                            <TouchableOpacity onPress={() => {navigation.navigate("Practica23Modify")}}>
+                                <Icon name="hammer-outline" size={30}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => deleteTarea(index)}>
+                                <Icon name="trash-outline" size={30}/>
+                            </TouchableOpacity>
+                            
+                            
+                        </View>
+                        
                     })
                 }
             </View>
             <View style={{}}>
-                <Button title='+'/>
+                <Button title='+' onPress={createTarea}/>
             </View>
         </View>
     )

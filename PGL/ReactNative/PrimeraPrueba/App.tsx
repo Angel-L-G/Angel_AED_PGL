@@ -38,6 +38,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Practica23 from './src/screens/Practica23';
 import AppContextProvider from './src/context/AppContextProvider';
+import ModificarTarea from './src/screens/ModificarTarea';
 
 type Props = {
 	navigation: any
@@ -64,24 +65,16 @@ function HomeScreen({navigation}: Props) {
 
 const Stack = createNativeStackNavigator();
 
+//type Props = NativeStackScreenProps<RootStackParamList, 'Tercera'>;
+
 function App(): JSX.Element {
 	return (
 		<NavigationContainer>
 			<AppContextProvider>
-				<Stack.Navigator >
-					{/*
-					<Stack.Screen name="Home" component={HomeScreen} />
-					<Stack.Screen name="Inicio" component={InicioScreen} />
-					<Stack.Screen name="Practica2" component={Practica2} />
-					<Stack.Screen name="Practica4" component={Practica4} />
-					<Stack.Screen name="Practica8" component={Practica8} />
-					<Stack.Screen name="Practica9" component={Practica9} />
-					<Stack.Screen name="Practica10" component={Practica10} />
-					<Stack.Screen name="Practica12" component={Practica12} />
-					<Stack.Screen name="Practica15" component={Practica15} />
-					*/}
-					<Stack.Screen options={{headerStyle: {backgroundColor: '#709CEB'}, headerTintColor: 'white', headerTitleAlign: "center"}} name="Tareas" component={Practica23} />
-				</Stack.Navigator>
+			<Stack.Navigator>
+				<Stack.Screen name="Practica23" component={Practica23} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
+				<Stack.Screen name="Practica23Modify" component={ModificarTarea} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
+			</Stack.Navigator>
 			</AppContextProvider>
 		</NavigationContainer>
 	);
