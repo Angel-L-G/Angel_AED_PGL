@@ -40,6 +40,7 @@ import Practica23 from './src/screens/Practica23';
 import AppContextProvider from './src/context/AppContextProvider';
 import ModificarTarea from './src/screens/ModificarTarea';
 import Practica20 from '../../React/Practica07/src/components/Practica20';
+import Practica28 from './src/screens/Practica28';
 
 type Props = {
 	navigation: any
@@ -75,10 +76,13 @@ function App(): JSX.Element {
 	return (
 		<NavigationContainer>
 			<AppContextProvider>
-			<Stack.Navigator>
-				<Stack.Screen name="Practica23" component={Practica23} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
-				<Stack.Screen name="ModificarTarea" component={ModificarTarea} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
-			</Stack.Navigator>
+			{/*
+				<Stack.Navigator>
+					<Stack.Screen name="Practica23" component={Practica23} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
+					<Stack.Screen name="ModificarTarea" component={ModificarTarea} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
+				</Stack.Navigator>
+			*/}
+			<Practica28/>
 			</AppContextProvider>
 		</NavigationContainer>
 	);

@@ -38,6 +38,7 @@ const Practica23 = ({navigation}: Props) => {
                                 <Icon name="trash-outline" size={30}/>
                             </TouchableOpacity>
                         </View>
+                        console.log(value);
                     })
                 }
             </View>
