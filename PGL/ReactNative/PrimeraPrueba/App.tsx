@@ -65,12 +65,8 @@ function HomeScreen({navigation}: Props) {
 	)
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export type RootStackParamList = {
-	Practica23: undefined,
-	ModificarTarea: {id: number}
-}
+
  
 function App(): JSX.Element {
 	return (

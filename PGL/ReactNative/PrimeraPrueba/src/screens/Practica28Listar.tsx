@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-nati
 import React, { useState } from 'react'
 import PokemonCard from '../components/PokemonCard';
 import UsePractica28List from '../hooks/UsePractica28List';
+import PokemonCardParaList from '../components/PokemonCardParaList';
 
 type Props = {
     navigation: any
@@ -17,9 +18,8 @@ const Practica28Listar = (props: Props) => {
                     data={results}
                     renderItem={({item}) => (
                         <TouchableHighlight onPress={() => props.navigation.navigate("PokemonCard", {uri: item})}>
-                            <PokemonCard uri={item}/>
+                            <PokemonCardParaList uri={item}/>
                         </TouchableHighlight>
-                        
                     )}
                 />
             }

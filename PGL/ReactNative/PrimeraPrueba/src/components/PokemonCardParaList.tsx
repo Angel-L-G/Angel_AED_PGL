@@ -1,34 +1,14 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
-import UsePractica28Card from '../hooks/UsePractica28Card'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import UsePractica28Card from '../hooks/UsePractica28Card';
 
-type Pokemon = {
-    img: string,
-    nombre: string,
-    peso: number,
-    tipo: Array<any>,
-    img1: string,
-    img2: string,
-    img3: string
-}
-
-type RootStackParamList = {
-	Practica28List: undefined,
-	PokemonCard: {uri: string},
-    Practica28Filter: undefined,
-
-}
-
-/*type Props = {
+type Props = {
     uri: string
-}*/
 
-type Props = NativeStackScreenProps<RootStackParamList, "PokemonCard">
+}
 
-const PokemonCard = ({route}: Props) => {
-    let uri = route.params.uri;
-    let {cardData} = UsePractica28Card({uri: uri});
+const PokemonCardParaList = (props: Props) => {
+    let {cardData} = UsePractica28Card({uri: props.uri});
 
     return (
         <View style={styles.principal}>
@@ -66,7 +46,7 @@ const PokemonCard = ({route}: Props) => {
     )
 }
 
-export default PokemonCard
+export default PokemonCardParaList
 
 const styles = StyleSheet.create({
     texto:{
