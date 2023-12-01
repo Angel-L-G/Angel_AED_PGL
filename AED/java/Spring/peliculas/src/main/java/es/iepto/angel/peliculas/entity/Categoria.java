@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -26,25 +27,35 @@ public class Categoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false, length=3)
-	private String id;
+	@Column(unique=true, nullable=false)
+	private int id;
 
-	@Column(length=255)
+	@Column(nullable=false, length=255)
 	private String nombre;
 
 	//bi-directional many-to-many association to Pelicula
 	@ManyToMany
-	@JoinColumn(name="id", nullable=false, insertable=false, updatable=false)
+	@JoinTable(
+			name="PeliculaCategoria",
+			
+			joinColumns= {
+				@JoinColumn(name="id")
+			},
+			
+			inverseJoinColumns= {
+				@JoinColumn(name="pelicula_id")
+			}
+		)
 	private List<Pelicula> peliculas;
 
 	public Categoria() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

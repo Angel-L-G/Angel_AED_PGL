@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -26,26 +25,26 @@ public class Pelicula implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false, length=3)
-	private String id;
+	@Column(unique=true, nullable=false)
+	private Integer id;
 
-	@Column(length=255)
+	@Column(nullable=false, length=255)
 	private String actores;
 
-	@Lob
+	@Column(nullable=false, length=255)
 	private String argumento;
 
-	@Column(length=255)
+	@Column(nullable=false, length=255)
 	private String direccion;
 
-	@Column(length=255)
+	@Column(nullable=false, length=255)
 	private String imagen;
 
-	@Column(length=255)
+	@Column(nullable=false, length=255)
 	private String titulo;
 
-	@Column(length=255)
-	private String video;
+	@Column(nullable=false, length=255)
+	private String trailer;
 
 	//bi-directional many-to-many association to Categoria
 	@ManyToMany(mappedBy="peliculas")
@@ -54,11 +53,11 @@ public class Pelicula implements Serializable {
 	public Pelicula() {
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -102,12 +101,12 @@ public class Pelicula implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public String getVideo() {
-		return this.video;
+	public String getTrailer() {
+		return this.trailer;
 	}
 
-	public void setVideo(String video) {
-		this.video = video;
+	public void setTrailer(String trailer) {
+		this.trailer = trailer;
 	}
 
 	public List<Categoria> getCategorias() {
