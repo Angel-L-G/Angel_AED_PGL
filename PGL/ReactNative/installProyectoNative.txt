@@ -1,0 +1,75 @@
+Icons
+npm install --save-dev react-native-vector-icons
+npm install @types/react-native-vector-icons
+
+Nav
+npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context
+
+Poner en el MainActivity
+(android/app/src/main/java/nuestropackage/MainActivity.java.)
+import android.os.Bundle;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
+}
+
+Stack
+npm install @react-navigation/native-stack
+
+Drawer
+npm install @react-navigation/drawer
+npm install react-native-gesture-handler react-native-reanimated
+
+Poner en App.tsx
+import 'react-native-gesture-handler';
+
+Resetear Cache
+npx react-native start --reset-cache
+
+Tab
+npm install @react-navigation/bottom-tabs
+
+Permisos
+npm install --save react-native-permissions
+
+Async Storage
+npm install @react-native-async-storage/async-storage
+
+Webview
+npm install --save react-native-webview
+
+En android/gradle.properties
+android.useAndroidX=true
+android.enableJetifier=true
+
+Rss
+npm install react-native-rss-parser
+npm i --save-dev @types/react-native-rss-parser
+import * as rssParser from 'react-native-rss-parser';
+
+Sqlite y Typeorm
+npm install typeorm --save
+npm install reflect-metadata --save
+npm install @types/node --save-dev
+npm install --save react-native-sqlite-storage
+npm install --save-dev @babel/plugin-proposal-decorators
+
+En tsconfig.json
+{
+"extends": "@tsconfig/react-native/tsconfig.json",
+"compilerOptions": {
+"strict": false,
+"allowSyntheticDefaultImports": true,
+"emitDecoratorMetadata": true,
+"experimentalDecorators": true,
+"skipLibCheck": true
+}
+}
+
+En babel.config.js
+module.exports = {
+presets: ['module:metro-react-native-babel-preset'],
+plugins: ['react-native-reanimated/plugin'],
+plugins: [['@babel/plugin-proposal-decorators', {legacy: true}]],
+};

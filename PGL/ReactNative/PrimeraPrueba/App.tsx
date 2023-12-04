@@ -41,6 +41,7 @@ import AppContextProvider from './src/context/AppContextProvider';
 import ModificarTarea from './src/screens/ModificarTarea';
 import Practica20 from '../../React/Practica07/src/components/Practica20';
 import Practica28 from './src/screens/Practica28';
+import P31Stack from './src/navigator/P31Stack';
 
 type Props = {
 	navigation: any
@@ -78,7 +79,7 @@ function App(): JSX.Element {
 					<Stack.Screen name="ModificarTarea" component={ModificarTarea} options={{headerStyle:{backgroundColor:"#608CEB"}, headerTitleAlign:"center", headerTintColor:"white"}} />
 				</Stack.Navigator>
 			*/}
-			<Practica28/>
+			<P31Stack/>
 			</AppContextProvider>
 		</NavigationContainer>
 	);
