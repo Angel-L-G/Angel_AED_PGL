@@ -15,12 +15,19 @@ public interface IPeliculaRepository extends JpaRepository<Pelicula, Integer>{
 
 	@Modifying
 	@Query(value="Delete form Peliculas where Peliculas.id = :id", nativeQuery=true)
-	public void DeleteByIdNative();
+	public void DeleteByIdNative(Integer id);
 	
 	@Query(value="Select * from Peliculas", nativeQuery=true)
 	public Iterable<Pelicula> findAllNative();
 	
-	@Query(value="", nativeQuery=true)
+	@Query(value="Insert into Peliculas(id, titulo, direccion, actores, argumento, imagen, trailer) "
+							+ "values(:id, :titulo, :direccion, :actores, :argumento, :imagen, :trailer);", 
+			nativeQuery=true)
 	public Pelicula saveNative(Pelicula element);
 	
+	@Query(value="Update Peliculas set titulo= :titulo, direccion= :direccion, "
+			+ "actores= :actores, argumento= :argumento, "
+			+ "imagen= :imagen, trailer= :trailer "
+			+ "where id= :id", nativeQuery=true)
+	public boolean updateNtive(Pelicula element);
 }
