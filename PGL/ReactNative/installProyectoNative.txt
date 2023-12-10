@@ -1,3 +1,6 @@
+android
+npm i react-native-prompt-android
+
 Icons
 npm install --save-dev react-native-vector-icons
 npm install @types/react-native-vector-icons

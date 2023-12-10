@@ -25,9 +25,7 @@ const UsePractica28Filtrar = () => {
         }*/
         setTextoInput(txt);
     }
-
     const listaFiltrado = pokemonUrl.filter((pok)=> pok.name.includes(textoInput));
-    
     return {
         listaFiltrado,
         filtrar,
