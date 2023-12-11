@@ -183,6 +183,14 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: 'black',
     },
+
+    crearBody: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: '#11211e'
+    }
 })
 
 export default styles
