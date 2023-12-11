@@ -5,8 +5,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import AntNest from '../components/AntNest';
 import { Button } from 'react-native-elements';
 import NestDetails from '../components/NestDetails';
+import ActionButtonAux from '../navigations/ActionButtonAux';
 
-type Props = {}
+type Props = {
+    navigation: any,
+}
 
 type Hormiguero = {
     id: number,
@@ -15,9 +18,11 @@ type Hormiguero = {
     biome: string,
 }
 
-const Main = (props: Props) => {
+const Main = ({navigation}: Props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [actual, setActual] = useState(0);
+
+    //let hormigueros: Array<Hormiguero> = [];
 
     let hormigueros: Array<Hormiguero> = 
     [
@@ -46,16 +51,27 @@ const Main = (props: Props) => {
                 <Text style={styles.title}>Nombre Perfil</Text>
 
                 <TouchableHighlight style={styles.icono}>
-                    <Icon name="menu-outline" size={40}/>
+                    <Icon name="menu-outline" size={40}></Icon>
                 </TouchableHighlight>
+
+                <Text style={styles.icono}></Text>
                 
             </View>
+
+            {/*<ActionButtonAux/>*/}
+            
             <View style={styles.mainConatiner}>
                 <Text style={styles.title}>Hormigueros</Text>
                     {
-                        hormigueros.map((value, index) => {
-                            return <AntNest key={index} nest={value} showModal={showModal}/>
-                        })
+                        (hormigueros.length != 0)
+                        ?
+                            hormigueros.map((value, index) => {
+                                return <AntNest key={index} nest={value} showModal={showModal}/>
+                            })
+                        :
+                            <TouchableHighlight onPress={() => navigation.navigate("NewHormiguero")} style={styles.button}>
+                                <Text style={styles.textBody}>Crear Hormiguero</Text>
+                            </TouchableHighlight>
                     }
             </View>            
             

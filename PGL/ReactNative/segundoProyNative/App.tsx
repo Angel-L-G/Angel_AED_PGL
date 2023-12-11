@@ -36,6 +36,8 @@ import AntNest from './src/components/AntNest';
 import Social from './src/screens/Social';
 import Settings from './src/screens/Settings';
 import Outside from './src/screens/Outside';
+import NewHormiguero from './src/screens/NewHormiguero';
+import DrawerNav from './src/navigations/Drawer';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -48,6 +50,8 @@ type RootStackParamList = {
     Social: undefined,
     Settings: undefined,
     Outside: undefined,
+    NewHormiguero: undefined,
+    DrawerNav: undefined,
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -65,10 +69,12 @@ function App(): JSX.Element {
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Outside" component={Outside}/>
                 <Stack.Screen name="Main" component={Main}/>
+                <Stack.Screen name="NewHormiguero" component={NewHormiguero}/>
                 <Stack.Screen name="Settings" component={Settings}/>
                 <Stack.Screen name="Social" component={Social}/>
                 <Stack.Screen name="Register" component={Register}/>
             </Stack.Navigator>
+            {/*<DrawerNav/>*/}
         </NavigationContainer>
     )
 }

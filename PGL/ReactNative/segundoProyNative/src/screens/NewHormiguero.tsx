@@ -3,9 +3,11 @@ import React from 'react'
 import styles from '../themes/styles'
 import SelectDropdown from 'react-native-select-dropdown'
 
-type Props = {}
+type Props = {
+    navigation: any
+}
 
-const NewHormiguero = (props: Props) => {
+const NewHormiguero = ({navigation}: Props) => {
     const biomas = ["Humedal", "Planicie", "Montaña", "Bosque"];
     const hormigas = ["Humedal", "Planicie", "Montaña", "Bosque"];
 
@@ -57,7 +59,7 @@ const NewHormiguero = (props: Props) => {
 
                     <Text></Text>
 
-                    <TouchableHighlight style={styles.button}>
+                    <TouchableHighlight onPress={() => navigation.navigate("Main")} style={styles.button}>
                         <Text style={styles.textBody}>Crear</Text>
                     </TouchableHighlight>
                 </View> 

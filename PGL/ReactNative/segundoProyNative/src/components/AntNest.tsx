@@ -15,13 +15,12 @@ type Hormiguero = {
 }
 
 const AntNest = (props: Props) => {
-    let imagen = props.nest.img;
 
     return (
         <View style={styles.nestViewContainer}>
             <Image
                 style={styles.nestImage}
-                source={require("../img/Cotadora-de-hojas.jpg")}
+                source={require("../img/Hormiga-negra.jpg")}
             />
 
             <View style={styles.netsButtons}>

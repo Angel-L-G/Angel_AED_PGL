@@ -2,9 +2,11 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native'
 import React from 'react'
 import styles from '../themes/styles'
 
-type Props = {}
+type Props = {
+    navigation: any
+}
 
-const Register = (props: Props) => {
+const Register = ({navigation}: Props) => {
     return (
         <View style={styles.container}>
             <Image
@@ -42,13 +44,13 @@ const Register = (props: Props) => {
                 <Text></Text>
 
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <TouchableOpacity /*onPress{}*/ style={styles.button}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Main")} style={styles.button}>
                         <Text>Register</Text>
                     </TouchableOpacity>
 
                     <Text></Text>
 
-                    <TouchableOpacity /*onPress{}*/>
+                    <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                         <Text style={styles.enlaceText}>Log In</Text>
                     </TouchableOpacity>
                 </View>

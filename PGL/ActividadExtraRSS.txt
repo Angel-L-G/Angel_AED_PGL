@@ -1,0 +1,14 @@
+Actividad Extra RSS
+
+para la actividad de RSS
+se podrá introducir un nuevo feed
+se almacenará en DDBB una tabla con los feed
+y otra tabla con la info de las noticias ( se establece si ha sido vista o no, etc)
+
+La app al arrancar en background hace la consulta de los feeds y guarda en la DDBB
+de tal forma que si hay modo avión sigue funcionando
+debe haber una tab para agregar nuevo feed ( se agrega un título del feed y la url del feed)
+otra que muestra los feeds puestos como botones. Al pulsar encima nos abre una pantalla con las noticias de ese feed
+
+Si las noticias se han visto desaparecen ( no se muestran )
+Para ver las noticias ya visitadas se dan dos opciones: un botón dentro de la pantalla del feed que al pulsar abra una nueva pantalla con las noticias visitadas de ese feed o que al pulsar el botón las noticias se carguen en la parte de abajo sin que sea necesario una nueva pantalla
