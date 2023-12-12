@@ -2,13 +2,19 @@ package es.iepto.angel.peliculas.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import es.iepto.angel.peliculas.entity.Pelicula;
 import es.iepto.angel.peliculas.repository.ICategoriaRepository;
 import es.iepto.angel.peliculas.repository.IPeliculaRepository;
+import jakarta.transaction.Transactional;
 
-public class PeliculaService implements IGenericService<Pelicula, Integer>{
-	private IPeliculaRepository peliculaRepository;
-	private ICategoriaRepository categoriaRepository;
+@Service
+public class IPeliculaService implements IGenericService<Pelicula, Integer>{
+	@Autowired private IPeliculaRepository peliculaRepository;
+	@Autowired private ICategoriaRepository categoriaRepository;
 
 	@Override
 	public Iterable<Pelicula> findAll() {
@@ -27,6 +33,7 @@ public class PeliculaService implements IGenericService<Pelicula, Integer>{
 	}
 
 	@Override
+	@Transactional
 	public Pelicula save(Pelicula element) {
 		if(element != null) {
 			if(element.getId() != null) {
@@ -38,6 +45,7 @@ public class PeliculaService implements IGenericService<Pelicula, Integer>{
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(Integer id) {
 		if(id != null) {
 			peliculaRepository.deleteById(id);
@@ -46,7 +54,7 @@ public class PeliculaService implements IGenericService<Pelicula, Integer>{
 
 	//NATIVOS ----------------------------------------------
 	
-	public Iterable<Pelicula> findAllNative() {
+	/*public Iterable<Pelicula> findAllNative() {
 		return peliculaRepository.findAllNative();
 	}
 	
@@ -87,5 +95,5 @@ public class PeliculaService implements IGenericService<Pelicula, Integer>{
 		}
 		
 		return ok;
-	}
+	}*/
 }

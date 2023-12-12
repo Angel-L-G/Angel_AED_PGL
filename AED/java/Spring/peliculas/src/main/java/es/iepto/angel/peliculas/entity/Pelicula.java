@@ -5,9 +5,12 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -46,8 +49,16 @@ public class Pelicula implements Serializable {
 	@Column(nullable=false, length=255)
 	private String trailer;
 
-	//bi-directional many-to-many association to Categoria
-	@ManyToMany(mappedBy="peliculas")
+	@ManyToMany(fetch= FetchType.LAZY)
+	@JoinTable(
+		name="Pelicula_Categoria"
+		, joinColumns={
+			@JoinColumn(name="pelicula_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="categoria_id")
+			}
+		)
 	private List<Categoria> categorias;
 
 	public Pelicula() {
