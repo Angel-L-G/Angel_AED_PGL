@@ -44,8 +44,6 @@ public class CategoriaController {
 	
 	@PostMapping()
 	public ResponseEntity<?> save(@RequestBody Categoria categoria) {
-		System.out.println(categoria.getNombre() + "--------" + categoria.getId());
-		
 		Categoria save = categoriaService.save(categoria);
 		
 		return ResponseEntity.ok(save);

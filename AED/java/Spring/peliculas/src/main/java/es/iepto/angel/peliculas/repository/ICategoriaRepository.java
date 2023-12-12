@@ -11,7 +11,7 @@ import es.iepto.angel.peliculas.entity.Categoria;
 @Repository
 public interface ICategoriaRepository extends JpaRepository<Categoria, Integer>{
 
-	@Query(value="Update Categorias set nombre = :nombre "
+	@Query(value="Update categorias set nombre = :nombre "
 			+ "where id= :id", nativeQuery=true)
 	@Modifying
 	public void updateNtive(

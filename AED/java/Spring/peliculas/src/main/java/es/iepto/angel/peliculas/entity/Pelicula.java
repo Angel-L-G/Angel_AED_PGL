@@ -128,4 +128,12 @@ public class Pelicula implements Serializable {
 		this.categorias = categorias;
 	}
 
+	@Override
+	public String toString() {
+		return "Pelicula [id=" + id + ", actores=" + actores + ", argumento=" + argumento + ", direccion=" + direccion
+				+ ", imagen=" + imagen + ", titulo=" + titulo + ", trailer=" + trailer + "]";
+	}
+	
+	
+
 }
