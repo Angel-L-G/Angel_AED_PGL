@@ -1,5 +1,6 @@
 package es.iepto.angel.peliculas.controller;
 
+import java.util.Base64;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.iepto.angel.peliculas.dto.PeliculaDTO;
 import es.iepto.angel.peliculas.entity.Pelicula;
 import es.iepto.angel.peliculas.service.IFileStorageService;
 import es.iepto.angel.peliculas.service.IPeliculaService;
@@ -73,18 +75,26 @@ public class PeliculaController {
 		}
 	}
 
-	/*@PostMapping
-	public ResponseEntity<?> nuevoProducto(@RequestBody ProductoDTO productoDTO) {
-		Producto producto = new Producto();
-		producto.setId(productoDTO.getId());
-		producto.setNombre(productoDTO.getNombre());
-		producto.setPrecio(productoDTO.getPrecio());
-		producto.setStock(productoDTO.getStock());
-		String codedfoto = productoDTO.getFotoBase64();
+	@PostMapping
+	public ResponseEntity<?> nuevoProducto(@RequestBody PeliculaDTO peliculaDTO) {
+		Pelicula pelicula = new Pelicula();
+		
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		pelicula.setId(peliculaDTO.getId());
+		
+		String codedfoto = peliculaDTO.getImagen();
 		byte[] photoBytes = Base64.getDecoder().decode(codedfoto);
-		String nombreNuevoFichero = storageService.save(productoDTO.getFotoNombre(), photoBytes);
-		producto.setFoto(nombreNuevoFichero);
-		Producto save = productoService.save(producto);
+		
+		String nombreNuevoFichero = storageService.save(peliculaDTO.getNameImagen(), photoBytes);
+		pelicula.setImagen(nombreNuevoFichero);
+		
+		Pelicula save = peliculaService.save(pelicula);
 		return ResponseEntity.ok(save);
-	} */
+	} 
 }
