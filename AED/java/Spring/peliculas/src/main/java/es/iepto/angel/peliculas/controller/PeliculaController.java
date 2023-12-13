@@ -25,7 +25,7 @@ import es.iepto.angel.peliculas.service.IPeliculaService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/peliculas")
+@RequestMapping("/api/v1/peliculas")
 public class PeliculaController {
 	@Autowired
 	private IPeliculaService peliculaService;
@@ -75,18 +75,18 @@ public class PeliculaController {
 		}
 	}
 
-	@PostMapping
+	//@PostMapping("/files/upload")
 	public ResponseEntity<?> nuevoProducto(@RequestBody PeliculaDTO peliculaDTO) {
 		Pelicula pelicula = new Pelicula();
 		
 		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
-		pelicula.setId(peliculaDTO.getId());
+		pelicula.setActores(peliculaDTO.getActores());
+		pelicula.setArgumento(peliculaDTO.getArgumento());
+		pelicula.setCategorias(peliculaDTO.getCategorias());
+		pelicula.setDireccion(peliculaDTO.getDireccion());
+		pelicula.setTitulo(peliculaDTO.getTitulo());
+		pelicula.setTrailer(peliculaDTO.getTrailer());
+		pelicula.setImagen(peliculaDTO.getNameImagen());
 		
 		String codedfoto = peliculaDTO.getImagen();
 		byte[] photoBytes = Base64.getDecoder().decode(codedfoto);
