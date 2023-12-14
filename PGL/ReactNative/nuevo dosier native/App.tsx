@@ -48,6 +48,7 @@ export type RootStackParamList = {
 }
 
 type Feed = {
+    id: number,
     titulo: string,
     url: string
 }

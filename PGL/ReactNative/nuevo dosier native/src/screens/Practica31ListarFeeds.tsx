@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { FeedRepository } from '../data/Database'
 import { TouchableHighlight, TouchableOpacity } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
+import axios from 'axios'
+import * as rssParser from 'react-native-rss-parser';
 
 type Props = {
     navigation: any
@@ -19,7 +21,6 @@ const Practica31ListarFeeds = ({navigation}: Props) => {
     useFocusEffect(() => {
         async function getFeeds(){
             let a = await FeedRepository.find();
-
             setFeeds(a);
         }
 
@@ -35,7 +36,7 @@ const Practica31ListarFeeds = ({navigation}: Props) => {
                 data={feeds}
                 renderItem={({item}) => (
                     <TouchableHighlight onPress={() => navigation.navigate("Practica31Listar",{feed: item})}>
-                        <Text>{item.titulo+"---"+item.url}</Text>
+                        <Text>{item.titulo}</Text>
                     </TouchableHighlight>
                 )}
             />
