@@ -4,19 +4,26 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as rssParser from 'react-native-rss-parser';
 import { FeedRepository } from '../data/Database';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-type Props = {
-    navigation: any,
+type Props = NativeStackScreenProps<RootStackParamList, "Practica31Listar">;
+
+type Feed = {
+    titulo: string,
     url: string
 }
 
-const Practica31Listar = ({navigation, url}: Props) => {
+
+
+const Practica31Listar = ({navigation, route}: Props) => {
     const [noticias, setNoticias] = useState<rssParser.Feed>();
     const [titulos, setTitulos] = useState<Array<String>>([] as Array<String>);
 
     useEffect(() => {
         async function getCache(uri:string){
             try{
+                console.log(uri);
                 const response = await axios.get(uri);
                 const data = response.data ;
                 const responseData = await rssParser.parse(data);
@@ -32,7 +39,10 @@ const Practica31Listar = ({navigation, url}: Props) => {
             }
         }
     
-        getCache(url);
+        console.log(route.params.feed);
+        
+
+        getCache(route.params.feed.url);
     }, [])
     
     

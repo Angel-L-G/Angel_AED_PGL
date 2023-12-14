@@ -6,7 +6,7 @@ import 'react-native-gesture-handler';
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
 
 import {
@@ -34,6 +34,7 @@ import Practica31Listar from './src/screens/Practica31Listar';
 import Practica31Unica from './src/screens/Practica31Unica';
 import Practica31Crear from './src/screens/Practica31Crear';
 import Practica31ListarFeeds from './src/screens/Practica31ListarFeeds';
+import { dataSource } from './src/data/Database';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -41,23 +42,31 @@ type SectionProps = PropsWithChildren<{
 
 export type RootStackParamList = {
     Practica31ListarFeeds: undefined
-    Practica31Listar: { url: string },
+    Practica31Listar: { feed: Feed },
     Practica31Unica: { desc: string },
     Practica31Crear: undefined,
+}
+
+type Feed = {
+    titulo: string,
+    url: string
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
+    useEffect(() => {
+        async function iniciarDB() {
+            await dataSource.initialize();
+        }
 
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
+        iniciarDB();
+    }, [])
+
 
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Practica31ListarFeeds" component={Practica31ListarFeeds} />
                 <Stack.Screen name="Practica31Listar" component={Practica31Listar} />
                 <Stack.Screen name="Practica31Crear" component={Practica31Crear} />

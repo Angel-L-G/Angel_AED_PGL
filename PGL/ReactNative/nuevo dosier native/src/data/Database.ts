@@ -4,7 +4,7 @@ import { FeedItem } from "../entities/FeedItem";
 
 export const dataSource = new DataSource(
     {
-        database: "personadb.db",
+        database: "noticias.db",
         entities: [Feed, FeedItem],
         location: "default",
         logging: [],

@@ -1,11 +1,11 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { FeedItem } from "./FeedItem";
 
-@Entity()
+@Entity("Feed")
 export class Feed extends BaseEntity{
-    @PrimaryGeneratedColumn() id: number;
-    @Column("title") titulo: string;
-    @Column("url") url: string;
-    @OneToMany( ()=> FeedItem, (feedItem)=>feedItem.id)
+    @PrimaryGeneratedColumn("increment") id: number;
+    @Column("text") titulo: string;
+    @Column("text") url: string;
+    @OneToMany( ()=> FeedItem, (feedItem)=>feedItem.feed)
     feedItems: FeedItem[];
 }

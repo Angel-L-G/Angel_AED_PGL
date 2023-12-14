@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { FeedRepository } from '../data/Database'
 import { TouchableHighlight, TouchableOpacity } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 
 type Props = {
     navigation: any
@@ -15,17 +16,15 @@ type Feed = {
 const Practica31ListarFeeds = ({navigation}: Props) => {
     const [feeds, setFeeds] = useState<Array<Feed>>([]);
 
-    useEffect(() => {
+    useFocusEffect(() => {
         async function getFeeds(){
-            
             let a = await FeedRepository.find();
 
             setFeeds(a);
-            
         }
 
         getFeeds();
-    }, [])
+    });
 
     return (
         <View>
@@ -35,8 +34,8 @@ const Practica31ListarFeeds = ({navigation}: Props) => {
             <FlatList 
                 data={feeds}
                 renderItem={({item}) => (
-                    <TouchableHighlight onPress={() => navigation.navigate("Practica31Unica",{url: item.url})}>
-                        <Text>{item.titulo}</Text>
+                    <TouchableHighlight onPress={() => navigation.navigate("Practica31Listar",{feed: item})}>
+                        <Text>{item.titulo+"---"+item.url}</Text>
                     </TouchableHighlight>
                 )}
             />

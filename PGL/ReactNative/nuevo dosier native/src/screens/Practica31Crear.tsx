@@ -7,11 +7,10 @@ type Props = {
     navigation: any,
 }
 
-type Feed = {
-    id: undefined,
+type FormFeed = {
     titulo: string,
     url: string
-    FeedItems: Array<FeedItem>
+    
 }
 
 const Practica31Crear = (props: Props) => {
@@ -19,17 +18,19 @@ const Practica31Crear = (props: Props) => {
     const [url, setUrl] = useState("");
 
     async function crearFeed() {
-        let feed: Feed = {
-            id: undefined,
+        console.log(1);
+        let feed: FormFeed = {
             titulo: titulo,
             url: url,
-            FeedItems: []
         }
 
-        let arr: Array<Feed> = [];
-        arr.push(feed);
-        await FeedRepository.save(arr);
+        console.log(feed.titulo+"---"+feed.url);
 
+        console.log(2);
+
+        const feedVar = await FeedRepository.save(feed);
+
+        console.log(feedVar);
         props.navigation.navigate("Practica31ListarFeeds");
     }
 

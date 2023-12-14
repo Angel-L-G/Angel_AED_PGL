@@ -3,10 +3,11 @@ import { Feed } from "./Feed";
 
 @Entity("FeedItem")
 export class FeedItem extends BaseEntity{
-    @PrimaryGeneratedColumn() id: number;
-    @Column("title") titulo: string;
-    @Column("descripcion") descripcion: string;
-    @Column("url") url: string;
-    @ManyToOne( ()=> Feed, (feed)=>feed.id)
+    @PrimaryGeneratedColumn("increment") id: number;
+    @Column("text") titulo: string;
+    @Column("text") descripcion: string;
+    @Column("text") url: string;
+    @Column("boolean") visited: boolean;
+    @ManyToOne( ()=> Feed, (feed)=>feed.feedItems)
     feed: Feed;
 }
