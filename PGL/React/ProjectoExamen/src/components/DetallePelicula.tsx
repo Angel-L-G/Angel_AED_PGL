@@ -21,9 +21,9 @@ function DetallePelicula(props: Props) {
             <p>{peli.direccion}</p><br />
             <p>{peli.actores}</p><br />
             <p>{peli.argumento}</p><br />
-            <p>{peli.categoria}</p><br />
+            {/*<p>{peli.categoria}</p><br />*/}
             <ReactPlayer
-                url={peli.video}
+                url={peli.trailer}
                 controls
                 width="300px"
                 height="300px"

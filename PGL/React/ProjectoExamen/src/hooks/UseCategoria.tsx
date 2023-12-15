@@ -2,26 +2,11 @@ import axios from 'axios'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import UseFindAllPeli from './UseFindAllPeli'
-
-type Category = {
-    id: string,
-    nombre: string
-}
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Categoria } from './Types'
 
 const UseCategoria = () => {
-    const ruta = "http://localhost:3000/categorias";
-    const [categorias, setCategorias] = useState<Array<Category>>([]);
+    const ruta = "http://localhost:8080/api/v1/categorias";
+    const [categorias, setCategorias] = useState<Array<Categoria>>([]);
     const {peliculas, setPeliculas} = UseFindAllPeli();
     
     let {nombre} = useParams();
@@ -76,7 +61,7 @@ const UseCategoria = () => {
 
         let nombre = form.nombre.value;
 
-        const pelicula: Category = {
+        const pelicula: Categoria = {
             id: id,
             nombre: nombre
         };

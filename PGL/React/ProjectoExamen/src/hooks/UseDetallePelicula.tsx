@@ -2,22 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import PeliculaCard from '../components/PeliculaCard';
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Pelicula } from './Types';
 
 const UseDetallePelicula = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const ruta = "http://localhost:3000/peliculas/";
+    const ruta = "http://localhost:8080/api/v1/peliculas";
     const [peli, setPeli] = useState<Pelicula>({} as Pelicula);
 
     useEffect(() => {
@@ -31,7 +21,7 @@ const UseDetallePelicula = () => {
                 direccion: response.data.direccion,
                 imagen: response.data.imagen,
                 titulo: response.data.titulo,
-                video: response.data.video
+                trailer: response.data.trailer
             }
 
             setPeli(aux);

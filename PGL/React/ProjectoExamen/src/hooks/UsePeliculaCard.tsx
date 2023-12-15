@@ -1,16 +1,6 @@
 import React, { useState } from 'react'
 import { useAppContext } from '../components/AppContextProvider';
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Pelicula } from './Types';
 
 const UsePeliculaCard = () => {
     let { peliculasFavoritas, setPeliculasFavoritas } = useAppContext();

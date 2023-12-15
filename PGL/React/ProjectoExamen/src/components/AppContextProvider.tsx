@@ -1,15 +1,5 @@
 import React, { Dispatch, SetStateAction, useContext, createContext, useState } from 'react'
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Pelicula } from '../hooks/Types';
 
 type Props = {}
 

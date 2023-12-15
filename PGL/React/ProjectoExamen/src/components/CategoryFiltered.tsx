@@ -4,28 +4,13 @@ import PeliculaCard from './PeliculaCard';
 import {useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Pelicula } from '../hooks/Types';
 
 type Props = {}
 
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
-
-type Category = {
-    id: string,
-    nombre: string
-}
-
 const CategoryFiltered = (props: Props) => {
     let {peliculas,setPeliculas} = UseFindAllPeli();
-    const ruta = "http://localhost:3000/peliculas";
+    const ruta = "http://localhost:8080/api/v1/categorias";
 
     let {nombre} = useParams();
     let nombreCategory = nombre ?? "";

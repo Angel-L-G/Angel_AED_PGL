@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video?: string,
-    categoria?: string
-}
+import { Pelicula } from './Types';
 
 const UseCreatePeli = () => {
     const [id, setId] = useState("001");
-    const ruta = "http://localhost:3000/peliculas";
+    const ruta = "http://localhost:8080/api/v1/peliculas";
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -67,7 +57,7 @@ const UseCreatePeli = () => {
             argumento: argumento,
             imagen: imagen,
             categoria: categoria,
-            video: video
+            trailer: video
         };
 
         const axiospost = async (ruta: string) => {

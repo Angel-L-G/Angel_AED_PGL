@@ -5,7 +5,7 @@ import { ChangeEvent } from 'react';
 import { Pelicula } from './Types';
 
 const UseFindAllPeli = () => {
-    const ruta = "http://http://localhost:8080/api/v1/peliculas";
+    const ruta = "http://localhost:8080/api/v1/peliculas";
     const [peliculas, setPeliculas] = useState<Array<Pelicula>>([]);
     const [peliculas2, setPeliculas2] = useState<Array<Pelicula>>([]);
 
@@ -13,6 +13,9 @@ const UseFindAllPeli = () => {
         const axiosFindAll = async (ruta: string) => {
             try{
                 const response = await axios.get(ruta);
+
+                console.log(response.data);
+
                 setPeliculas(response.data);
                 setPeliculas2(response.data);
                 //console.log(peliculas.data);
@@ -25,7 +28,6 @@ const UseFindAllPeli = () => {
     }, [])
 
     function filtrar(filtro: ChangeEvent<HTMLInputElement>) {
-
         const arrPeliculasFiltradas = peliculas2.filter(p => 
             p.titulo.toLowerCase().includes(filtro.target.value.toLowerCase())
         );

@@ -1,17 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Pelicula } from './Types';
 
 const UseUpdatePeli = () => {
     let { id } = useParams();
@@ -27,8 +17,8 @@ const UseUpdatePeli = () => {
         let actores = form.actores.value;
         let argumento = form.argumento.value;
         let imagen = form.imagen.value;
-        let video = form.video.value;
-        let categoria = form.categoria.value;
+        let trailer = form.video.value;
+        //let categoria = form.categoria.value;
 
         let pelicula: Pelicula = {
             id: idPeli,
@@ -37,11 +27,11 @@ const UseUpdatePeli = () => {
             actores: actores,
             argumento: argumento,
             imagen: imagen,
-            video: video,
-            categoria: categoria         
+            trailer: trailer,
+            categoria: []
         };
 
-        let ruta = "http://localhost:3000/peliculas/";
+        let ruta = "http://localhost:8080/api/v1/peliculas";
 
         const axiosput = async (ruta: string) => {
             try {

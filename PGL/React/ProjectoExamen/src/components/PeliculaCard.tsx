@@ -5,17 +5,7 @@ import { GiArmorUpgrade } from "react-icons/gi";
 import { useAppContext } from './AppContextProvider';
 import UsePeliculaCard from '../hooks/UsePeliculaCard';
 import ReactPlayer from 'react-player';
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Pelicula } from '../hooks/Types';
 
 type Props = {
    peli: Pelicula,
@@ -32,9 +22,9 @@ const PeliculaCard = (props: Props) => {
                 <p>{props.peli.direccion}</p><br />
                 <p>{props.peli.actores}</p><br />
                 <p>{props.peli.argumento}</p><br />
-                <p>{props.peli.categoria}</p><br />
+                {/*<p>{props.peli.categoria}</p><br />*/}
                 <ReactPlayer
-                    url={props.peli.video}
+                    url={props.peli.trailer}
                     controls
                     width="300px"
                     height="300px"
