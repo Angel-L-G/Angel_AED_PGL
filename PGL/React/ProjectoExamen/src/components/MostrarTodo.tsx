@@ -8,7 +8,9 @@ type Props = {}
 const MostrarTodo = (props: Props) => {
     const { peliculas, setPeliculas, filtrar, peliculas2} = UseFindAllPeli();
     const { peliculasFavoritas, setPeliculasFavoritas } = useAppContext();
+    
     console.log(peliculasFavoritas.length);
+
     return (
         <div>
             <div>

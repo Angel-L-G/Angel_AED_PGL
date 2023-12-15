@@ -1,10 +1,15 @@
 export type Pelicula = {
-    id: number,
+    id: string,
     titulo: string,
     direccion: string,
     actores: string,
     argumento: string,
     imagen: string,
-    video: string,
-    categoria: string
+    trailer: string,
+    categoria: Categoria[]
+}
+
+export type Categoria = {
+    id: string,
+    nombre: string
 }

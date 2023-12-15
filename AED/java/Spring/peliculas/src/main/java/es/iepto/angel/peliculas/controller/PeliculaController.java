@@ -75,7 +75,7 @@ public class PeliculaController {
 		}
 	}
 
-	//@PostMapping("/files/upload")
+	@PostMapping("/files64")
 	public ResponseEntity<?> nuevoProducto(@RequestBody PeliculaDTO peliculaDTO) {
 		Pelicula pelicula = new Pelicula();
 		

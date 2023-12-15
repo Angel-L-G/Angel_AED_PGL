@@ -2,20 +2,10 @@ import React from 'react'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import { ChangeEvent } from 'react';
-
-type Pelicula = {
-    id: string,
-    titulo: string,
-    direccion: string,
-    actores: string,
-    argumento: string,
-    imagen: string,
-    video: string,
-    categoria: string
-}
+import { Pelicula } from './Types';
 
 const UseFindAllPeli = () => {
-    const ruta = "http://localhost:3000/peliculas";
+    const ruta = "http://http://localhost:8080/api/v1/peliculas";
     const [peliculas, setPeliculas] = useState<Array<Pelicula>>([]);
     const [peliculas2, setPeliculas2] = useState<Array<Pelicula>>([]);
 
