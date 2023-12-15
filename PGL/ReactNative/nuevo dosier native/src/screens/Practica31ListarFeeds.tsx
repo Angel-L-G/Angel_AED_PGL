@@ -45,5 +45,3 @@ const Practica31ListarFeeds = ({navigation}: Props) => {
 }
 
 export default Practica31ListarFeeds
-
-const styles = StyleSheet.create({})

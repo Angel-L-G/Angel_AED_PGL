@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React from 'react'
 import WebView from 'react-native-webview'
 import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -12,8 +12,6 @@ export type RootStackParamList = {
 type Props = NativeStackScreenProps<RootStackParamList, "Practica31Unica">;
 
 const Practica31Unica = ({navigation, route}: Props) => {
-    
-
     return (
         <WebView
             source={{

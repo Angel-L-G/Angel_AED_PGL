@@ -24,7 +24,6 @@ type FeedItem = {
 
 const Practica31Listar = ({navigation, route}: Props) => {
     const [noticias, setNoticias] = useState<Array<FeedItem>>();
-    const [titulos, setTitulos] = useState<Array<String>>([] as Array<String>);
     const feed: Feed  = route.params.feed;
 
     useEffect(() => {
@@ -35,15 +34,19 @@ const Practica31Listar = ({navigation, route}: Props) => {
                 }
             });
 
-            console.log(feed);
-            console.log(a);
-
             setNoticias(a);
         }
-        
+
         getNoticias();
     }, [])
     
+    async function changeBoolean(item: FeedItem) {
+        item.visited = true;
+
+        FeedItemRepository.save(item);
+
+        navigation.navigate("Practica31Unica",{desc: item.descripcion});
+    }
     
     return (
         <View>
@@ -52,11 +55,11 @@ const Practica31Listar = ({navigation, route}: Props) => {
                 renderItem={({item}) => (
                     (item.visited)
                     ?
-                        <TouchableHighlight onPress={() => navigation.navigate("Practica31Unica",{desc: item.descripcion})}>
+                        <TouchableHighlight onPress={() => changeBoolean(item)}>
                             <Text style={{color: "blue"}}>{item.titulo}</Text>
                         </TouchableHighlight>
                     :
-                        <TouchableHighlight onPress={() => navigation.navigate("Practica31Unica",{desc: item.descripcion})}>
+                        <TouchableHighlight onPress={() => changeBoolean(item)}>
                             <Text style={{color: "black"}}>{item.titulo}</Text>
                         </TouchableHighlight>
                 )}

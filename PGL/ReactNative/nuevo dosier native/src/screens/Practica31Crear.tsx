@@ -29,7 +29,6 @@ type FeedItem = {
 const Practica31Crear = (props: Props) => {
     const [titulo, setTitulo] = useState("");
     const [url, setUrl] = useState("");
-    const [feedActual, setFeed] = useState<FormFeed>();
 
     async function crearFeed() {
         let feed: FormFeed = {
@@ -39,18 +38,16 @@ const Practica31Crear = (props: Props) => {
 
         const feedVar: Feed = await FeedRepository.save(feed);
 
-        getFeedItems(feedVar.url);
-        setFeed(feedVar);
+        console.log(feedVar);
 
-        getFeedItems(feedVar.url);
+        getFeedItems(feedVar);
 
         props.navigation.navigate("Practica31ListarFeeds");
     }
 
-    async function getFeedItems(uri:string){
+    async function getFeedItems(feed:Feed){
         try{
-            console.log(uri);
-            const response = await axios.get(uri);
+            const response = await axios.get(feed.url);
             const data = response.data ;
             const responseData = await rssParser.parse(data);
 
@@ -59,14 +56,10 @@ const Practica31Crear = (props: Props) => {
                     titulo: responseData.items[i].title,
                     descripcion: responseData.items[i].description,
                     visited: false,
-                    feed: feedActual
+                    feed: feed
                 }
 
-                console.log(item);
-
                 let a = await FeedItemRepository.save(item);
-
-                console.log(a);
             }
         }catch( error){
             console.log(error);

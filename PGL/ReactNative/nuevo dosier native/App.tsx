@@ -67,7 +67,7 @@ function App(): JSX.Element {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator>
                 <Stack.Screen name="Practica31ListarFeeds" component={Practica31ListarFeeds} />
                 <Stack.Screen name="Practica31Listar" component={Practica31Listar} />
                 <Stack.Screen name="Practica31Crear" component={Practica31Crear} />
