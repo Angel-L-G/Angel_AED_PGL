@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.iepto.angel.peliculas.dto.UsuarioLoginDTO;
 import es.iepto.angel.peliculas.security.AuthService;
 import es.iepto.angel.peliculas.security.UserDetailsLogin;
+import es.iepto.angel.peliculas.service.MailService;
 
 @RestController
 @CrossOrigin
@@ -22,7 +23,9 @@ public class LoginController {
 	Logger log;
 	@Autowired
 	private AuthService service;
-
+	@Autowired
+	private MailService mailService;
+	
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody UsuarioLoginDTO request) {
 		

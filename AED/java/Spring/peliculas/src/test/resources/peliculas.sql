@@ -1,6 +1,6 @@
 SET MODE MYSQL;
 
-DROP TABLE IF EXISTS categorias_peliculas;
+DROP TABLE IF EXISTS pelicula_categoria;
 DROP TABLE IF EXISTS categorias;
 DROP TABLE IF EXISTS peliculas;
 
@@ -38,7 +38,7 @@ CREATE TABLE peliculas (
 );
 
 -- Crear tabla de Relación entre Peliculas y Categorias
-CREATE TABLE categorias_peliculas (
+CREATE TABLE pelicula_categoria(
     id INT  AUTO_INCREMENT,
     pelicula_id INT,
     categoria_id INT,
@@ -68,7 +68,7 @@ INSERT INTO peliculas (titulo, direccion, actores, argumento, imagen, trailer) V
 ('adsd', 'adsa', 'sad', 'ada', 'asda', 'adsa');
 
 -- Insertar datos en la tabla PeliculaCategoria
-INSERT INTO categorias_peliculas (pelicula_id, categoria_id) VALUES
+INSERT INTO pelicula_categoria (pelicula_id, categoria_id) VALUES
 (1, 1), (1, 4),
 (2, 1), (2, 2),
 (3, 1), (3, 5),

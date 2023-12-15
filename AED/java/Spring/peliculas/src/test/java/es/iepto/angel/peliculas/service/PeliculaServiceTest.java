@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -33,6 +34,7 @@ class PeliculaServiceTest {
 	}
 	
 	@Test
+	@Transactional
 	void findAllService() {
 		List<Pelicula> findAll = (List<Pelicula>) peliculaService.findAll();
 		assertNotNull(findAll);
@@ -40,6 +42,7 @@ class PeliculaServiceTest {
 	}
 	
 	@Test
+	@Transactional
 	void findAllWithRelService() {
 		List<Pelicula> findAll = (List<Pelicula>) peliculaService.findAll();
 		assertNotNull(findAll);
@@ -52,6 +55,7 @@ class PeliculaServiceTest {
 	}	
 	
 	@Test
+	@Transactional
 	void findByIdWithRelPeliculaService() {
 		Pelicula pel2 = peliculaService.findById(2).get();
 		assertTrue(pel2.getCategorias().size() == 2);
@@ -75,6 +79,8 @@ class PeliculaServiceTest {
 	@Test
 	void savePeliculaService() {
 		Pelicula pelicula = new Pelicula();
+
+		pelicula.setId(0);
 		pelicula.setActores("actor, actriz");
 		pelicula.setArgumento("argumento");
 		pelicula.setDireccion("dirección");
@@ -82,18 +88,10 @@ class PeliculaServiceTest {
 		pelicula.setTitulo("título");
 		pelicula.setTrailer("trailer");
 
-		Categoria c = new Categoria();
-		c.setId(1);
-		c.setNombre("Drama");
-
-		List<Categoria> l = new ArrayList<Categoria>();
-		l.add(c);
-		pelicula.setCategorias(l);
-		
 		Pelicula save = peliculaService.save(pelicula);
 		assertTrue(save != null);
 		assertTrue(save.getId() > 0);
-		
+
 		Optional<Pelicula> opt = okRepository.findByIdWithRel(save.getId());
 		Pelicula found = opt.get();
 		assertNotNull(found);
@@ -104,8 +102,9 @@ class PeliculaServiceTest {
 		assertTrue(found.getTitulo().equals("título"));
 		assertTrue(found.getTrailer().equals("trailer"));
 		assertTrue(found.getCategorias().size() == 0);
-		
+
 		pelicula = new Pelicula();
+		pelicula.setId(0);
 		pelicula.setActores("1actor, actriz");
 		pelicula.setArgumento("1argumento");
 		pelicula.setDireccion("1dirección");
@@ -117,15 +116,15 @@ class PeliculaServiceTest {
 		Categoria categoria = new Categoria();
 		categoria.setId(1);
 		pelicula.getCategorias().add(categoria);
-		
+
 		categoria = new Categoria();
 		categoria.setId(2);
 		pelicula.getCategorias().add(categoria);
-		
+
 		save = peliculaService.save(pelicula);
 		assertTrue(save != null);
 		assertTrue(save.getId() > 0);
-		
+
 		opt = okRepository.findByIdWithRel(save.getId());
 		found = opt.get();
 		assertNotNull(found);
@@ -136,24 +135,23 @@ class PeliculaServiceTest {
 		assertTrue(found.getTitulo().equals("1título"));
 		assertTrue(found.getTrailer().equals("1trailer"));
 		assertTrue(found.getCategorias().size() == 2);
-		
-		for(int id: List.of(1,  2)) {
+
+		for (int id : List.of(1, 2)) {
 			boolean anyMatch = found.getCategorias()
 					.stream()
-					.anyMatch(p->p.getId() == id);
+					.anyMatch(p -> p.getId() == id);
 
-			assertTrue(anyMatch);			
+			assertTrue(anyMatch);
 		}
-		
-	}	
-	
+
+	}
 }
 
 interface IokPeliculaRepository extends JpaRepository<Pelicula, Integer>{
 	@Query(
-	value = "select p from Pelicula p "
-			+ "left join fetch p.categorias "
-			+ "where p.id = :id"
+		value = "select p from Pelicula p "
+				+ "left join fetch p.categorias "
+				+ "where p.id = :id"
 	)
 	Optional<Pelicula> findByIdWithRel(int id);
 }

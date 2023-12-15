@@ -49,8 +49,10 @@ public class IPeliculaService implements IGenericService<Pelicula, Integer>{
 				List<Categoria> findAll = categoriaRepository.findAll();
 				
 				for (Categoria categoria : findAll) {
-					if(element.getCategorias().contains(categoria)) {
-						categoria.getPeliculas().add(element);
+					if(element.getCategorias() != null) {
+						if(element.getCategorias().contains(categoria)) {
+							categoria.getPeliculas().add(element);
+						}
 					}
 				}
 			}

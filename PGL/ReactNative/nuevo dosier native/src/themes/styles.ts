@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         fontSize: 25,
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold',
         alignItems: 'center',
         justifyContent: 'center',
