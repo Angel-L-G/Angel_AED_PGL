@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faae1400-0d5f-4fee-9fae-8f985f7bf383" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/Alumno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/Asignatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/Asignatura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/AsignaturaMatricula.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/Matricula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/entity/Matricula.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/repository/AlumnoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/repository/AlumnoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/repository/AsignaturaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/repository/AsignaturaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/repository/MatriculaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/iespto/angel/InstitutoJPA/repository/MatriculaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/es/iespto/angel/InstitutoJPA/repository/MatriculaRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/iespto/angel/InstitutoJPA/repository/MatriculaRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/es.iespto.angel/InstitutoJPA/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/es.iespto.angel/InstitutoJPA/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/es.iespto.angel/InstitutoJPA/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/es.iespto.angel/InstitutoJPA/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/entity/Asignatura.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/entity/Asignatura.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/entity/AsignaturaMatricula.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/entity/Matricula.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/entity/Matricula.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/repository/AlumnoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/repository/AlumnoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/repository/AsignaturaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/repository/AsignaturaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/repository/MatriculaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/es/iespto/angel/InstitutoJPA/repository/MatriculaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-es.iespto.angel.InstitutoJPA.repository.AlumnoRepositoryTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-es.iespto.angel.InstitutoJPA.repository.AlumnoRepositoryTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-es.iespto.angel.InstitutoJPA.repository.AsignaturaRepositoryTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-es.iespto.angel.InstitutoJPA.repository.AsignaturaRepositoryTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-es.iespto.angel.InstitutoJPA.repository.MatriculaRepositoryTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-es.iespto.angel.InstitutoJPA.repository.MatriculaRepositoryTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/es.iespto.angel.InstitutoJPA.repository.AlumnoRepositoryTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/es.iespto.angel.InstitutoJPA.repository.AlumnoRepositoryTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/es.iespto.angel.InstitutoJPA.repository.AsignaturaRepositoryTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/es.iespto.angel.InstitutoJPA.repository.AsignaturaRepositoryTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/es.iespto.angel.InstitutoJPA.repository.MatriculaRepositoryTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/es.iespto.angel.InstitutoJPA.repository.MatriculaRepositoryTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/es/iespto/angel/InstitutoJPA/repository/MatriculaRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/es/iespto/angel/InstitutoJPA/repository/MatriculaRepositoryTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="faae1400-0d5f-4fee-9fae-8f985f7bf383" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,15 +21,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/angel/Desktop/Repositorios/Angel_AED_PGL/AED/java/InstitutoJPA&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/angel/Desktop/Repositorios/Angel_AED_PGL/AED/java/Spring/peliculas",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="JUnit.MatriculaRepositoryTest">
     <configuration name="MatriculaRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="InstitutoJPA" />

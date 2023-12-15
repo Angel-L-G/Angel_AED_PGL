@@ -25,12 +25,8 @@ import es.iepto.angel.peliculas.entity.Pelicula;
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 @Sql(scripts = {"/peliculas.sql"})
 class PeliculaServiceTest {
-
 	@Autowired IokPeliculaRepository okRepository;
-	
 	@Autowired IPeliculaService peliculaService;
-	
-
 	
 	@Test
 	void contextLoads() {
@@ -43,11 +39,9 @@ class PeliculaServiceTest {
 		assertTrue(findAll.size() == 17);
 	}
 	
-
-	
-	/*@Test
+	@Test
 	void findAllWithRelService() {
-		List<Pelicula> findAll = peliculaService.findAllWithRel();
+		List<Pelicula> findAll = (List<Pelicula>) peliculaService.findAll();
 		assertNotNull(findAll);
 		assertTrue(findAll.size() == 17);
 		Optional<Pelicula> opt = findAll.stream()
@@ -55,36 +49,31 @@ class PeliculaServiceTest {
 			.findFirst();
 		Pelicula pelicula = opt.get();
 		assertTrue(pelicula.getCategorias().size()==2);
-		
-		
-	}*/	
+	}	
 	
-	/*@Test
+	@Test
 	void findByIdWithRelPeliculaService() {
-		
-		Pelicula pel2 = peliculaService.findByIdWithRel(2);
+		Pelicula pel2 = peliculaService.findById(2).get();
 		assertTrue(pel2.getCategorias().size() == 2);
-	}*/	
+	}
 
 	
-	/*@Test
+	@Test
 	void deleteWithRelPeliculaService() {
-		
 		//borrando elemento con categorias
-		peliculaService.deleteWithRel(1);
+		peliculaService.deleteById(1);
 		Optional<Pelicula> opt = okRepository.findByIdWithRel(1);
 		assertTrue(!opt.isPresent());
 		
 		//borrando elemento sin categorias
-		peliculaService.deleteWithRel(13);
+		peliculaService.deleteById(13);
 		opt = okRepository.findByIdWithRel(13);
 		assertTrue(!opt.isPresent());		
-	}*/
+	}
 	
 	
 	@Test
 	void savePeliculaService() {
-		
 		Pelicula pelicula = new Pelicula();
 		pelicula.setActores("actor, actriz");
 		pelicula.setArgumento("argumento");
@@ -92,6 +81,15 @@ class PeliculaServiceTest {
 		pelicula.setImagen("imagen");
 		pelicula.setTitulo("título");
 		pelicula.setTrailer("trailer");
+
+		Categoria c = new Categoria();
+		c.setId(1);
+		c.setNombre("Drama");
+
+		List<Categoria> l = new ArrayList<Categoria>();
+		l.add(c);
+		pelicula.setCategorias(l);
+		
 		Pelicula save = peliculaService.save(pelicula);
 		assertTrue(save != null);
 		assertTrue(save.getId() > 0);
@@ -107,8 +105,6 @@ class PeliculaServiceTest {
 		assertTrue(found.getTrailer().equals("trailer"));
 		assertTrue(found.getCategorias().size() == 0);
 		
-		
-		
 		pelicula = new Pelicula();
 		pelicula.setActores("1actor, actriz");
 		pelicula.setArgumento("1argumento");
@@ -116,7 +112,6 @@ class PeliculaServiceTest {
 		pelicula.setImagen("1imagen");
 		pelicula.setTitulo("1título");
 		pelicula.setTrailer("1trailer");
-		
 
 		pelicula.setCategorias(new ArrayList<Categoria>());
 		Categoria categoria = new Categoria();
@@ -142,7 +137,6 @@ class PeliculaServiceTest {
 		assertTrue(found.getTrailer().equals("1trailer"));
 		assertTrue(found.getCategorias().size() == 2);
 		
-		
 		for(int id: List.of(1,  2)) {
 			boolean anyMatch = found.getCategorias()
 					.stream()
@@ -156,7 +150,6 @@ class PeliculaServiceTest {
 }
 
 interface IokPeliculaRepository extends JpaRepository<Pelicula, Integer>{
-	
 	@Query(
 	value = "select p from Pelicula p "
 			+ "left join fetch p.categorias "

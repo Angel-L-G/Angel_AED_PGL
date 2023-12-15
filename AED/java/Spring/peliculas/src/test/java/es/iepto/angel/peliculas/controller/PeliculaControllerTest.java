@@ -38,7 +38,6 @@ public class PeliculaControllerTest {
 	@Autowired
 	ObjectMapper mapper;
 
-	
 	@MockBean
 	IPeliculaService peliculaService;
 
@@ -47,7 +46,6 @@ public class PeliculaControllerTest {
 
 	@Test
 	public void findAllTest() throws Exception {
-		
 		Pelicula p1 = new Pelicula(); p1.setId(1); p1.setTitulo("uno");
 		Pelicula p2 = new Pelicula(); p2.setId(1); p2.setTitulo("dos");
 		List<Pelicula> peliculas = List.of( p1,p2 );
@@ -56,18 +54,13 @@ public class PeliculaControllerTest {
     
         mockMvc.perform(
     			MockMvcRequestBuilders
-    				.get("/api/peliculas")
-
+    				.get("/api/v1/peliculas")
     				.contentType(MediaType.APPLICATION_JSON)
-                    
-    				
     		)
     		.andExpect(status().isOk())
     		.andExpect(jsonPath("$",hasSize(2)))
     		.andExpect(jsonPath("$[1].titulo", is("dos")));
     		;
-    		
-    		
 	}
 
 }
