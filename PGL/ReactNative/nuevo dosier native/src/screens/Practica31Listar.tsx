@@ -6,6 +6,7 @@ import * as rssParser from 'react-native-rss-parser';
 import { FeedItemRepository, FeedRepository } from '../data/Database';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
+import styles from '../themes/styles';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Practica31Listar">;
 
@@ -50,6 +51,7 @@ const Practica31Listar = ({navigation, route}: Props) => {
     
     return (
         <View>
+            <Text style={styles.title}>Visitadas</Text>
             <FlatList 
                 data={noticias}
                 renderItem={({item}) => (
@@ -58,10 +60,19 @@ const Practica31Listar = ({navigation, route}: Props) => {
                         <TouchableHighlight onPress={() => changeBoolean(item)}>
                             <Text style={{color: "blue"}}>{item.titulo}</Text>
                         </TouchableHighlight>
-                    :
-                        <TouchableHighlight onPress={() => changeBoolean(item)}>
-                            <Text style={{color: "black"}}>{item.titulo}</Text>
-                        </TouchableHighlight>
+                    :<></>
+                )}
+            />
+            <Text style={styles.title}>No Visitadas</Text>
+            <FlatList 
+                data={noticias}
+                renderItem={({item}) => (
+                    (!item.visited)
+                    ?
+                    <TouchableHighlight onPress={() => changeBoolean(item)}>
+                        <Text style={{color: "black"}}>{item.titulo}</Text>
+                    </TouchableHighlight>
+                    :<></>
                 )}
             />
         </View>
@@ -69,5 +80,3 @@ const Practica31Listar = ({navigation, route}: Props) => {
 }
 
 export default Practica31Listar
-
-const styles = StyleSheet.create({})

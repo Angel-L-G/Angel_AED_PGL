@@ -6,6 +6,8 @@ import { Pelicula } from './Types';
 const UseUpdatePeli = () => {
     let { id } = useParams();
     const navigate = useNavigate();
+    let ruta = "http://localhost:8080/api/v1/peliculas";
+    
     function updatePeli(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         let form: HTMLFormElement = event.currentTarget;
@@ -18,7 +20,9 @@ const UseUpdatePeli = () => {
         let argumento = form.argumento.value;
         let imagen = form.imagen.value;
         let trailer = form.video.value;
-        //let categoria = form.categoria.value;
+        let categoria = form.categoria.value;
+
+        let categorias = categoria.split(",");
 
         let pelicula: Pelicula = {
             id: idPeli,
@@ -28,10 +32,8 @@ const UseUpdatePeli = () => {
             argumento: argumento,
             imagen: imagen,
             trailer: trailer,
-            categoria: []
+            categoria: categorias
         };
-
-        let ruta = "http://localhost:8080/api/v1/peliculas";
 
         const axiosput = async (ruta: string) => {
             try {
