@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         borderRadius: 80,
+        marginTop: "3%"
     },
 
     mainConatiner:{
@@ -193,7 +194,6 @@ const styles = StyleSheet.create({
     textBodyContainer: {
         width: '80%',
         height: '10%',
-
     },
 
     crearBody: {
@@ -208,7 +208,9 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "60%",
         height: "100%",
-        backgroundColor: "#c2bcbe"
+        backgroundColor: "#c2bcbe",
+        marginTop: "3%",
+        marginBottom: "3%"
     },
 
     gameTop: {

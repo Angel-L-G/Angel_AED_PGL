@@ -1,19 +1,25 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableHighlight } from 'react-native'
 import React from 'react'
 import styles from '../themes/styles'
+import BoxActions from '../components/BoxActions'
 
-type Props = {}
+type Props = {
+    navigation: any
+}
 
-const Game = (props: Props) => {
+const Game = ({navigation}: Props) => {
     return (
         <View style={styles.container}>
             <View style={styles.mainConatiner}>
                 <View style={styles.gameTop}>
-                    <Text>Casillas</Text>
+                    <TouchableHighlight onPress={() => navigation.navigate("Outside")}>
+                        <Text style={{color: "white"}}>Outside</Text>
+                    </TouchableHighlight>
+                    <Text style={{color: "white"}}>Casillas</Text>
                 </View>
     
                 <View style={styles.gameBotom}>
-                    <Text>Acciones</Text>
+                    <BoxActions />
                 </View>
             </View>
         </View>
