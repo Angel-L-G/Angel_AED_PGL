@@ -95,6 +95,12 @@ const styles = StyleSheet.create({
         borderRadius: 80,
     },
 
+    bigProfilePicture:{
+        width: 150,
+        height: 150,
+        borderRadius: 80,
+    },
+
     mainConatiner:{
         flex: 1,
         justifyContent: 'center',
@@ -184,13 +190,45 @@ const styles = StyleSheet.create({
         color: 'black',
     },
 
+    textBodyContainer: {
+        width: '80%',
+        height: '10%',
+
+    },
+
     crearBody: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         backgroundColor: '#11211e'
-    }
+    },
+
+    friendProfileList: {
+        flex: 1,
+        width: "60%",
+        height: "100%",
+        backgroundColor: "#c2bcbe"
+    },
+
+    gameTop: {
+        paddingTop: "5%",
+        height: "70%",
+        width: "90%",
+        backgroundColor: "black"    
+    },
+    
+    gameBotom: {
+        height: "25%",
+        width: "90%",
+        backgroundColor: "gray"
+    },
+
+    friendProfileItem: {
+        width: "100%",
+        color: "black",
+        fontSize: 13,
+    },
 })
 
 export default styles

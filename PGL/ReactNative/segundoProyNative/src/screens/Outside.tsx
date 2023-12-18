@@ -11,10 +11,6 @@ const Outside = (props: Props) => {
                 style={styles.BackgorundImage}
                 source={require('../img/mapa_outside.jpg')}
             />
-
-            <View style={styles.formContainer}>
-
-            </View>
         </View>
     )
 }

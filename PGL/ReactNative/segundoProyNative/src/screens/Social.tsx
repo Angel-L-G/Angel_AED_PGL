@@ -3,7 +3,9 @@ import React from 'react'
 import styles from '../themes/styles'
 import Icon from 'react-native-vector-icons/Ionicons';
 
-type Props = {}
+type Props = {
+    navigation: any
+}
 
 type Chat = {
     id: number,
@@ -16,7 +18,7 @@ type Message = {
     message: string
 }
 
-const Social = (props: Props) => {
+const Social = ({navigation}: Props) => {
     const amigos: Array<Chat> = [
         {
             id: 1,
@@ -101,10 +103,13 @@ const Social = (props: Props) => {
     return (
         <View style={styles.container}>
             <View style={styles.profileBar}>
-                <Image
-                    style={styles.profilePicture}
-                    source={require('../img/profile.png')}
-                />
+                <TouchableHighlight onPress={() => navigation.navigate("Profile")}>
+                    <Image
+                        style={styles.profilePicture}
+                        source={require('../img/profile.png')}
+                    />
+                </TouchableHighlight>
+
                 <Text style={styles.title}>Nombre Perfil</Text>
 
                 <TouchableHighlight style={styles.icono}>

@@ -4,6 +4,7 @@ import styles from '../themes/styles'
 
 type Props = {
     showModal: Function,
+    navigation: any,
     nest: Hormiguero,
 }
 
@@ -14,7 +15,7 @@ type Hormiguero = {
     biome: string,
 }
 
-const AntNest = (props: Props) => {
+const AntNest = ({navigation, nest, showModal}: Props) => {
 
     return (
         <View style={styles.nestViewContainer}>
@@ -24,11 +25,11 @@ const AntNest = (props: Props) => {
             />
 
             <View style={styles.netsButtons}>
-                <TouchableHighlight style={styles.button} onPress={() => props.showModal(props.nest.id)}>
+                <TouchableHighlight style={styles.button} onPress={() => showModal(nest.id)}>
                     <Text>Detalles</Text>
                 </TouchableHighlight>
 
-                <TouchableHighlight style={styles.button}>
+                <TouchableHighlight style={styles.button} onPress={() => navigation.navigate("Game")}>
                     <Text>Entrar</Text>
                 </TouchableHighlight>
             </View>

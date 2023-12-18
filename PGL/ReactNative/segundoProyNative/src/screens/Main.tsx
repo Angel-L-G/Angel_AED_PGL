@@ -44,10 +44,13 @@ const Main = ({navigation}: Props) => {
     return (
         <View style={styles.container}>
             <View style={styles.profileBar}>
-                <Image
-                    style={styles.profilePicture}
-                    source={require('../img/profile.png')}
-                />
+                <TouchableHighlight onPress={() => navigation.navigate("Profile")}>
+                    <Image
+                        style={styles.profilePicture}
+                        source={require('../img/profile.png')}
+                    />
+                </TouchableHighlight>
+                
                 <Text style={styles.title}>Nombre Perfil</Text>
 
                 <TouchableHighlight style={styles.icono}>
@@ -66,7 +69,7 @@ const Main = ({navigation}: Props) => {
                         (hormigueros.length != 0)
                         ?
                             hormigueros.map((value, index) => {
-                                return <AntNest key={index} nest={value} showModal={showModal}/>
+                                return <AntNest key={index} navigation={navigation} nest={value} showModal={showModal}/>
                             })
                         :
                             <TouchableHighlight onPress={() => navigation.navigate("NewHormiguero")} style={styles.button}>
