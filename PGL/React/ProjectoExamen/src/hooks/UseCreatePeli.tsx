@@ -38,10 +38,10 @@ const UseCreatePeli = () => {
     async function getCategoria(categoriasDeLaPelicula: Array<Categoria>){
         let categorias: Array<Categoria> = [];
 
-        const axiosFindAll = async (ruta: string) => {
+        const axiosFind = async (ruta: string) => {
             try{
                 const response = await axios.get(ruta);
-                categorias = response.data;
+                return response.data;
                 //console.log(peliculas.data);
             } catch (error){
                 console.log(error);
@@ -50,10 +50,14 @@ const UseCreatePeli = () => {
         }
 
         for (let index = 0; index < categorias.length; index++) {
-            //if(){
-
-            //}
+            console.log(index);
+            if(categorias[index]){
+                categorias[index] = await axiosFind(rutaCategorias +"/"+ categorias[index].id);
+                console.log(categorias[index]);
+            }
         }
+
+        return categorias;
     }
 
     async function createPeli(event: React.FormEvent<HTMLFormElement>){
@@ -69,6 +73,7 @@ const UseCreatePeli = () => {
         let categoria = form.categoria.value ?? "";
 
         let categorias = categoria.split(",");
+        console.log(categorias);
 
         //console.log(id, titulo, direccion, actores, argumento, imagen, video);
 
@@ -94,7 +99,6 @@ const UseCreatePeli = () => {
         }
 
         axiospost(ruta);
-        //ECONNABORTED
     }
 
     return {
