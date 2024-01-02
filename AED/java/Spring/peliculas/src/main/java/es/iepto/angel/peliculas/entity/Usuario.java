@@ -34,6 +34,15 @@ public class Usuario implements Serializable {
 
 	@Column(nullable=false, length=45)
 	private String rol;
+	
+	@Column(length=45)
+	private String email;
+	
+	@Column
+	private int active;
+	
+	@Column(nullable=true, length=255)
+	private String hash;
 
 	public Usuario() {
 	}
@@ -69,5 +78,29 @@ public class Usuario implements Serializable {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+	
+	public String getEmail() {
+		return this.email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public int getAtive() {
+		return this.active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	public String getHash() {
+		return this.hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
+	
 }

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Categoria, Pelicula } from './Types';
+import UseCategoria from './UseCategoria';
 
 const UseCreatePeli = () => {
     const [id, setId] = useState("001");
     const ruta = "http://localhost:8080/api/v1/peliculas";
     const rutaCategorias = "http://localhost:8080/api/v1/categorias";
     const navigate = useNavigate();
+    const {findCategoryById} = UseCategoria();
 
     useEffect(() => {
         async function getId() {
@@ -70,12 +72,21 @@ const UseCreatePeli = () => {
         let argumento = form.argumento.value;
         let imagen = form.imagen.value ?? "error.png";
         let video = form.video.value ?? "";
-        let categoria = form.categoria.value ?? "";
+        let strIdcategorias = form.categoria.value ?? "";
 
-        let categorias = categoria.split(",");
-        console.log(categorias);
+        let idCategorias = strIdcategorias.split(",");
+        console.log(idCategorias);
 
-        //console.log(id, titulo, direccion, actores, argumento, imagen, video);
+        let arrCatgs: Array<Categoria> = [];
+
+        for (let index = 0; index < idCategorias.length; index++) {
+            let c = await findCategoryById(idCategorias[index]);
+            console.log("category");
+            console.log(c);
+            if(c != null){
+                arrCatgs.push(c);
+            }
+        }
 
         const pelicula: Pelicula = {
             id: id,
@@ -84,7 +95,7 @@ const UseCreatePeli = () => {
             actores: actores,
             argumento: argumento,
             imagen: imagen,
-            categoria: categorias,
+            categorias: arrCatgs,
             trailer: video
         };
 
@@ -102,7 +113,7 @@ const UseCreatePeli = () => {
     }
 
     return {
-        createPeli
+        createPeli,
     }   
 }
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import es.iepto.angel.peliculas.entity.Usuario;
 import es.iepto.angel.peliculas.service.IUsuarioService;
+import es.iepto.angel.peliculas.service.MailService;
 
 @Service
 public class AuthService {
@@ -15,15 +16,33 @@ public class AuthService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private JwtService jwtService;
-
+	@Autowired
+	private MailService mailService;
+	
 	public String register(UserDetailsLogin userdetails) {
 		Usuario userentity = new Usuario();
 		userentity.setNombre(userdetails.getUsername());
 		userentity.setPassword(passwordEncoder.encode(userdetails.getPassword()));
 		userentity.setRol("ROLE_USER");
+		userentity.setActive(0);
+		userentity.setEmail(userdetails.email);
+		
+		int randInt = (int)Math.random()*10000;
+		String randStrHashed = passwordEncoder.encode(randInt+"");
+		userentity.setHash(randStrHashed);
+		
 		Usuario save = usuarioservice.save(userentity);
 		userdetails.setRole(userentity.getRol());
 		String generateToken = jwtService.generateToken(userdetails.username, userdetails.password);
+		
+		String message = "http://localhost:8080/api/registerVerify"
+				+ "?email="+save.getEmail()
+				+ "&hash="+save.getHash();
+		
+		String asunto = "Register Verification For Account";
+		
+		mailService.send(save.getEmail(),asunto , message);
+		
 		return generateToken;
 	}
 

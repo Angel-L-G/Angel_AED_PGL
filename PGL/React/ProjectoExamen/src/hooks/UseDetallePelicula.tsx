@@ -7,7 +7,7 @@ import { Pelicula } from './Types';
 const UseDetallePelicula = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const ruta = "http://localhost:8080/api/v1/peliculas";
+    const ruta = "http://localhost:8080/api/v1/peliculas/";
     const [peli, setPeli] = useState<Pelicula>({} as Pelicula);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const UseDetallePelicula = () => {
             let aux= {
                 id: response.data.id,
                 actores: response.data.actores,
-                categoria: response.data.categoria,
+                categorias: response.data.categoria,
                 argumento: response.data.argumento,
                 direccion: response.data.direccion,
                 imagen: response.data.imagen,

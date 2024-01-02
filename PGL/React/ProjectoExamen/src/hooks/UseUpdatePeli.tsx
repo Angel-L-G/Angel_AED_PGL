@@ -32,7 +32,7 @@ const UseUpdatePeli = () => {
             argumento: argumento,
             imagen: imagen,
             trailer: trailer,
-            categoria: categorias
+            categorias: categorias
         };
 
         const axiosput = async (ruta: string) => {

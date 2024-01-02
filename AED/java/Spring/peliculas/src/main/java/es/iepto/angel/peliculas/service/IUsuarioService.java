@@ -36,4 +36,8 @@ public class IUsuarioService implements IGenericService<Usuario, Integer> {
 	public Usuario findByName(String nombre) {
 		return usuariorepository.findByName(nombre);
 	}
+	
+	public Usuario findByEmail(String email) {
+		return usuariorepository.findByEmail(email);
+	}
 }

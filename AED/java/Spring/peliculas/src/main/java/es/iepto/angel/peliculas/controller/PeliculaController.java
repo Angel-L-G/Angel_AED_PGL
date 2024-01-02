@@ -52,6 +52,8 @@ public class PeliculaController {
 
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Pelicula pelicula) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		System.out.println(pelicula.getCategorias().size());
 		Pelicula save = peliculaService.save(pelicula);
 		return ResponseEntity.ok(save);
 	}
@@ -60,19 +62,6 @@ public class PeliculaController {
 	public ResponseEntity<?> deleteById(@PathVariable Integer id) {
 		peliculaService.deleteById(id);
 		return ResponseEntity.ok("Bien");
-	}
-
-	@PostMapping("/files")
-	public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
-		String message = "";
-		try {
-			String namefile = storageService.save(file);
-			message = "" + namefile;
-			return ResponseEntity.status(HttpStatus.OK).body(message);
-		} catch (Exception e) {
-			message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
-		}
 	}
 
 	@PostMapping("/files64")
@@ -97,4 +86,5 @@ public class PeliculaController {
 		Pelicula save = peliculaService.save(pelicula);
 		return ResponseEntity.ok(save);
 	} 
+	
 }

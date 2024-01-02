@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import UseFindAllPeli from '../hooks/UseFindAllPeli';
 import PeliculaCard from './PeliculaCard';
 import { useAppContext } from './AppContextProvider';
@@ -6,10 +6,14 @@ import { useAppContext } from './AppContextProvider';
 type Props = {}
 
 const MostrarTodo = (props: Props) => {
-    const { peliculas, setPeliculas, filtrar, peliculas2} = UseFindAllPeli();
+    const { peliculas, setPeliculas, filtrar, peliculas2, getAllPelis} = UseFindAllPeli();
     const { peliculasFavoritas, setPeliculasFavoritas } = useAppContext();
     
     console.log(peliculasFavoritas.length);
+
+    useEffect(() => {
+        getAllPelis();
+    }, [])
 
     return (
         <div>

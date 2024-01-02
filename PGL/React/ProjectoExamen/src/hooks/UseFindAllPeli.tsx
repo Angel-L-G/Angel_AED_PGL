@@ -9,23 +9,23 @@ const UseFindAllPeli = () => {
     const [peliculas, setPeliculas] = useState<Array<Pelicula>>([]);
     const [peliculas2, setPeliculas2] = useState<Array<Pelicula>>([]);
 
-    useEffect(() => {
-        const axiosFindAll = async (ruta: string) => {
-            try{
-                const response = await axios.get(ruta);
+    const axiosFindAll = async (ruta: string) => {
+        try{
+            const response = await axios.get(ruta);
 
-                console.log(response.data);
+            console.log(response.data);
 
-                setPeliculas(response.data);
-                setPeliculas2(response.data);
-                //console.log(peliculas.data);
-            } catch (error){
-                console.log(error);
-            }
+            setPeliculas(response.data);
+            setPeliculas2(response.data);
+            //console.log(peliculas.data);
+        } catch (error){
+            console.log(error);
         }
-        
-        axiosFindAll(ruta);      
-    }, [])
+    }
+
+    function getAllPelis(){
+        axiosFindAll(ruta);  
+    }
 
     function filtrar(filtro: ChangeEvent<HTMLInputElement>) {
         const arrPeliculasFiltradas = peliculas2.filter(p => 
@@ -35,12 +35,12 @@ const UseFindAllPeli = () => {
         setPeliculas([...arrPeliculasFiltradas]);
     }
 
-
     return {
         setPeliculas,
         peliculas,
         filtrar,
-        peliculas2
+        peliculas2,
+        getAllPelis,
     };
 }
 

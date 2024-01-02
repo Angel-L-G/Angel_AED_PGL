@@ -77,12 +77,22 @@ const UseCategoria = () => {
         }
 
         axiospost(ruta);
-        //ECONNABORTED
+    }
+
+    async function findCategoryById(id: number){
+        try{
+            const c = await axios.get(ruta+"/"+id);
+            return c.data;
+        } catch (error){
+            console.log(error);
+        }
+        return null;
     }
 
     return {
         createCategory,
-        categorias
+        categorias,
+        findCategoryById
     }
 }
 

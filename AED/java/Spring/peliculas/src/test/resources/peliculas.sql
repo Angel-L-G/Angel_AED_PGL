@@ -80,3 +80,18 @@ INSERT INTO pelicula_categoria (pelicula_id, categoria_id) VALUES
 (9, 1), (9, 5),
 (10, 10);
 
+CREATE TABLE `usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `rol` varchar(45) NOT NULL,
+  `email` varchar (45),
+  `active` int default 0,
+  `hash` varchar(255),
+  constraint pk_usuarios PRIMARY KEY(id),
+  constraint uk_nombre UNIQUE KEY(nombre)
+) ;
+
+INSERT INTO `usuarios` (`id`, `nombre`, `password`, `rol`, `active`) VALUES
+(7, 'root', '$2a$10$WvhH/Cgd2cVElEEQfeF.8uOQci5KDn9bXP1vlxQBmI5pOmpkcOJ9i', 'ROLE_ADMIN', 1),
+(12, 'lui', '$2a$10$0xezsvQnVm/I.DOTqprt9esmD4wava7gVY/oZB2HlaUz.ZaJP7sa2', 'ROLE_USER', 1);

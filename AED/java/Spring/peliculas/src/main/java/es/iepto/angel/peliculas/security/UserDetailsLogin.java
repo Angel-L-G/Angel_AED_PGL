@@ -14,6 +14,7 @@ public class UserDetailsLogin implements UserDetails {
 
 	String username;
 	String password;
+	String email;
 	String role;
 
 	public void setUsername(String username) {
@@ -30,6 +31,14 @@ public class UserDetailsLogin implements UserDetails {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

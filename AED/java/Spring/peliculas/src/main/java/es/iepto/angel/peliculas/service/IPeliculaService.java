@@ -44,7 +44,7 @@ public class IPeliculaService implements IGenericService<Pelicula, Integer>{
 		Pelicula save = null;
 		if(element != null) {
 			if(element.getId() != null) {
-				 save = peliculaRepository.save(element);
+				save = peliculaRepository.save(element);
 				
 				List<Categoria> findAll = categoriaRepository.findAll();
 				

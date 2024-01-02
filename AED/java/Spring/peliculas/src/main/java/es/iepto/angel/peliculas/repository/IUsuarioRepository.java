@@ -11,4 +11,7 @@ import es.iepto.angel.peliculas.entity.Usuario;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 	@Query("SELECT u from Usuario u where u.nombre=:nombre")
 	public Usuario findByName(@Param("nombre") String nombre);
+	
+	@Query("SELECT u from Usuario u where u.email=:email")
+	public Usuario findByEmail(@Param("email") String email);
 }

@@ -14,22 +14,22 @@ type Props = {
 
 const PeliculaCard = (props: Props) => {
     let {setPeliculaFavorito, favorito} = UsePeliculaCard();
+    const rutaImagenes = "http://localhost:8080/api/v1/files/";
     return (
         <div>
             <a href={'/pelicula/'+props.peli.id}>
-                <img src={"http://localhost:3000/"+props.peli.imagen}/>
+                <img src={rutaImagenes+props.peli.imagen}/>
                 <h1>{props.peli.titulo}</h1><br />
                 <p>{props.peli.direccion}</p><br />
                 <p>{props.peli.actores}</p><br />
                 <p>{props.peli.argumento}</p><br />
-                {/*<p>{props.peli.categoria}</p><br />*/}
+                {/*<p>{props.peli.categoria}</p><br />
                 <ReactPlayer
                     url={props.peli.trailer}
                     controls
                     width="300px"
                     height="300px"
-                />
-                
+                />*/}
             </a>
             <button onClick={() => setPeliculaFavorito(props.peli)}>
                 {

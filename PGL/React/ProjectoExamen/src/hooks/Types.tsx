@@ -6,7 +6,7 @@ export type Pelicula = {
     argumento: string,
     imagen: string,
     trailer: string,
-    categoria: Categoria[]
+    categorias: Categoria[]
 }
 
 export type Categoria = {
