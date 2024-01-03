@@ -1,10 +1,9 @@
-package es.iepto.angel.peliculas.controller;
+package es.iepto.angel.peliculas.controller.v3;
 
 import java.util.Base64;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import es.iepto.angel.peliculas.dto.PeliculaDTO;
 import es.iepto.angel.peliculas.entity.Pelicula;
@@ -25,8 +22,8 @@ import es.iepto.angel.peliculas.service.IPeliculaService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/peliculas")
-public class PeliculaController {
+@RequestMapping("/api/v3/peliculas")
+public class PeliculaControllerV3 {
 	@Autowired
 	private IPeliculaService peliculaService;
 	@Autowired

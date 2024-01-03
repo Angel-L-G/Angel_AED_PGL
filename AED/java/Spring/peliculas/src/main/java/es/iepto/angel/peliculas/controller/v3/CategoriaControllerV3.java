@@ -1,4 +1,4 @@
-package es.iepto.angel.peliculas.controller;
+package es.iepto.angel.peliculas.controller.v3;
 
 import java.util.Optional;
 
@@ -19,9 +19,8 @@ import es.iepto.angel.peliculas.service.ICategoriaService;
 
 @RestController
 @CrossOrigin
-//@RequestMapping("/api/v1/categorias")
-@RequestMapping("/api/test/categorias")
-public class CategoriaController {
+@RequestMapping("/api/v3/categorias")
+public class CategoriaControllerV3 {
 	@Autowired private ICategoriaService categoriaService;
 	
 	@GetMapping

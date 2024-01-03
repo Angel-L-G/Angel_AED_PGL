@@ -1,11 +1,10 @@
-package es.iepto.angel.peliculas.controller;
+package es.iepto.angel.peliculas.controller.v2;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +18,8 @@ import es.iepto.angel.peliculas.service.ICategoriaService;
 
 @RestController
 @CrossOrigin
-//@RequestMapping("/api/v1/categorias")
-@RequestMapping("/api/test/categorias")
-public class CategoriaController {
+@RequestMapping("/api/v2/categorias")
+public class CategoriaControllerV2 {
 	@Autowired private ICategoriaService categoriaService;
 	
 	@GetMapping
@@ -32,7 +30,7 @@ public class CategoriaController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id){
-		Optional<Categoria> find = categoriaService.findById(id);         	
+		Optional<Categoria> find = categoriaService.findById(id);         
 		return ResponseEntity.ok(find);  
 	}
 	
@@ -46,11 +44,5 @@ public class CategoriaController {
 	public ResponseEntity<?> save(@RequestBody Categoria categoria) {
 		Categoria save = categoriaService.save(categoria);
 		return ResponseEntity.ok(save);
-	}
-	
-	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable Integer id) {
-		categoriaService.deleteById(id);
-		return ResponseEntity.ok("Bien");
 	}
 }

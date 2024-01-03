@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import es.iepto.angel.peliculas.config.ApplicationNoSecurity;
+import es.iepto.angel.peliculas.controller.v3.PeliculaController;
 import es.iepto.angel.peliculas.entity.Pelicula;
 import es.iepto.angel.peliculas.service.IFileStorageService;
 import es.iepto.angel.peliculas.service.IPeliculaService;
