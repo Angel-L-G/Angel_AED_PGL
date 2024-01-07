@@ -1,0 +1,48 @@
+{
+  "users": [
+    { "id": 1, "name": "User1" },
+    { "id": 2, "name": "User2" },
+    { "id": 3, "name": "User3" }
+  ],
+
+  "chats": [
+    {
+      "id": 1,
+      "name": "Chat1",
+      "messages": [
+        { "idUser": 1, "message": "Hello!" },
+        { "idUser": 2, "message": "Hi there!" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Chat2",
+      "messages": [
+        { "idUser": 1, "message": "How are you?" },
+        { "idUser": 3, "message": "I'm good, thanks!" }
+      ]
+    }
+  ],
+
+  "hormigueros": [
+    {"id": 0, "img": "../img/Hormiga-negra.jpg", "antname": "Hormiga Negra", "biome": "Planicie"}, 
+    {"id": 1, "img": "../img/Cotadora-de-hojas.jpg", "antname": "Hormina Cortadora De Hojas", "biome": "Pantano"}, 
+    {"id": 2, "img": "../img/hormiga-roja.jpeg", "antname": "Hormiga Roja", "biome": "Humedales"},
+    {"id": 3, "img": "../img/hormiga-roja.jpeg", "antname": "Hormiga Roja", "biome": "Humedales"} 
+  ],
+
+  "AlmacenImg":[
+    {
+    "nombre": "Hormiga-negra",
+    "ubicacion": "require('../img/Hormiga-negra.jpg')"
+    },
+    {
+    "nombre": "Cotadora-de-hojas",
+    "ubicacion": "require('../img/Cotadora-de-hojas.jpg')"
+    },
+    {
+    "nombre": "hormiga-roja",
+    "ubicacion": "require('../img/hormiga-roja.jpeg')"
+    }
+  ]
+}

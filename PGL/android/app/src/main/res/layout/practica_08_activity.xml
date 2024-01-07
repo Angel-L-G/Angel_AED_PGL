@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/txtResults20"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -38,6 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="1" />
 
             <Button
@@ -46,6 +47,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="2" />
 
             <Button
@@ -54,6 +56,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="3" />
 
             <Button
@@ -62,6 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onClearClick"
                 android:text="AC" />
         </TableRow>
 
@@ -76,6 +80,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="4" />
 
             <Button
@@ -84,6 +89,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="5" />
 
             <Button
@@ -92,6 +98,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="6" />
 
             <Button
@@ -100,6 +107,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="*" />
         </TableRow>
 
@@ -114,6 +122,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="7" />
 
             <Button
@@ -122,6 +131,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="8" />
 
             <Button
@@ -130,6 +140,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="9" />
 
             <Button
@@ -138,6 +149,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="/" />
         </TableRow>
 
@@ -152,6 +164,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onDigitClick"
                 android:text="0" />
 
             <Button
@@ -160,6 +173,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="+" />
 
             <Button
@@ -168,6 +182,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="-" />
 
             <Button
@@ -176,6 +191,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
+                android:onClick="onEqualClick"
                 android:text="=" />
         </TableRow>
     </TableLayout>

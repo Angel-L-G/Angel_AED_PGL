@@ -6,6 +6,7 @@ import AntNest from '../components/AntNest';
 import { Button } from 'react-native-elements';
 import NestDetails from '../components/NestDetails';
 import ActionButtonAux from '../navigations/ActionButtonAux';
+import UseHormiguero from '../hooks/UseHormiguero';
 
 type Props = {
     navigation: any,
@@ -19,18 +20,9 @@ type Hormiguero = {
 }
 
 const Main = ({navigation}: Props) => {
+    const {save,drop,findAll,findByid,update,hormigueros} = UseHormiguero(navigation);
     const [modalVisible, setModalVisible] = useState(false);
     const [actual, setActual] = useState(0);
-
-    //let hormigueros: Array<Hormiguero> = [];
-
-    let hormigueros: Array<Hormiguero> = 
-    [
-        {id: 0, img: '../img/Hormiga-negra.jpg', antname: 'Hormiga Negra', biome: 'Planicie'}, 
-        {id: 1, img: '../img/Cotadora-de-hojas.jpg', antname: 'Hormina Cortadora De Hojas', biome: 'Pantano'}, 
-        {id: 2, img: '../img/hormiga-roja.jpeg', antname: 'Hormiga Roja', biome: 'Humedales'},
-        {id: 3, img: '../img/hormiga-roja.jpeg', antname: 'Hormiga Roja', biome: 'Humedales'},    
-    ];
 
     function showModal(index: number) {
         setModalVisible(true);
