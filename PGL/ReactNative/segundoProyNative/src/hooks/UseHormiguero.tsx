@@ -40,7 +40,7 @@ const UseHormiguero = ({navigation}: Props) => {
         const axiospost = async (ruta: string) => {
             try{
                 const response = await axios.post(ruta, newHormiguero);
-                navigation.navigate("/Main");
+                console.log(response.data);
             } catch (error){
                 console.log(error);
             }

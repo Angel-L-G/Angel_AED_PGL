@@ -2,11 +2,9 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-type Props = {
-    navigation: any
-}
+type Props = {}
 
-const UseChat = (props: Props) => {
+const UseUser = (props: Props) => {
     const ruta = "http://192.168.0.12:3000/chats"
     const [chats, setChats] = useState<Array<Hormiguero>>([] as Array<Hormiguero>);
 
@@ -36,10 +34,10 @@ const UseChat = (props: Props) => {
         return null;
     }
 
-    async function save(newChat: Chat){
+    async function save(newUser: User){
         const axiospost = async (ruta: string) => {
             try{
-                const response = await axios.post(ruta, newChat);
+                const response = await axios.post(ruta, newUser);
             } catch (error){
                 console.log(error);
             }
@@ -61,4 +59,4 @@ const UseChat = (props: Props) => {
     }
 }
 
-export default UseChat
+export default UseUser
