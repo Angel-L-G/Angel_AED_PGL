@@ -20,48 +20,35 @@ const AntNest = ({navigation, nest, showModal}: Props) => {
     const almacenImagenes: AlmacenImg[] = [
         {
         "nombre": "Negra",
-        "ubicacion": "require('../img/Hormiga-negra.jpg')"
+        "ubicacion": require('../img/Hormiga-negra.jpg')
         },
         {
         "nombre": "Cortadora de Hojas",
-        "ubicacion": "require('../img/Cotadora-de-hojas.jpg')"
+        "ubicacion": require('../img/Cotadora-de-hojas.jpg')
         },
         {
         "nombre": "Roja",
-        "ubicacion": "require('../img/hormiga-roja.jpeg')"
+        "ubicacion": require('../img/hormiga-roja.jpeg')
         }
     ];
 
     function getRequire(nombre: string){
         const obtenido = almacenImagenes.find( imagen => imagen.nombre == nombre);
         if( obtenido){
-            console.log(1);
             console.log(obtenido.ubicacion);
             return obtenido.ubicacion;
         }else{
-            console.log(2);
             return "";
         }
     }
 
     return (
         <View style={styles.nestViewContainer}>
-            {
-                (nest.antname == "Negra")?
-                    <Image
-                        style={styles.nestImage}
-                        source={require('../img/Hormiga-negra.jpg')}
-                    />
-                :(nest.antname == "Roja")?
-                        <Image
-                            style={styles.nestImage}
-                            source={require('../img/hormiga-roja.jpeg')}
-                        />
-                    :<Image
-                        style={styles.nestImage}
-                        source={require('../img/Cotadora-de-hojas.jpg')}
-                    />
-            }
+                
+                <Image
+                    style={styles.nestImage}
+                    source={getRequire(nest.antname)}
+                />
             
 
             <View style={styles.netsButtons}>

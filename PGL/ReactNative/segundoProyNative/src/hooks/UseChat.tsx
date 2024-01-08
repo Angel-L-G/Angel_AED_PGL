@@ -8,7 +8,7 @@ type Props = {
 
 const UseChat = (props: Props) => {
     const ruta = "http://192.168.0.12:3000/chats"
-    const [chats, setChats] = useState<Array<Hormiguero>>([] as Array<Hormiguero>);
+    const [chats, setChats] = useState<Array<Chat>>([] as Array<Chat>);
 
     useEffect(() => {
         async function getAll(){

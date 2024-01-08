@@ -2,11 +2,9 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-type Props = {}
-
-const UseUser = (props: Props) => {
-    const ruta = "http://192.168.0.12:3000/chats"
-    const [chats, setChats] = useState<Array<Hormiguero>>([] as Array<Hormiguero>);
+const UseUser = () => {
+    const ruta = "http://192.168.0.12:3000/users"
+    const [users, setUsers] = useState<Array<User>>([] as Array<User>);
 
     useEffect(() => {
         async function getAll(){
@@ -19,19 +17,32 @@ const UseUser = (props: Props) => {
     async function findAll(){
         try{
             const response = await axios.get(ruta);
-            setChats(response.data);
+            setUsers(response.data);
         } catch (error){
             console.log(error);
         }
     }
 
     async function findByid(id: number){
-        chats.map((chat)=>{
-            if(chat.id == id){
-                return chat;
+        users.map((user)=>{
+            if(user.id == id){
+                return user;
             }
         })
         return null;
+    }
+
+    function findByName(name: string){
+        let userReturn = null;
+        users.map((user)=>{
+            console.log(user.name);
+            if(user.name == name){
+                console.log("Entra");
+                //console.log(user.name);
+                userReturn = user;
+            }
+        })
+        return userReturn;
     }
 
     async function save(newUser: User){
@@ -55,7 +66,9 @@ const UseUser = (props: Props) => {
         findByid,
         save,
         drop,
-        update
+        update,
+        findByName,
+        users
     }
 }
 

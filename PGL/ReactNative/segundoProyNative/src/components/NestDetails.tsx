@@ -15,14 +15,39 @@ type Hormiguero = {
     biome: string,
 }
 
-const NestDetails = (props: Props) => {
+const NestDetails = ({closeModal,hormiguero}: Props) => {
+    const almacenImagenes: AlmacenImg[] = [
+        {
+        "nombre": "Negra",
+        "ubicacion": require('../img/Hormiga-negra.jpg')
+        },
+        {
+        "nombre": "Cortadora de Hojas",
+        "ubicacion": require('../img/Cotadora-de-hojas.jpg')
+        },
+        {
+        "nombre": "Roja",
+        "ubicacion": require('../img/hormiga-roja.jpeg')
+        }
+    ];
+
+    function getRequire(nombre: string){
+        const obtenido = almacenImagenes.find( imagen => imagen.nombre == nombre);
+        if( obtenido){
+            console.log(obtenido.ubicacion);
+            return obtenido.ubicacion;
+        }else{
+            return "";
+        }
+    }
+
     return (
         <View style={styles.modalContainer}>
             <Text style={styles.title}>Nombre Hormiguero</Text>
 
             <Image
                 style={styles.nestImage}
-                source={require('../img/Hormiga-negra.jpg')}
+                source={getRequire(hormiguero.antname)}
             />
 
             <Text style={styles.subTitle}>Informacion:</Text>
@@ -31,10 +56,10 @@ const NestDetails = (props: Props) => {
             <View>
                 <Text></Text>
                 <Text style={styles.header3}>Biome: </Text>
-                <Text style={styles.textBody}>{props.hormiguero.biome}</Text>
+                <Text style={styles.textBody}>{hormiguero.biome}</Text>
                 <Text></Text>
                 <Text style={styles.header3}>Tipo De Hormiga: </Text>
-                <Text style={styles.textBody}>{props.hormiguero.antname}</Text>
+                <Text style={styles.textBody}>{hormiguero.antname}</Text>
             </View>
 
             <Text></Text>
@@ -43,7 +68,7 @@ const NestDetails = (props: Props) => {
             <Text style={styles.header3}>Grafico 2:</Text>
             <Text></Text>
 
-            <Button title="Cerrar" onPress={() => props.closeModal(false)} />
+            <Button title="Cerrar" onPress={() => closeModal(false)} />
         </View>
     )
 }
