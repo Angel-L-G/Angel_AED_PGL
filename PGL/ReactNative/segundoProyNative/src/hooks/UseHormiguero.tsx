@@ -7,7 +7,9 @@ type Props = {
 }
 
 const UseHormiguero = ({navigation}: Props) => {
-    const ruta = "http://192.168.0.12:3000/hormigueros"
+    //const ruta = "http://192.168.0.12:3000/hormigueros"
+    const ruta = "http://172.26.16.0:3000/hormigueros"
+    
     const [hormigueros, setHormigueros] = useState<Array<Hormiguero>>([] as Array<Hormiguero>);
 
     useEffect(() => {
@@ -40,13 +42,14 @@ const UseHormiguero = ({navigation}: Props) => {
         const axiospost = async (ruta: string) => {
             try{
                 const response = await axios.post(ruta, newHormiguero);
-                console.log(response.data);
             } catch (error){
                 console.log(error);
             }
         }
 
         axiospost(ruta);
+
+        findAll();
     }
 
     async function drop(){}

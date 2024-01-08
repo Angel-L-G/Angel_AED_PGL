@@ -10,7 +10,7 @@ public class Practica23 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.practica_23_activity);
+        setContentView(R.layout.practica_23_24_activity);
 
         Button btnC = (Button) findViewById(R.id.btnCalculator23);
         btnC.setOnClickListener(
@@ -23,7 +23,8 @@ public class Practica23 extends AppCompatActivity {
         Button btnD = (Button) findViewById(R.id.btnDescomp);
         btnD.setOnClickListener(
             view -> {
-
+                Intent intent = new Intent(getApplicationContext(),Practica23_2.class);
+                startActivity(intent);
             }
         );
     }

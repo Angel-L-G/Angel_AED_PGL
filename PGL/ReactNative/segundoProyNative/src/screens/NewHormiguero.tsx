@@ -21,10 +21,13 @@ const NewHormiguero = ({navigation}: Props) => {
         switch(ant){
             case "Roja":
                 imgActual = "../img/hormiga-roja.jpeg";
+                break;
             case "Negra":
                 imgActual = "../img/Hormiga-negra.jpg";
+                break;
             case "Cortadora de Hojas":
                 imgActual = "../img/Cotadora-de-hojas.jpg";
+                break;
         }
         
         const hormiguero: Hormiguero = {

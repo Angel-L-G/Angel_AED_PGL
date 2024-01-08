@@ -3,3 +3,4 @@
 
 #Lanzamos el comando estableciendo la ruta del json y de la carpeta para ficheros estáticos ( img, css, js,...)
 json-server --watch fakeserver/partidas.json --host 192.168.0.12 --port 3000
+json-server --watch fakeserver/partidas.json --host 172.26.16.0 --port 3000

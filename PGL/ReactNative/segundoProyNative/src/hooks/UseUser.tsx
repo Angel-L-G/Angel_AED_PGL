@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const UseUser = () => {
-    const ruta = "http://192.168.0.12:3000/users"
+    //const ruta = "http://192.168.0.12:3000/users"
+    const ruta = "http://172.26.16.0:3000/users"
+    
     const [users, setUsers] = useState<Array<User>>([] as Array<User>);
 
     useEffect(() => {

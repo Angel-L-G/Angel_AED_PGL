@@ -35,7 +35,6 @@ const AntNest = ({navigation, nest, showModal}: Props) => {
     function getRequire(nombre: string){
         const obtenido = almacenImagenes.find( imagen => imagen.nombre == nombre);
         if( obtenido){
-            console.log(obtenido.ubicacion);
             return obtenido.ubicacion;
         }else{
             return "";
@@ -52,7 +51,7 @@ const AntNest = ({navigation, nest, showModal}: Props) => {
             
 
             <View style={styles.netsButtons}>
-                <TouchableHighlight style={styles.button} onPress={() => showModal(nest.id)}>
+                <TouchableHighlight style={styles.button} onPress={() => showModal(nest.id-1)}>
                     <Text>Detalles</Text>
                 </TouchableHighlight>
 

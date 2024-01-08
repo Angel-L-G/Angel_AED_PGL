@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableHighlight, Modal, StyleSheet, Alert, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../themes/styles'
 import Icon from 'react-native-vector-icons/Ionicons';
 import AntNest from '../components/AntNest';
@@ -23,6 +23,7 @@ const Main = ({navigation}: Props) => {
     const {save,drop,findAll,findByid,update,hormigueros} = UseHormiguero(navigation);
     const [modalVisible, setModalVisible] = useState(false);
     const [actual, setActual] = useState(0);
+    const [aux, setAux] = useState(0);
 
     function showModal(index: number) {
         setModalVisible(true);
@@ -59,15 +60,14 @@ const Main = ({navigation}: Props) => {
                 <Text style={styles.title}>Hormigueros</Text>
                     {
                         (hormigueros.length != 0)
-                        ?
-                            hormigueros.map((value, index) => {
-                                return <AntNest key={index} navigation={navigation} nest={value} showModal={showModal}/>
-                            })
-                        :
-                            <TouchableHighlight onPress={() => navigation.navigate("NewHormiguero")} style={styles.button}>
-                                <Text style={styles.textBody}>Crear Hormiguero</Text>
-                            </TouchableHighlight>
+                        ?hormigueros.map((value, index) => {
+                            return <AntNest key={index} navigation={navigation} nest={value} showModal={showModal}/>
+                        })
+                        :<></>
                     }
+                    <TouchableHighlight onPress={() => navigation.navigate("NewHormiguero")} style={styles.button}>
+                    <Text style={styles.textBody}>Crear Hormiguero</Text>
+                </TouchableHighlight>
             </View>            
             
             <Modal
