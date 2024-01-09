@@ -6,6 +6,7 @@ import { Pelicula } from './Types';
 
 const UseFindAllPeli = () => {
     const ruta = "http://localhost:8080/api/v1/peliculas";
+    const rutaImg = "http://localhost:8080/api/v1/files/";
     const [peliculas, setPeliculas] = useState<Array<Pelicula>>([]);
     const [peliculas2, setPeliculas2] = useState<Array<Pelicula>>([]);
 
@@ -18,6 +19,15 @@ const UseFindAllPeli = () => {
             setPeliculas(response.data);
             setPeliculas2(response.data);
             //console.log(peliculas.data);
+
+            /*for (let index = 0; index < peliculas.length; index++) {
+                try{
+                    const response = await axios.get(ruta+peliculas[index].imagen);
+                    console.log(response.data);
+                } catch (error){
+                    console.log(error);
+                }
+            }*/
         } catch (error){
             console.log(error);
         }

@@ -26,8 +26,12 @@ const CrearPelicula = (props: Props) => {
                 <input type="text" name="argumento" id="argumento" required/>
                 <br/>
 
-                <label htmlFor="imagen">Imagen: </label>
+                <label htmlFor="imagen">Nombre De La Imagen: </label>
                 <input type="text" name="imagen" id="imagen" />
+                <br/>
+
+                <label htmlFor="imagen64">Imagen En Base64: </label>
+                <input type="text" name="imagen64" id="imagen64" />
                 <br/>
 
                 <label htmlFor="video">Video: </label>

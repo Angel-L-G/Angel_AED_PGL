@@ -19,8 +19,7 @@ import es.iepto.angel.peliculas.service.ICategoriaService;
 
 @RestController
 @CrossOrigin
-//@RequestMapping("/api/v1/categorias")
-@RequestMapping("/api/test/categorias")
+@RequestMapping("/api/v1/categorias")
 public class CategoriaController {
 	@Autowired private ICategoriaService categoriaService;
 	

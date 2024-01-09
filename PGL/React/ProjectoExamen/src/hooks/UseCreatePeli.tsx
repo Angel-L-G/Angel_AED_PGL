@@ -4,38 +4,24 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { Categoria, Pelicula } from './Types';
 import UseCategoria from './UseCategoria';
 
+type Pelicula64 = {
+    id: string,
+    titulo: string,
+    direccion: string,
+    actores: string,
+    argumento: string,
+    nameImagen: string,
+    imagen: string,
+    trailer: string,
+    categorias: Categoria[]
+}
+
 const UseCreatePeli = () => {
-    const [id, setId] = useState("001");
-    const ruta = "http://localhost:8080/api/v1/peliculas";
+    const ruta = "http://localhost:8080/api/v1/peliculas/files64";
     const rutaCategorias = "http://localhost:8080/api/v1/categorias";
+
     const navigate = useNavigate();
     const {findCategoryById} = UseCategoria();
-
-    useEffect(() => {
-        async function getId() {
-            const response = await axios.get(ruta);
-            let peliculas = response.data;
-            let idAux;
-
-            for (let i = 0; i < peliculas.length; i++) {
-                idAux = peliculas[i].id;
-            }
-
-            let id2;
-
-            if (Number(idAux) < 10) {
-                id2 = "00" + (Number(idAux) + 1);
-            } else if (Number(idAux) < 100) {
-                id2 = "0" + (Number(idAux) + 1);
-            } else {
-                id2 = (Number(idAux) + 1);
-            }
-
-            setId("" + id2);
-        }
-
-        getId();
-    }, []);
     
     async function getCategoria(categoriasDeLaPelicula: Array<Categoria>){
         let categorias: Array<Categoria> = [];
@@ -73,9 +59,10 @@ const UseCreatePeli = () => {
         let imagen = form.imagen.value ?? "error.png";
         let video = form.video.value ?? "";
         let strIdcategorias = form.categoria.value ?? "";
+        let img64 = form.imagen64.value;
 
         let idCategorias = strIdcategorias.split(",");
-        console.log(idCategorias);
+        //console.log(idCategorias);
 
         let arrCatgs: Array<Categoria> = [];
 
@@ -88,13 +75,14 @@ const UseCreatePeli = () => {
             }
         }
 
-        const pelicula: Pelicula = {
-            id: id,
+        const pelicula: Pelicula64 = {
+            id: "",
             titulo: titulo,
             direccion: direccion,
             actores: actores,
             argumento: argumento,
-            imagen: imagen,
+            imagen: img64,
+            nameImagen: imagen,
             categorias: arrCatgs,
             trailer: video
         };
@@ -102,7 +90,7 @@ const UseCreatePeli = () => {
         const axiospost = async (ruta: string) => {
             try{
                 const response = await axios.post(ruta, pelicula);
-                //console.log(response.data);
+                console.log(response.data);
                 navigate("/mostrarPeliculas");
             } catch (error){
                 console.log(error);

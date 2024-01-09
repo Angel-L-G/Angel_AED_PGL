@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.iepto.angel.peliculas.service.IFileStorageService;
 
-@RestController
+//@RestController
 @CrossOrigin
-@RequestMapping("/api/v1/files")
+//@RequestMapping("/api/v1/files")
 public class FilesControllerV1 {
 	@Autowired
 	private IFileStorageService storageService;
