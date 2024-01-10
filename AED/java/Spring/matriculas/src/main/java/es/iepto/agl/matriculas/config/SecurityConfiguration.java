@@ -1,4 +1,4 @@
-package es.iepto.angel.peliculas.config;
+package es.iepto.agl.matriculas.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,13 +10,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import es.iepto.angel.peliculas.security.JwtFilter;
 
-@Configuration
-@EnableWebSecurity
+
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfiguration {
-	@Autowired
-	private JwtFilter jwtAuthFilter;
+	//@Autowired
+	//private JwtFilter jwtAuthFilter;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,8 +32,8 @@ public class SecurityConfiguration {
 						.requestMatchers("/api/v3/**").hasRole("ADMIN")
 						.requestMatchers("/api/v3/**").hasAnyRole("ADMIN","USER")
 						.anyRequest().authenticated())
-				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+				//.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.getOrBuild();
 	}
 }

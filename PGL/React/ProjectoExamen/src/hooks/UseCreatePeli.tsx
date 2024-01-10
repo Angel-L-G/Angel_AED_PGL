@@ -6,7 +6,7 @@ import UseCategoria from './UseCategoria';
 import { useAppContext } from '../components/AppContextProvider';
 
 type Pelicula64 = {
-    id: string,
+    id: number,
     titulo: string,
     direccion: string,
     actores: string,
@@ -76,7 +76,7 @@ const UseCreatePeli = () => {
         }
 
         const pelicula: Pelicula64 = {
-            id: "",
+            id: 0,
             titulo: titulo,
             direccion: direccion,
             actores: actores,
@@ -91,6 +91,8 @@ const UseCreatePeli = () => {
             try{
                 console.log("TOOOOOOOOKKKEEEEEEEENNNNNNNNNN");
                 console.log(token);
+                console.log("Peliiiiiiiiiiiiiii");
+                console.log(pelicula);
                 const response = await axios.post(ruta, pelicula, { headers: { "Authorization": "Bearer " + token } });
                 console.log(response.data);
                 navigate("/mostrarPeliculas");

@@ -52,6 +52,7 @@ const UseSession = () => {
             try{
                 const response = await axios.post(ruta, user);
                 console.log(response.data);
+                localStorage.setItem('token', response.data);
                 setToken(response.data);
             } catch (error){
                 console.log(error);
