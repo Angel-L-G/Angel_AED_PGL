@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import es.iepto.angel.peliculas.entity.Categoria;
 import es.iepto.angel.peliculas.service.ICategoriaService;
 
-@RestController
+/*@RestController
 @CrossOrigin
 @RequestMapping("/api/v1/categorias")
+*/
 public class CategoriaController {
 	@Autowired private ICategoriaService categoriaService;
 	

@@ -12,8 +12,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import es.iepto.angel.peliculas.security.JwtFilter;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
 	@Autowired
 	private JwtFilter jwtAuthFilter;
@@ -30,6 +30,7 @@ public class SecurityConfiguration {
 								"/chat", "/topic/messages")
 						.permitAll()
 						.requestMatchers("/api/v3/**").hasRole("ADMIN")
+						.requestMatchers("/api/v2/**").hasAnyRole("USER","ADMIN")
 						.anyRequest().authenticated())
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

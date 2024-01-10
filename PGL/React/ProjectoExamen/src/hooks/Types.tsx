@@ -13,3 +13,9 @@ export type Categoria = {
     id: string,
     nombre: string
 }
+
+export type User = {
+    nombre: string,
+    email: string,
+    password: string
+}

@@ -23,9 +23,10 @@ import es.iepto.angel.peliculas.dto.PeliculaDTO;
 import es.iepto.angel.peliculas.entity.Pelicula;
 import es.iepto.angel.peliculas.service.IFileStorageService;
 
-@RestController
+/*@RestController
 @CrossOrigin
 @RequestMapping("/api/v1/files")
+*/
 public class FilesController {
 
 	@Autowired

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Categoria, Pelicula } from './Types';
 import UseCategoria from './UseCategoria';
+import { useAppContext } from '../components/AppContextProvider';
 
 type Pelicula64 = {
     id: string,
@@ -17,9 +18,10 @@ type Pelicula64 = {
 }
 
 const UseCreatePeli = () => {
-    const ruta = "http://localhost:8080/api/v1/peliculas/files64";
+    const ruta = "http://localhost:8080/api/v2/peliculas/files64";
     const rutaCategorias = "http://localhost:8080/api/v1/categorias";
 
+    const {token} = useAppContext();
     const navigate = useNavigate();
     const {findCategoryById} = UseCategoria();
     
@@ -68,8 +70,6 @@ const UseCreatePeli = () => {
 
         for (let index = 0; index < idCategorias.length; index++) {
             let c = await findCategoryById(idCategorias[index]);
-            console.log("category");
-            console.log(c);
             if(c != null){
                 arrCatgs.push(c);
             }
@@ -89,7 +89,9 @@ const UseCreatePeli = () => {
 
         const axiospost = async (ruta: string) => {
             try{
-                const response = await axios.post(ruta, pelicula);
+                console.log("TOOOOOOOOKKKEEEEEEEENNNNNNNNNN");
+                console.log(token);
+                const response = await axios.post(ruta, pelicula, { headers: { "Authorization": "Bearer " + token } });
                 console.log(response.data);
                 navigate("/mostrarPeliculas");
             } catch (error){

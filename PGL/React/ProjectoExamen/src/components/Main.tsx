@@ -8,6 +8,8 @@ import DetallePelicula from './DetallePelicula';
 import AppContextProvider from './AppContextProvider';
 import CategoryShow from './CategoryShow';
 import CategoryFiltered from './CategoryFiltered';
+import Register from './Register';
+import Login from './Login';
 
 type Props = {}
 
@@ -18,6 +20,8 @@ const Main = (props: Props) => {
             <Navbar />
                 <Routes>
                     <Route path="/" element={<MostrarTodo />} />
+                    <Route path="/register" element={<Register/>} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/pelicula/:id" element={<DetallePelicula />} />
                     <Route path="/mostrarPeliculas" element={<MostrarTodo />} />
                     <Route path="/crearPelicula" element={<CrearPelicula />} />
@@ -33,9 +37,11 @@ const Main = (props: Props) => {
 function Navbar(){
     return (
         <nav>
-            <Link to="/mostrarPeliculas">Inicio</Link> &nbsp;
-            <Link to="/crearPelicula">Crear Peliculas</Link> &nbsp;
-            <Link to="/mostrarCategorias">Mostrar Categorias</Link> &nbsp;
+            <Link to="/login">Login </Link>
+            <Link to="/register">Register </Link>
+            <Link to="/mostrarPeliculas">Inicio </Link>
+            <Link to="/crearPelicula">Crear Peliculas </Link>
+            <Link to="/mostrarCategorias">Mostrar Categorias </Link>
             {/*<Link to="/"></Link> &nbsp;*/}
         </nav>
     );

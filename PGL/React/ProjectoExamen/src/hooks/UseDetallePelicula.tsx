@@ -8,6 +8,7 @@ const UseDetallePelicula = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const ruta = "http://localhost:8080/api/v1/peliculas/";
+    const rutaV3 = "http://localhost:8080/api/v3/peliculas/";
     const [peli, setPeli] = useState<Pelicula>({} as Pelicula);
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const UseDetallePelicula = () => {
     }, [])  
     
     async function deletePeli(){
-        axios.delete(ruta + id)
+        await axios.delete(rutaV3 + id)
         .then(response => {
             console.log("Deleted post with ID ${id}");
             navigate("/");
