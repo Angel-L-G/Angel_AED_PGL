@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/descoponer_34">
+
+    <fragment
+        android:id="@+id/descoponer_34"
+        android:name="es.iespto.agl.dosier1.descoponer_34"
+        android:label="fragment_descoponer_34"
+        tools:layout="@layout/fragment_descoponer_34" >
+        <action
+            android:id="@+id/action_descoponer_34_to_contador_char_34"
+            app:destination="@id/contador_char_34" />
+        <action
+            android:id="@+id/action_descoponer_34_to_aleatorios_34"
+            app:destination="@id/aleatorios_34" />
+    </fragment>
+    <fragment
+        android:id="@+id/contador_char_34"
+        android:name="es.iespto.agl.dosier1.contador_char_34"
+        android:label="fragment_contador_char_34"
+        tools:layout="@layout/fragment_contador_char_34" >
+        <action
+            android:id="@+id/action_contador_char_34_to_aleatorios_34"
+            app:destination="@id/aleatorios_34" />
+        <action
+            android:id="@+id/action_contador_char_34_to_descoponer_34"
+            app:destination="@id/descoponer_34" />
+    </fragment>
+    <fragment
+        android:id="@+id/aleatorios_34"
+        android:name="es.iespto.agl.dosier1.Aleatorios_34"
+        android:label="fragment_aleatorios_34"
+        tools:layout="@layout/fragment_aleatorios_34" >
+        <action
+            android:id="@+id/action_aleatorios_34_to_contador_char_34"
+            app:destination="@id/contador_char_34" />
+        <action
+            android:id="@+id/action_aleatorios_34_to_descoponer_34"
+            app:destination="@id/descoponer_34" />
+    </fragment>
+</navigation>

@@ -3,6 +3,8 @@ package es.iespto.agl.matriculas.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class Asignatura implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(length=50)
 	private String curso;
@@ -34,17 +36,18 @@ public class Asignatura implements Serializable {
 	@Column(length=50)
 	private String nombre;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy="asignaturas")
 	private List<Matricula> matriculas;
 
 	public Asignatura() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

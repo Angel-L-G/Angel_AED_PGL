@@ -32,7 +32,7 @@ public class Alumno implements Serializable {
 	@Column(length=50)
 	private String apellidos;
 
-	private BigInteger fechanacimiento;
+	private Long fechanacimiento;
 
 	@Column(length=30)
 	private String foto;
@@ -63,11 +63,11 @@ public class Alumno implements Serializable {
 		this.apellidos = apellidos;
 	}
 
-	public BigInteger getFechanacimiento() {
+	public Long getFechanacimiento() {
 		return this.fechanacimiento;
 	}
 
-	public void setFechanacimiento(BigInteger fechanacimiento) {
+	public void setFechanacimiento(Long fechanacimiento) {
 		this.fechanacimiento = fechanacimiento;
 	}
 

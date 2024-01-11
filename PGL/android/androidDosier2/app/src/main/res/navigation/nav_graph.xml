@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pantallaIntroNombre">
+
+    <fragment
+        android:id="@+id/pantallaSaludar"
+        android:name="es.iespto.agl.dosierandroid2.PantallaSaludar"
+        android:label="fragment_pantalla_saludar"
+        tools:layout="@layout/fragment_pantalla_saludar" >
+        <action
+            android:id="@+id/action_pantallaSaludar_to_pantallaIntroNombre"
+            app:destination="@id/pantallaIntroNombre" />
+    </fragment>
+    <fragment
+        android:id="@+id/pantallaIntroNombre"
+        android:name="es.iespto.agl.dosierandroid2.PantallaIntroNombre"
+        android:label="fragment_pantalla_intro_nombre"
+        tools:layout="@layout/fragment_pantalla_intro_nombre" >
+        <action
+            android:id="@+id/action_pantallaIntroNombre_to_pantallaSaludar"
+            app:destination="@id/pantallaSaludar" />
+    </fragment>
+    <fragment
+        android:id="@+id/descomponer_34"
+        android:name="es.iespto.agl.dosierandroid2.Descomponer_34"
+        android:label="fragment_descomponer_34"
+        tools:layout="@layout/fragment_descomponer_34" />
+    <fragment
+        android:id="@+id/contador_palabras_letras_24"
+        android:name="es.iespto.agl.dosierandroid2.contador_palabras_letras_34"
+        android:label="fragment_contador_palabras_letras_24"
+        tools:layout="@layout/fragment_contador_palabras_letras_34" />
+    <fragment
+        android:id="@+id/arr_Aleatorios_34"
+        android:name="es.iespto.agl.dosierandroid2.Arr_Aleatorios_34"
+        android:label="fragment_arr_aleatorios_34"
+        tools:layout="@layout/fragment_arr_aleatorios_34" />
+</navigation>

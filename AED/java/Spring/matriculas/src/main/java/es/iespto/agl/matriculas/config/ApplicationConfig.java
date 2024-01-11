@@ -1,6 +1,6 @@
 package es.iespto.agl.matriculas.config;
 
-/*import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import es.iepto.angel.peliculas.entity.Usuario;
-import es.iepto.angel.peliculas.security.UserDetailsLogin;
-import es.iepto.angel.peliculas.service.IUsuarioService;
+import es.iespto.agl.matriculas.entity.Usuario;
+import es.iespto.agl.matriculas.security.UserDetailsLogin;
+import es.iespto.agl.matriculas.service.IUsuarioService;
 
 @Configuration
 public class ApplicationConfig {
@@ -49,4 +49,4 @@ public class ApplicationConfig {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-}*/
+}

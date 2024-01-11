@@ -30,9 +30,9 @@ public class Matricula implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
-	private int year;
+	private Integer year;
 
 	@ManyToOne
 	@JoinColumn(name="dni")
@@ -53,19 +53,19 @@ public class Matricula implements Serializable {
 	public Matricula() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getYear() {
+	public Integer getYear() {
 		return this.year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
