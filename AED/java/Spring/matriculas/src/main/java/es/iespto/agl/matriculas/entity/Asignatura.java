@@ -1,4 +1,4 @@
-package model;
+package es.iespto.agl.matriculas.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -34,7 +34,6 @@ public class Asignatura implements Serializable {
 	@Column(length=50)
 	private String nombre;
 
-	//bi-directional many-to-many association to Matricula
 	@ManyToMany(mappedBy="asignaturas")
 	private List<Matricula> matriculas;
 

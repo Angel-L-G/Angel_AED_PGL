@@ -1,14 +1,16 @@
-package model;
+package es.iespto.agl.matriculas.entity;
 
 import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
@@ -32,14 +34,20 @@ public class Matricula implements Serializable {
 
 	private int year;
 
-	//bi-directional many-to-one association to Alumno
 	@ManyToOne
 	@JoinColumn(name="dni")
 	private Alumno alumno;
 
-	//bi-directional many-to-many association to Asignatura
-	@ManyToMany
-	@JoinColumn(name="id", nullable=false, insertable=false, updatable=false)
+	@ManyToMany(fetch= FetchType.LAZY)
+	@JoinTable(
+		name="asignatura_matricula"
+		, joinColumns={
+			@JoinColumn(name="idmatricula")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="idasignatura")
+			}
+		)	
 	private List<Asignatura> asignaturas;
 
 	public Matricula() {

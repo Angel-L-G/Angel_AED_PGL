@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import es.iepto.angel.peliculas.entity.Usuario;
-import es.iepto.angel.peliculas.security.UserDetailsLogin;
 import es.iepto.angel.peliculas.service.IUsuarioService;
+import es.iepto.angel.peliculas.security.UserDetailsLogin;
 
 @Configuration
 public class ApplicationConfig {

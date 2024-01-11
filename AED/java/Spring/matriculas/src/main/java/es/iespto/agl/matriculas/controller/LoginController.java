@@ -1,4 +1,4 @@
-package es.iepto.angel.peliculas.controller;
+package es.iespto.agl.matriculas.controller;
 
 import java.lang.System.Logger;
 
@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.iepto.angel.peliculas.dto.UsuarioLoginDTO;
-import es.iepto.angel.peliculas.entity.Usuario;
-import es.iepto.angel.peliculas.service.IUsuarioService;
-import es.iepto.angel.peliculas.service.MailService;
-import es.iepto.angel.peliculas.security.AuthService;
-import es.iepto.angel.peliculas.security.UserDetailsLogin;
+import es.iespto.agl.matriculas.dto.UsuarioLoginDTO;
+import es.iespto.agl.matriculas.entity.Usuario;
+import es.iespto.agl.matriculas.security.AuthService;
+import es.iespto.agl.matriculas.security.UserDetailsLogin;
+import es.iespto.agl.matriculas.service.IUsuarioService;
+import es.iespto.agl.matriculas.service.MailService;
+
+
 
 @RestController
 @CrossOrigin
@@ -53,12 +55,19 @@ public class LoginController {
 		
 		user.setUsername(request.getNombre());
 		user.setPassword(request.getPassword());
+		
+		Usuario u = userService.findByName(user.getUsername());
 
-		String token = service.authenticate(user);
-		if (token == null)
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User/pass erróneo");
-		else
-			return ResponseEntity.ok(token);
+		if(u.getActive() == 1) {
+			String token = service.authenticate(user);
+			if (token == null) {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User/pass erróneo");
+			}else{
+				return ResponseEntity.ok(token);
+			}
+		}else {
+			return ResponseEntity.status(HttpStatus.PRECONDITION_REQUIRED).body("Necesario activar a traves del email antes");
+		}
 	}
 	
 	@GetMapping("/registerVerify")

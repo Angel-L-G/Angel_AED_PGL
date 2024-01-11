@@ -1,4 +1,4 @@
-package es.iepto.agl.matriculas.config;
+package es.iespto.agl.matriculas.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

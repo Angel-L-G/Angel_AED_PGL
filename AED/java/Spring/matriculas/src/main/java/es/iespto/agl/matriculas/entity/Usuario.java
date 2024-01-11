@@ -1,4 +1,4 @@
-package model;
+package es.iespto.agl.matriculas.entity;
 
 import java.io.Serializable;
 
