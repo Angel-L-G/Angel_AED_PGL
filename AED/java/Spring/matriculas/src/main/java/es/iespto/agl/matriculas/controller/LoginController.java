@@ -21,8 +21,6 @@ import es.iespto.agl.matriculas.security.UserDetailsLogin;
 import es.iespto.agl.matriculas.service.IUsuarioService;
 import es.iespto.agl.matriculas.service.MailService;
 
-
-
 @RestController
 @CrossOrigin
 @RequestMapping("/api")

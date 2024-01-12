@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import es.iespto.agl.matriculas.entity.Alumno;
 import es.iespto.agl.matriculas.repository.AlumnoJPARepository;
 import es.iespto.agl.matriculas.repository.MatriculaJPARepository;
 import jakarta.transaction.Transactional;
 
+@Service
 public class AlumnoService implements IGenericService<Alumno, String>{
 	@Autowired
 	AlumnoJPARepository alumnoRepository;
@@ -43,7 +45,7 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 		return save;
 	}
 	
-	@Transactional
+	/*@Transactional
 	public boolean updateNative(Alumno element) {
 		boolean ok = false;
 		if(element != null) {
@@ -61,7 +63,7 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 				ok = true;
 		
 		return ok;
-	}
+	}*/
 
 	@Override
 	@Transactional
@@ -71,5 +73,16 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 			alumnoRepository.deleteById(id);
 		}
 	}
+	
+	/*@Transactional
+	public Alumno findByName(String nombre) {
+		Alumno find = null;
+		
+		if(nombre != null) {
+			find = alumnoRepository.findByName(nombre);
+		}
+	
+		return find;
+	}*/
 
 }

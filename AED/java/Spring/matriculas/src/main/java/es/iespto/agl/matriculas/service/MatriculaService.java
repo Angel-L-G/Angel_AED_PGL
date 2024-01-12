@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import es.iespto.agl.matriculas.entity.Asignatura;
 import es.iespto.agl.matriculas.entity.Matricula;
@@ -11,6 +12,7 @@ import es.iespto.agl.matriculas.repository.AsignaturaJPARepository;
 import es.iespto.agl.matriculas.repository.MatriculaJPARepository;
 import jakarta.transaction.Transactional;
 
+@Service
 public class MatriculaService implements IGenericService<Matricula, Integer>{
 	@Autowired
 	MatriculaJPARepository matriculaRepository;

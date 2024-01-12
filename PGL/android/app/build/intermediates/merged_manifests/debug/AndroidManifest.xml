@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="es.iespto.agl.dosier1"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="28"
+        android:targetSdkVersion="33" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <permission
+        android:name="es.iespto.agl.dosier1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="es.iespto.agl.dosier1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:debuggable="true"
+        android:extractNativeLibs="false"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/Theme.MyApplication" >
+        <activity
+            android:name="es.iespto.agl.dosier1.MainActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica01"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica14"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica15"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica19"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica20"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica21"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica22"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica23"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="es.iespto.agl.dosier1.Practica26"
+            android:exported="true" >
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="es.iespto.agl.dosier1.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>
