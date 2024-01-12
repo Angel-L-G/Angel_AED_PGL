@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iespto.agl.matriculas.dto.AlumnoDTO;
+import es.iespto.agl.matriculas.dto.AlumnoInputDTO;
 import es.iespto.agl.matriculas.entity.Alumno;
 import es.iespto.agl.matriculas.service.AlumnoService;
 import es.iespto.agl.matriculas.service.IFileStorageService;
@@ -41,11 +42,24 @@ public class AlumnoController {
 		return ResponseEntity.ok(find);
 	}
 
-	/*@PutMapping
-	public ResponseEntity<?> update(@RequestBody Alumno alumno) {
-		boolean updateNative = alumnoService.updateNative(alumno);
+	@PutMapping
+	public ResponseEntity<?> update(@RequestBody AlumnoInputDTO alumno) {
+		Alumno a = new Alumno();
+		
+		a.setDni(alumno.getDni());
+		a.setApellidos(alumno.getApellidos());
+		a.setFoto(alumno.getFoto());
+		a.setNombre(alumno.getNombre());
+			
+		String codedfoto = alumno.getImg64();
+		byte[] photoBytes = Base64.getDecoder().decode(codedfoto);
+		
+		String nombreNuevoFichero = storageService.save(alumno.getFoto(), photoBytes);
+		alumno.setFoto(alumno.getFoto());
+		
+		boolean updateNative = alumnoService.update(a);
 		return ResponseEntity.ok(updateNative);
-	}*/
+	}
 
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Alumno alumno) {

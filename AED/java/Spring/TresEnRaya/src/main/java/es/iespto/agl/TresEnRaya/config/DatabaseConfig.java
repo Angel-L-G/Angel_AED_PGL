@@ -1,4 +1,4 @@
-package es.iespto.agl.matriculas.config;
+package es.iespto.agl.TresEnRaya.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class DatabaseConfig {
     public DataSource dataSourceTest() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:file:/tmp/institutoTest;DB_CLOSE_DELAY=-1");
+        dataSource.setUrl("jdbc:h2:file:/tmp/institutotest;DB_CLOSE_DELAY=-1");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         return dataSource;

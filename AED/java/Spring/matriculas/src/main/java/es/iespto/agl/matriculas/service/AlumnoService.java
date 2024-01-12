@@ -45,25 +45,23 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 		return save;
 	}
 	
-	/*@Transactional
-	public boolean updateNative(Alumno element) {
+	@Transactional
+	public boolean update(Alumno element) {
 		boolean ok = false;
 		if(element != null) {
 			if(element.getDni() != null) {
-				int updateNtive = alumnoRepository.updateNtive(
-							element.getDni(),
-							element.getApellidos(),
-							element.getFechanacimiento(),
-							element.getFoto(),
-							element.getNombre()
-						);
-			}
-		}
+				Optional<Alumno> findById = alumnoRepository.findById(element.getDni());
+	
+				findById.get().setApellidos(element.getApellidos());
+				findById.get().setNombre(element.getNombre());
+				findById.get().setFoto(element.getFoto());
 				
 				ok = true;
+			}
+		}	
 		
 		return ok;
-	}*/
+	}
 
 	@Override
 	@Transactional
