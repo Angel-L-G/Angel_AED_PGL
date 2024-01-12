@@ -10,8 +10,8 @@ import es.iespto.agl.matriculas.entity.Alumno;
 
 @Repository
 public interface AlumnoJPARepository extends JpaRepository<Alumno, String> {
-	/*@Query("SELECT a from alumnos a where a.nombre=:nombre")
-	public Alumno findByName(@Param("nombre") String nombre);*/
+	@Query("SELECT a from Alumno a where a.nombre=:nombre")
+	public Alumno findByName(@Param("nombre") String nombre);
  
 	/*@Query(value="Update alumnos set nombre = :nombre "
 			+ "where dni= :dni", nativeQuery=true)

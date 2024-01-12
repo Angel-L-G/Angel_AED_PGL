@@ -1,5 +1,6 @@
 package es.iespto.agl.matriculas.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,19 +64,26 @@ public class MatriculaService implements IGenericService<Matricula, Integer>{
 		boolean ok = false;
 		if(element != null) {
 			if(element.getId() != null) {
-				int updateNtive = matriculaRepository.updateNtive(
-							element.getId(), 
-							element.getYear()
-						);
-				
 				List<Asignatura> findAll = asinaturaRepository.findAll();
 				Optional<Matricula> findById = matriculaRepository.findById(element.getId());
+				
+				findById.get().setYear(element.getYear());
 				
 				for (Asignatura a : findAll) {
 					if(findById.get().getAsignaturas().contains(a)) {
 						a.getMatriculas().remove(findById.get());
 					}
 				}
+				
+				findById.get().getAsignaturas().clear();
+				
+				if(element.getAsignaturas() != null) {
+					for (Asignatura a: findById.get().getAsignaturas()) {
+						a.getMatriculas().add(element);
+					}
+				}
+				
+				findById.get().setAsignaturas(element.getAsignaturas());
 				
 				ok = true;
 			}

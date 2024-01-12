@@ -10,7 +10,7 @@ import es.iespto.agl.matriculas.entity.Asignatura;
 
 @Repository
 public interface AsignaturaJPARepository extends JpaRepository<Asignatura, Integer> {
-	@Query(value="Update asiganturas set nombre = :nombre, curso= :curso"
+	@Query(value="Update asignaturas set nombre = :nombre, curso= :curso "
 			+ "where id= :id", nativeQuery=true)
 	@Modifying
 	public void updateNtive(

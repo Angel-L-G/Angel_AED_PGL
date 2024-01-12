@@ -10,11 +10,5 @@ import es.iespto.agl.matriculas.entity.Matricula;
 
 @Repository
 public interface MatriculaJPARepository extends JpaRepository<Matricula, Integer> {
-	@Query(value="Update matriculas set year = :year "
-			+ "where id= :id", nativeQuery=true)
-	@Modifying
-	public int updateNtive(
-				@Param("year") int year, 
-				@Param("id") Integer id
-			);
+
 }

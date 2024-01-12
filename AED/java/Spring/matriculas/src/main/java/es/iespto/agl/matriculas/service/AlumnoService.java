@@ -74,7 +74,7 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 		}
 	}
 	
-	/*@Transactional
+	@Transactional
 	public Alumno findByName(String nombre) {
 		Alumno find = null;
 		
@@ -83,6 +83,6 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 		}
 	
 		return find;
-	}*/
+	}
 
 }

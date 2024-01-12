@@ -56,7 +56,7 @@ public class LoginController {
 		
 		Usuario u = userService.findByName(user.getUsername());
 
-		if(u.getActive() == 1) {
+		if(u.getActive() == 2) {
 			String token = service.authenticate(user);
 			if (token == null) {
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User/pass erróneo");

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.iespto.agl.matriculas.dto.AlumnoDTO;
 import es.iespto.agl.matriculas.entity.Alumno;
 import es.iespto.agl.matriculas.service.AlumnoService;
 import es.iespto.agl.matriculas.service.IFileStorageService;
@@ -58,26 +59,23 @@ public class AlumnoController {
 		return ResponseEntity.ok("Bien");
 	}
 
-	/*@PostMapping("/files64")
-	public ResponseEntity<?> nuevoProducto(@RequestBody PeliculaDTO peliculaDTO) {
+	@PostMapping("/files64")
+	public ResponseEntity<?> nuevoProducto(@RequestBody AlumnoDTO alumnoDTO) {
 		Alumno alumno = new Alumno();
 		
-		alumno.setId(peliculaDTO.getId());
-		alumno.setActores(peliculaDTO.getActores());
-		alumno.setArgumento(peliculaDTO.getArgumento());
-		alumno.setCategorias(peliculaDTO.getCategorias());
-		alumno.setDireccion(peliculaDTO.getDireccion());
-		alumno.setTitulo(peliculaDTO.getTitulo());
-		alumno.setTrailer(peliculaDTO.getTrailer());
-		alumno.setImagen(peliculaDTO.getNameImagen());
+		alumno.setDni(alumnoDTO.getDni());
+		alumno.setApellidos(alumnoDTO.getApellidos());
+		alumno.setFechanacimiento(alumnoDTO.getFechanacimiento());
+		alumno.setNombre(alumnoDTO.getNombre());
+		alumno.setMatriculas(null);
 		
-		String codedfoto = peliculaDTO.getImagen();
+		String codedfoto = alumnoDTO.getImg64();
 		byte[] photoBytes = Base64.getDecoder().decode(codedfoto);
 		
-		String nombreNuevoFichero = storageService.save(peliculaDTO.getNameImagen(), photoBytes);
-		alumno.setImagen(nombreNuevoFichero);
+		String nombreNuevoFichero = storageService.save(alumnoDTO.getFoto(), photoBytes);
+		alumno.setFoto(alumnoDTO.getFoto());
 		
 		Alumno save = alumnoService.save(alumno);
 		return ResponseEntity.ok(save);
-	}*/
+	}
 }
