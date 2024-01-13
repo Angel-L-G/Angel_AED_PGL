@@ -41,88 +41,27 @@ public class AsignaturaServiceTest {
     @Transactional
     void findByIdAsignaturaService() {
     	Asignatura c2 = asignaturaService.findById(2).get();
-        //assertTrue(!c2.getPeliculas().isEmpty());
+    	assertNotNull(c2);
+        assertTrue(c2.getNombre().equals("PGV"));
+        assertTrue(c2.getCurso().equals("2º DAM"));
     }
 
-
-    /*@Test
+    @Test
     void deleteByIdAsignaturaService() {
-        //borrando elemento con categorias
-        categoriaService.deleteById(1);
-        /*Optional<Categoria> opt = IokCategoriaRepository.findByIdWithRel(1);
+    	asignaturaService.deleteById(1);
+        Optional<Asignatura> opt = asignaturaService.findById(1);
         assertTrue(!opt.isPresent());
-
-        //borrando elemento sin categorias
-        categoriaService.deleteById(13);
-        opt = IokCategoriaRepository.findByIdWithRel(13);
-        assertTrue(!opt.isPresent());*/
-    /*}
-
+    }
 
     @Test
     void saveAsignaturaService() {
-        Pelicula pelicula = new Pelicula();
-
-        pelicula.setActores("actor, actriz");
-        pelicula.setArgumento("argumento");
-        pelicula.setDireccion("dirección");
-        pelicula.setImagen("imagen");
-        pelicula.setTitulo("título");
-        pelicula.setTrailer("trailer");
-
-        Categoria c = new Categoria();
+    	Asignatura c = new Asignatura();
         c.setId(1);
-        c.setNombre("Drama");
+        c.setNombre("ABC");
+        c.setCurso("1 ABC");
 
-        List<Pelicula> p = new ArrayList<Pelicula>();
-        p.add(pelicula);
-        c.setPeliculas(p);
-
-        Categoria save = categoriaService.save(c);
+        Asignatura save = asignaturaService.save(c);
         assertTrue(save != null);
         assertTrue(save.getId() > 0);
-
-        Optional<Pelicula> opt = okRepository.findByIdWithRel(save.getId());
-        Pelicula found = opt.get();
-        assertNotNull(found);
-
-        assertTrue(save != null);
-        assertTrue(save.getId() > 0);
-        assertTrue(save.getNombre() == "Drama");
-
-        pelicula = new Pelicula();
-        pelicula.setActores("1actor, actriz");
-        pelicula.setArgumento("1argumento");
-        pelicula.setDireccion("1dirección");
-        pelicula.setImagen("1imagen");
-        pelicula.setTitulo("1título");
-        pelicula.setTrailer("1trailer");
-
-        Categoria categoria = new Categoria();
-        categoria.setId(1);
-        categoria.setNombre("Drama");
-
-        p = new ArrayList<Pelicula>();
-        p.add(pelicula);
-        categoria.setPeliculas(p);
-
-        save = categoriaService.save(c);
-        assertTrue(save != null);
-        assertTrue(save.getId() > 0);
-
-        opt = okRepository.findByIdWithRel(save.getId());
-        found = opt.get();
-        assertNotNull(found);
-
-        categoria.setId(1);
-        categoria.setNombre("Drama");
-
-        /*for (int id : List.of(1, 2)) {
-            boolean anyMatch = found.getCategorias()
-                    .stream()
-                    .anyMatch(p -> p.getId() == id);
-
-            assertTrue(anyMatch);
-        }
-    }*/
+    }
 }

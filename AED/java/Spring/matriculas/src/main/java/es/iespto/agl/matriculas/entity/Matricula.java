@@ -34,6 +34,7 @@ public class Matricula implements Serializable {
 	@Column(unique=true, nullable=false)
 	private Integer id;
 
+	@Column(name="[year]")
 	private Integer year;
 
 	@ManyToOne
