@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,8 @@ import es.iespto.agl.matriculas.service.IUsuarioService;
 public class UsuarioControllerV3 {
 	@Autowired
 	private IUsuarioService userService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public ResponseEntity<?> findAll() {
@@ -53,6 +56,12 @@ public class UsuarioControllerV3 {
 
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Usuario usuario) {
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+		
+		int randInt = (int)Math.random()*10000;
+		String randStrHashed = passwordEncoder.encode(randInt+"");
+		usuario.setHash(randStrHashed);
+		
 		Usuario save = userService.save(usuario);
 		return ResponseEntity.ok(save);
 	}

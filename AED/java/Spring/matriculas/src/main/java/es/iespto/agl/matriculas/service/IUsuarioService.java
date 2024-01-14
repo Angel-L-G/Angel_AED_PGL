@@ -1,5 +1,6 @@
 package es.iespto.agl.matriculas.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,7 @@ public class IUsuarioService implements IGenericService<Usuario, Integer> {
 	public boolean update(Usuario element) {
 		boolean ok = false;
 		if(element != null) {
-			System.out.println("11111111111111111");
 			if(element.getId() != null) {
-				System.out.println("22222222222222222222222");
 				Usuario findById = usuariorepository.findById(element.getId()).get();
 				
 				findById.setEmail(element.getEmail());
@@ -64,5 +63,10 @@ public class IUsuarioService implements IGenericService<Usuario, Integer> {
 			}
 		}	
 		return ok;
+	}
+	
+	@Transactional
+	public List<String> findAllEmail(){
+		return usuariorepository.findAllEmails();
 	}
 }
