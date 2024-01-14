@@ -7,18 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 
 import es.iespto.agl.matriculas.entity.Alumno;
 import jakarta.transaction.Transactional;
 
+@SpringBootTest
+@ActiveProfiles("test")
+@TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
+@Sql(scripts = {"/institutoTest.sql"})
 public class AlumnoServiceTest {
 	@Autowired AlumnoService alumnoService;
 	
 	@Test
-	void contextLoads() {
-	}
+	void contextLoads() {}
 	
 	@Test
 	@Transactional
@@ -36,86 +44,76 @@ public class AlumnoServiceTest {
 	}
 
 	
-	/*@Test
-	void deleteWithRelPeliculaService() {
+	@Test
+	void deletePeliculaService() {
 		//borrando elemento con categorias
-		peliculaService.deleteById(1);
-		Optional<Pelicula> opt = okRepository.findByIdWithRel(1);
+		alumnoService.deleteById("12312312K");
+		Optional<Alumno> opt = alumnoService.findById("12312312K");
 		assertTrue(!opt.isPresent());
-		
-		//borrando elemento sin categorias
-		peliculaService.deleteById(13);
-		opt = okRepository.findByIdWithRel(13);
-		assertTrue(!opt.isPresent());		
 	}
 	
 	
 	@Test
 	void savePeliculaService() {
-		Pelicula pelicula = new Pelicula();
+		Alumno a = new Alumno();
 
-		pelicula.setId(0);
-		pelicula.setActores("actor, actriz");
-		pelicula.setArgumento("argumento");
-		pelicula.setDireccion("dirección");
-		pelicula.setImagen("imagen");
-		pelicula.setTitulo("título");
-		pelicula.setTrailer("trailer");
+		a.setDni("12345");
+		a.setApellidos("1");
+		a.setFechanacimiento(1234567889L);
+		a.setFoto("2");
+		a.setNombre("3");
+		
+		Alumno save = alumnoService.save(a);
+		assertNotNull(a);
+		assertTrue(!save.getDni().isBlank());
 
-		Pelicula save = peliculaService.save(pelicula);
-		assertTrue(save != null);
-		assertTrue(save.getId() > 0);
-
-		Optional<Pelicula> opt = okRepository.findByIdWithRel(save.getId());
-		Pelicula found = opt.get();
-		assertNotNull(found);
-		assertTrue(found.getActores().equals("actor, actriz"));
-		assertTrue(found.getArgumento().equals("argumento"));
-		assertTrue(found.getDireccion().equals("dirección"));
-		assertTrue(found.getImagen().equals("imagen"));
-		assertTrue(found.getTitulo().equals("título"));
-		assertTrue(found.getTrailer().equals("trailer"));
-		assertTrue(found.getCategorias().size() == 0);
-
-		pelicula = new Pelicula();
-		pelicula.setId(0);
-		pelicula.setActores("1actor, actriz");
-		pelicula.setArgumento("1argumento");
-		pelicula.setDireccion("1dirección");
-		pelicula.setImagen("1imagen");
-		pelicula.setTitulo("1título");
-		pelicula.setTrailer("1trailer");
-
-		pelicula.setCategorias(new ArrayList<Categoria>());
-		Categoria categoria = new Categoria();
-		categoria.setId(1);
-		pelicula.getCategorias().add(categoria);
-
-		categoria = new Categoria();
-		categoria.setId(2);
-		pelicula.getCategorias().add(categoria);
-
-		save = peliculaService.save(pelicula);
-		assertTrue(save != null);
-		assertTrue(save.getId() > 0);
-
-		opt = okRepository.findByIdWithRel(save.getId());
-		found = opt.get();
-		assertNotNull(found);
-		assertTrue(found.getActores().equals("1actor, actriz"));
-		assertTrue(found.getArgumento().equals("1argumento"));
-		assertTrue(found.getDireccion().equals("1dirección"));
-		assertTrue(found.getImagen().equals("1imagen"));
-		assertTrue(found.getTitulo().equals("1título"));
-		assertTrue(found.getTrailer().equals("1trailer"));
-		assertTrue(found.getCategorias().size() == 2);
-
-		for (int id : List.of(1, 2)) {
-			boolean anyMatch = found.getCategorias()
-					.stream()
-					.anyMatch(p -> p.getId() == id);
-
-			assertTrue(anyMatch);
+		Optional<Alumno> findById = alumnoService.findById(a.getDni());
+		assertTrue(findById.isPresent());
+		
+		Alumno found = findById.get();
+		
+		assertTrue(found.getDni().equals(a.getDni()));
+		assertTrue(found.getApellidos().equals(a.getApellidos()));
+		assertTrue(found.getFechanacimiento().equals(a.getFechanacimiento()));
+		assertTrue(found.getFoto().equals(a.getFoto()));
+		assertTrue(found.getNombre().equals(a.getNombre()));
 		}
-	}*/
+	
+	@Test
+	void UpdatePeliculaService() {
+		Alumno a = new Alumno();
+
+		a.setDni("12345");
+		a.setApellidos("1");
+		a.setFechanacimiento(1234567889L);
+		a.setFoto("2");
+		a.setNombre("3");
+		
+		Alumno save = alumnoService.save(a);
+		assertNotNull(save);
+		assertTrue(!save.getDni().isBlank());
+		
+		Alumno a2 = new Alumno();
+		
+		a2.setDni("12345");
+		a2.setApellidos("3");
+		a2.setFechanacimiento(987654321L);
+		a2.setFoto("1");
+		a2.setNombre("2");
+		
+		boolean bool = alumnoService.update(a2);
+		assertTrue(bool);
+		
+		Optional<Alumno> findById = alumnoService.findById(a2.getDni());
+		assertTrue(findById.isPresent());
+		
+		Alumno found = findById.get();
+		
+		assertTrue(found.getDni().equals(a2.getDni()));
+		assertTrue(found.getApellidos().equals(a2.getApellidos()));
+		//ESTE ESTA NEGADO PORQUE LA FECHA NO DEBERIA ACTUALIZARSE; 
+		assertTrue(!found.getFechanacimiento().equals(a2.getFechanacimiento()));
+		assertTrue(found.getFoto().equals(a2.getFoto()));
+		assertTrue(found.getNombre().equals(a2.getNombre()));
+	}
 }

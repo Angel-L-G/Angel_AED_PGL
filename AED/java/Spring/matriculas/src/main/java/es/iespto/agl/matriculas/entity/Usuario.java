@@ -24,9 +24,9 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
-	private int active;
+	private Integer active;
 
 	@Column(length=45)
 	private String email;
@@ -46,19 +46,19 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getActive() {
+	public Integer getActive() {
 		return this.active;
 	}
 
-	public void setActive(int active) {
+	public void setActive(Integer active) {
 		this.active = active;
 	}
 

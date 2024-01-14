@@ -42,7 +42,7 @@ public class Matricula implements Serializable {
 	@JsonIgnore
 	private Alumno alumno;
 
-	@ManyToMany(fetch= FetchType.LAZY)
+	@ManyToMany(fetch= FetchType.EAGER)
 	@JoinTable(
 		name="asignatura_matricula"
 		, joinColumns={

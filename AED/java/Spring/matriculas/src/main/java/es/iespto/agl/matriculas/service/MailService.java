@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailService {
 	@Autowired private JavaMailSender sender;
-	@Value("${mail.from}") private String mailfrom;
+	/*@Value("${mail.from}")*/ private String mailfrom = "angelaedpgl@gmail.com";
 
 	public void send(String destinatario, String asunto, String contenido) {
 		SimpleMailMessage message = new SimpleMailMessage();

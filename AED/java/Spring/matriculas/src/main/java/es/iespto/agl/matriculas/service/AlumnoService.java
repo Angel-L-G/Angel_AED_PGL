@@ -1,6 +1,5 @@
 package es.iespto.agl.matriculas.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import es.iespto.agl.matriculas.entity.Alumno;
 import es.iespto.agl.matriculas.repository.AlumnoJPARepository;
-import es.iespto.agl.matriculas.repository.MatriculaJPARepository;
 import jakarta.transaction.Transactional;
 
 @Service

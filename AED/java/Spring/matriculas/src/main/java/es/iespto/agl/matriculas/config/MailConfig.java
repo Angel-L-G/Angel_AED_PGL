@@ -11,8 +11,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @Configuration
 public class MailConfig {
 	
-	@Value("${mail.from}") private String mailfrom;
-	@Value("${mail.password}") private String mailpassword;
+	/*@Value("${mail.from}")*/ private String mailfrom = "angelaedpgl@gmail.com";
+	/*@Value("${mail.password}")*/ private String mailpassword = "azng fccx gbln rjjl";
 
 	@Bean
 	public JavaMailSender getJavaMailSender() {

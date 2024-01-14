@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.iespto.agl.matriculas.entity.Alumno;
 import es.iespto.agl.matriculas.entity.Usuario;
 import es.iespto.agl.matriculas.repository.IUsuarioRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class IUsuarioService implements IGenericService<Usuario, Integer> {
@@ -39,5 +41,28 @@ public class IUsuarioService implements IGenericService<Usuario, Integer> {
 	
 	public Usuario findByEmail(String email) {
 		return usuariorepository.findByEmail(email);
+	}
+	
+	@Transactional
+	public boolean update(Usuario element) {
+		boolean ok = false;
+		if(element != null) {
+			System.out.println("11111111111111111");
+			if(element.getId() != null) {
+				System.out.println("22222222222222222222222");
+				Usuario findById = usuariorepository.findById(element.getId()).get();
+				
+				findById.setEmail(element.getEmail());
+				findById.setPassword(element.getPassword());
+				
+				if(element.getRol() != null) {
+					findById.setActive(element.getActive());
+					findById.setRol(element.getRol());
+				}
+				
+				ok = true;
+			}
+		}	
+		return ok;
 	}
 }
