@@ -40,7 +40,7 @@ public class UsuarioControllerV2 {
 			
 			u.setId(usuario.getId());
 			u.setEmail(usuario.getEmail());
-			u.setPassword(passwordEncoder.encode(usuario.getPassword()));
+			
 			u.setRol(null);
 
 			boolean update = userService.update(u);
