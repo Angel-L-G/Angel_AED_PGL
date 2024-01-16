@@ -11,13 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import es.iespto.agl.matriculas.entity.Usuario;
-import es.iespto.agl.matriculas.security.UserDetailsLogin;
-import es.iespto.agl.matriculas.service.IUsuarioService;
-
 @Configuration
 public class ApplicationConfig {
-	@Autowired
+	/*@Autowired
 	private IUsuarioService repository;
 
 	@Bean
@@ -48,5 +44,5 @@ public class ApplicationConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 }
