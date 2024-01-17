@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import es.iespto.agl.TresEnRaya.entity.Partida;
 import es.iespto.agl.TresEnRaya.repository.PartidaJPARepository;
 
+@Service
 public class PartidaService implements IGenericService<Partida, Integer>{
 	@Autowired private PartidaJPARepository partidaRepository;
 	
@@ -29,12 +31,11 @@ public class PartidaService implements IGenericService<Partida, Integer>{
 
 	@Override
 	public Partida save(Partida element) {
+		Partida save = null;
 		if(element != null) {
-			if(element.getId() != null) {
-				partidaRepository.save(element);
-			}
+			save = partidaRepository.save(element);
 		}
-		return element;
+		return save;
 	}
 
 	@Override
@@ -62,6 +63,23 @@ public class PartidaService implements IGenericService<Partida, Integer>{
 		return ok;
 	}
 	
-	public boolean
+	public boolean apostar(Partida p) {
+		boolean ok = false;
+		
+		if(p != null) {
+			if(p.getId() != null) {
+				Partida findById = partidaRepository.findById(p.getId()).get();
+				
+				findById.setEscenario(p.getEscenario());
+				findById.setTurno(p.getTurno());
+				
+				partidaRepository.save(findById);
+				
+				ok = true;
+			}
+		}
+		
+		return ok;
+	}
 
 }
