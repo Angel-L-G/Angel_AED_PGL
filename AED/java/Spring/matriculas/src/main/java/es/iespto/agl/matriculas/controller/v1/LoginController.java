@@ -76,7 +76,7 @@ public class LoginController {
 		
 		if(user != null) {
 			if(hash.equals(user.getHash())) {
-				user.setActive(1);
+				user.setActive(1); 
 				userService.save(user);
 				return ResponseEntity.ok(user.getNombre());
 			}else {

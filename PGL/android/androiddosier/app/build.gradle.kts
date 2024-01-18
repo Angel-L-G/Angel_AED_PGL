@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "es.iespto.agl.dosier1"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "es.iespto.agl.dosier1"

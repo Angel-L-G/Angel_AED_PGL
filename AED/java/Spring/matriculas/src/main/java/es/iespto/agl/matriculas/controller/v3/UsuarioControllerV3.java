@@ -45,9 +45,9 @@ public class UsuarioControllerV3 {
 		Usuario u = new Usuario();
 		
 		u.setEmail(usuario.getEmail());
-		u.setPassword(usuario.getPassword());
+		u.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		u.setRol(usuario.getRol());
-		u.setActive(usuario.getActive());
+		u.setActive(2);
 		
 		boolean update = userService.update(u);
 		
