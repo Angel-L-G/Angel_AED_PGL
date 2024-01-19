@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import axios from 'axios';
 import { Usuario } from '../components/types';
+import EncryptedStorage from "react-native-encrypted-storage";
 
 type Props = {
   navigation:any
@@ -44,7 +45,7 @@ const UseSesion = ({navigation}: Props) => {
                 const response = await axios.post(ruta, user);
                 console.log(response.data);
                 //localStorage.setItem('token', response.data);
-                //setToken(response.data);
+                EncryptedStorage.setItem("token", response.data);
             } catch (error){
                 console.log(error);
             }

@@ -23,7 +23,7 @@ import es.iespto.agl.matriculas.service.MailService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class LoginController {
 	Logger log;
 	@Autowired
@@ -73,11 +73,13 @@ public class LoginController {
 	@GetMapping("/registerVerify")
 	public ResponseEntity<?> verify(@RequestParam String email, @RequestParam String hash){
 		Usuario user = userService.findByEmail(email);
-		
+		System.out.println("1");
 		if(user != null) {
 			if(hash.equals(user.getHash())) {
+				System.out.println("2");
 				user.setActive(1); 
-				userService.save(user);
+				Usuario save = userService.save(user);
+				System.out.println("3: " + save);
 				return ResponseEntity.ok(user.getNombre());
 			}else {
 				return (ResponseEntity<?>) ResponseEntity.unprocessableEntity();
