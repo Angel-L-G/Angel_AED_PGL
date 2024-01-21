@@ -2,10 +2,14 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import styles from '../themes/styles'
 import { Alumno } from '../components/types'
+import UseAlumnos from '../hooks/UseAlumnos'
 
-type Props = {}
+type Props = {
+    route: any
+}
 
-const UpdateAlumno = (props: Props) => {
+const UpdateAlumno = ({route}: Props) => {
+    const {updateAlumno} = UseAlumnos();
     const [alumno, setAlumno] = useState<Alumno>({
         dni: '',
         nombre: '',
@@ -22,8 +26,7 @@ const UpdateAlumno = (props: Props) => {
     };
     
     const handleSubmit = () => {
-        // Lógica para manejar la presentación o envío del formulario
-        console.log(alumno);
+        updateAlumno(alumno);
     };
 
     return (

@@ -9,7 +9,7 @@ type Props = {
 }
 
 const CrearAlumno = ({navigation}: Props) => {
-    const {saveAlumno} = UseAlumnos(navigation);
+    const {saveAlumno} = UseAlumnos();
     const [alumno, setAlumno] = useState<Alumno>({
         dni: '',
         nombre: '',

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iespto.agl.matriculas.entity.Usuario;
@@ -51,6 +52,17 @@ public class UsuarioControllerV3 {
 		
 		boolean update = userService.update(u);
 		
+		return ResponseEntity.ok(update);
+	}
+	
+	@PutMapping("/getRol")
+	public ResponseEntity<?> validate(@RequestParam String nombre) {
+		System.out.println("_________________________________________");
+		System.out.println("AAAA: " +nombre);
+		Usuario u = userService.findByName(nombre);
+		u.setActive(2);
+		
+		boolean update = userService.update(u);
 		return ResponseEntity.ok(update);
 	}
 

@@ -11,12 +11,11 @@ const Login = ({navigation}: Props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const {login} = UseSesion(navigation);
+    const {login} = UseSesion();
 
     const handleLogin = () => {
+        login(username, password, navigation);
         
-        navigation.navigate("DrawerNav");
-        //login(username, password);
     };
 
     return (

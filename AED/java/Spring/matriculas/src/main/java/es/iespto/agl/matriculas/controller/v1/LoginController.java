@@ -73,17 +73,24 @@ public class LoginController {
 	@GetMapping("/registerVerify")
 	public ResponseEntity<?> verify(@RequestParam String email, @RequestParam String hash){
 		Usuario user = userService.findByEmail(email);
-		System.out.println("1");
 		if(user != null) {
 			if(hash.equals(user.getHash())) {
-				System.out.println("2");
 				user.setActive(1); 
 				Usuario save = userService.save(user);
-				System.out.println("3: " + save);
 				return ResponseEntity.ok(user.getNombre());
 			}else {
 				return (ResponseEntity<?>) ResponseEntity.unprocessableEntity();
 			}
+		}else {
+			return (ResponseEntity<?>) ResponseEntity.noContent();
+		}
+	}
+	
+	@GetMapping("/{token}")
+	public ResponseEntity<?> getRol(@PathVariable String token){
+		if(token != null) {
+			String rol = service.getRol(token);
+			return ResponseEntity.ok(rol);
 		}else {
 			return (ResponseEntity<?>) ResponseEntity.noContent();
 		}

@@ -73,10 +73,25 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
     },
+    backButton: {
+        backgroundColor: 'green',
+        padding: 10,
+        borderRadius: 5,
+    },
     label: {
         fontSize: 16,
         marginBottom: 5,
-      },
+    },
+    foto: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginBottom: 10,
+    },
+    texto: {
+        fontSize: 16,
+        marginBottom: 8,
+    },
 });
 
 export default styles;

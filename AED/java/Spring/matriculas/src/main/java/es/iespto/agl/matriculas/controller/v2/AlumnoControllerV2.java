@@ -43,7 +43,8 @@ public class AlumnoControllerV2 {
 	}
 
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody AlumnoInputDTO alumno) {
+	public ResponseEntity<?> update(@RequestBody Alumno alumno) {
+		System.out.println(alumno.getApellidos());
 		Alumno a = new Alumno();
 		
 		a.setDni(alumno.getDni());
@@ -51,11 +52,7 @@ public class AlumnoControllerV2 {
 		a.setFoto(alumno.getFoto());
 		a.setNombre(alumno.getNombre());
 			
-		String codedfoto = alumno.getImg64();
-		byte[] photoBytes = Base64.getDecoder().decode(codedfoto);
-		
-		String nombreNuevoFichero = storageService.save(alumno.getFoto(), photoBytes);
-		alumno.setFoto(alumno.getFoto());
+		a.setFoto(alumno.getFoto());
 		
 		boolean updateNative = alumnoService.update(a);
 		return ResponseEntity.ok(updateNative);
