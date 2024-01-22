@@ -21,13 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
         MutableLiveData<PerroDTO> mutablePerros = new MutableLiveData<>();
 
         RESTService restService = RetrofitClient.getInstance().getRestService();
