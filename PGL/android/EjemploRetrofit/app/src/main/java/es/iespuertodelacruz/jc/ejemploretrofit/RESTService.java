@@ -7,5 +7,5 @@ import retrofit2.http.GET;
 
 public interface RESTService {
     @GET("alumnos")
-    Call<AlumnoDTO> doGetAlumnosDTO();
+    Call<List<AlumnoDTO>> doGetAlumnosDTO();
 }

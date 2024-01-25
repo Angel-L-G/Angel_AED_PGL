@@ -8,44 +8,45 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import java.util.List;
+
 import retrofit2.Call;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("---------------------------------------");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MutableLiveData<AlumnoDTO> mutableAlumnos = new MutableLiveData<>();
+        MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
 
         RESTService restService = RetrofitClient.getInstance().getRestService();
-        retrofit2.Call<AlumnoDTO> callPerros = restService.doGetAlumnosDTO();
-        System.out.println("---------------------------------------");
-        callPerros.enqueue(new retrofit2.Callback<AlumnoDTO>() {
+        retrofit2.Call<List<AlumnoDTO>> callAlumnos = restService.doGetAlumnosDTO();
+        callAlumnos.enqueue(new retrofit2.Callback<List<AlumnoDTO>>() {
+
             @Override
-            public void onResponse(Call<AlumnoDTO> call, retrofit2.Response<AlumnoDTO> response) {
+            public void onResponse(Call<List<AlumnoDTO>> call, Response<List<AlumnoDTO>> response) {
                 if(response.isSuccessful()) {
-                    AlumnoDTO alumnos = response.body();
-                    System.out.println("---------------------------------------");
+                    List alumnos = response.body();
+
                     mutableAlumnos.setValue(alumnos);
                 }
             }
 
             @Override
-            public void onFailure(Call<AlumnoDTO> call, Throwable t) {
+            public void onFailure(Call<List<AlumnoDTO>> call, Throwable t) {
                 System.out.println("Error en la llamada");
-                System.out.println(t.getMessage());
+                System.out.println(t.getCause());
             }
-        });
-        System.out.println("---------------------------------------");
-        //ponemos this en owner pero si esto fuera un fragment: getViewLifecycleOwner()
-        mutableAlumnos.observe( this, perro -> {
-            System.out.println("recibido  query retrofit:_____________________________ " +perro);
         });
 
         TextView txtRes = findViewById(R.id.txtRes);
-        txtRes.setText(mutableAlumnos.getValue().toString());
+
+        mutableAlumnos.observe(this, al -> {
+            txtRes.append(al.toString());
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAA ---- " + al);
+        });
     }
 }
