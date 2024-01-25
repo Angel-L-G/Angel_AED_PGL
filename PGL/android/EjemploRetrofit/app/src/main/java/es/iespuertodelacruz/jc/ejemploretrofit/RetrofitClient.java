@@ -12,7 +12,7 @@ public class RetrofitClient {
     private RetrofitClient() {
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://dog.ceo/api/breeds/image/")
+                .baseUrl("http://localhost:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         restService = retrofit.create(RESTService.class);

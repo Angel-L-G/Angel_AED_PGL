@@ -6,6 +6,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface RESTService {
-    @GET("random")
-    Call<PerroDTO> doGetPerrosDTO();
+    @GET("alumnos")
+    Call<AlumnoDTO> doGetAlumnosDTO();
 }
