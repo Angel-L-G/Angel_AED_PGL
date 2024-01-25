@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TablaComponent } from './tabla/tabla.component';
+import { CommonModule } from '@angular/common';
+import { FormExampleComponent } from './form-example/form-example.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, TablaComponent, CommonModule, FormExampleComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
@@ -13,30 +16,5 @@ export class AppComponent {
     title = 'primer-angular-app';
     resTabla = "";
 
-    unMetodo(num: number) {
-        let tabla = "";
-
-        for (let i = 0; i <= 10; i++) {
-            tabla += i+" * "+num+" = "+ (i*num)+"\n";
-        }
-
-        this.resTabla = tabla;
-    }
-}
-
-export class EjemploTemplatesComponent{
-    array = [
-        {
-            id: 1,
-            nombre: "Juanma"
-        },
-        {
-            id: 2,
-            nombre: "Javier"
-        },
-        {
-            id: 3,
-            nombre: "Patricia"
-        },
-    ];
+    array = [1,2,3,4,5,6,7,8,9,10];
 }

@@ -12,25 +12,13 @@
 
     {{title}}
 
-    <input type="number">
-
-    <div (click)="unMetodo(4)">
-        Pulsando aqui mostrara la tabla
-
+    <!--
+    <div *ngFor="let i of array">
+        <app-tabla [tabla]="i"></app-tabla>
     </div>
+    -->
 
-    <table *ngFor="let i of array">
-        <tr>
-            <td>
-                {{i.id}}: {{i.nombre}}
-            </td>
-        </tr>
-    </table>
-    <ul>
-        <li >
-
-        </li>
-    </ul>
+    <app-form-example></app-form-example>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

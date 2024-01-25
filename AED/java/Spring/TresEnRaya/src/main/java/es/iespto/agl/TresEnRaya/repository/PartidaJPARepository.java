@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import es.iespto.agl.TresEnRaya.entity.Partida;
 
 @Repository
-public interface PartidaJPARepository extends JpaRepository<Partida, Integer>{
+public interface PartidaJPARepository extends JpaRepository<Partida, Integer> {
 
 }

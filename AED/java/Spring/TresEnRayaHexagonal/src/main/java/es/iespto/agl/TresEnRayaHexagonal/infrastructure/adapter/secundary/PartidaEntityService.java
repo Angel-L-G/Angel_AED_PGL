@@ -1,16 +1,16 @@
-package es.iespto.agl.TresEnRayaHexagonal.domain.service;
+package es.iespto.agl.TresEnRayaHexagonal.infrastructure.adapter.secundary;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.iespto.agl.TresEnRayaHexagonal.domain.port.primary.ITresEnRayaService;
+import es.iespto.agl.TresEnRayaHexagonal.domain.model.Partida;
+import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.ITresEnRayaRepository;
 
 @Service
-public class PartidaService implements ITresEnRayaService{
-	@Autowired private PartidaJPARepository partidaRepository;
+public class PartidaEntityService implements ITresEnRayaRepository{
+	@Autowired private PartidaEntityRepository partidaRepository;
 	
 	@Override
 	public Iterable<Partida> findAll() {
@@ -18,25 +18,18 @@ public class PartidaService implements ITresEnRayaService{
 	}
 
 	@Override
-	public Optional<Partida> findById(Integer id) {
-		Optional<Partida> findById = null;
+	public Partida findById(Integer id) {
+		Partida findById = null;
 		
 		if(id != null) {
-			findById = partidaRepository.findById(id);
+			findById = partidaRepository.findById(id).get();
 		}
 	
 		return findById;
 	}
-	
 
 	@Override
-	public Partida nuevaPartida(String nombreJugador) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Partida save(Partida partida) {
+	public Partida save(Partida element) {
 		Partida save = null;
 		if(element != null) {
 			save = partidaRepository.save(element);
@@ -87,4 +80,6 @@ public class PartidaService implements ITresEnRayaService{
 		
 		return ok;
 	}
+
 }
+
