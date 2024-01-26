@@ -10,7 +10,6 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 
 
-
 @Configuration
 @OpenAPIDefinition(info = @Info(title = "Api Gente", version = "v1"))
 public class SwaggerConfig{

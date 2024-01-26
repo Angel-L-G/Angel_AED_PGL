@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name="partidas")
-@NamedQuery(name="Partida.findAll", query="SELECT p FROM Partida p")
+@NamedQuery(name="Partida.findAll", query="SELECT p FROM PartidaEntity p")
 public class PartidaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -7,4 +7,6 @@ public interface ITresEnRayaRepository {
 	Partida save(Partida partida);
 	Iterable<Partida> findAll();
 	void deleteById(Integer id);
+	boolean update(Partida p);
+	boolean apostar(Partida p);
 }

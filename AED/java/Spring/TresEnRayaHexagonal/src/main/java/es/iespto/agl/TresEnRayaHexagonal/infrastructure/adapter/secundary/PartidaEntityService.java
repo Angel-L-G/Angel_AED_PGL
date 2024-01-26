@@ -25,7 +25,7 @@ public class PartidaEntityService implements ITresEnRayaRepository{
 			find.add(pem.toDomain(pe));
 		}
 		
-		return null;
+		return find;
 	}
 
 	@Override

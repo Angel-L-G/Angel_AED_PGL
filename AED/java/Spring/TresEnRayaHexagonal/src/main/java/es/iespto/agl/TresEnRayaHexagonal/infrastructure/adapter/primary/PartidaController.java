@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.iespto.agl.TresEnRayaHexagonal.domain.model.Apuesta;
 import es.iespto.agl.TresEnRayaHexagonal.domain.model.Partida;
+import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.ITresEnRayaRepository;
 import es.iespto.agl.TresEnRayaHexagonal.infrastructure.adapter.secundary.PartidaEntityService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/partidas")
 public class PartidaController {
-	@Autowired private PartidaEntityService partidaService;
+	@Autowired private ITresEnRayaRepository partidaService;
 	
 	@GetMapping
 	public ResponseEntity<?> findAll(){
@@ -95,7 +96,7 @@ public class PartidaController {
 					p.setEscenario(sb.toString());
 					
 					p.setTurno(2);
-					p = IAMovement(p);
+					p = p.IAMovement(p);
 					p.setTurno(1);
 					
 					boolean apostar = partidaService.apostar(p);
@@ -104,7 +105,7 @@ public class PartidaController {
 						return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Fallo en la base de datos");
 					}
 					
-					String winned = checkWinner(p);
+					String winned = p.checkWinner(p);
 					
 					p.setWinner(winned);
 					
@@ -125,59 +126,5 @@ public class PartidaController {
 		}else {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Tus datos no llegaron al servidor");
 		}
-	}
-	
-	private Partida IAMovement(Partida p) {
-		if(p.getTurno() == 2) {
-			boolean finish = false;
-			
-			do {
-				Apuesta a = new Apuesta();
-				a.setX((int)(Math.random()*8));
-				
-				int pos = a.getX();
-				String c = ""+p.getEscenario().charAt(pos);
-				
-				if(c.equals("-")) {
-					StringBuilder sb = new StringBuilder(p.getEscenario());
-					
-					sb.setCharAt(pos, p.getSimbJ2().charAt(0));
-					
-					p.setEscenario(sb.toString());
-					
-					finish = true;
-				}
-				
-			}while(finish == false);
-		}
-		return p;
-	}
-	
-	public String checkWinner(Partida p) {
-		String playground = p.getEscenario();
-		String winner = null;
-		String[][] lines = {
-			    {"0", "1", "2"},
-			    {"3", "4", "5"},
-			    {"6", "7", "8"},
-			    {"0", "3", "6"},
-			    {"1", "4", "7"},
-			    {"2", "5", "8"},
-			    {"0", "4", "8"},
-			    {"2", "4", "6"}
-			};
-
-       for (int i = 0; i < lines.length; i++) {
-           String[] linea = lines[i];
-           if (linea[1] != "-" && linea[1] == linea[2] && linea[1] == linea[3]) {           
-               String aux = linea[1];
-               if(aux.equals(p.getSimbJ1())){
-            	   winner = p.getNickJ1();
-               }else {
-            	   winner = p.getNickJ2();
-               }
-           }
-       }
-       return winner;
 	}
 }
