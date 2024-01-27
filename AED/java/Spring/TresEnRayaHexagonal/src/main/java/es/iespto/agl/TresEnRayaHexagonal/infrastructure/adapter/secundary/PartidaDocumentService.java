@@ -2,17 +2,13 @@ package es.iespto.agl.TresEnRayaHexagonal.infrastructure.adapter.secundary;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ssl.pem.PemContent;
-import org.springframework.stereotype.Service;
 
 import es.iespto.agl.TresEnRayaHexagonal.domain.model.Partida;
 import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.ITresEnRayaRepository;
 
-@Service
-public class PartidaEntityService implements ITresEnRayaRepository{
+public class PartidaDocumentService implements ITresEnRayaRepository{
 	@Autowired private PartidaEntityRepository partidaRepository;
 	private PartidaEntityMapper pem = new PartidaEntityMapper();
 	
@@ -92,6 +88,4 @@ public class PartidaEntityService implements ITresEnRayaRepository{
 		
 		return ok;
 	}
-
 }
-

@@ -9,7 +9,7 @@ public class UsuarioDocument {
 	String id;
 	String nombre;
 	String password;
-	String rol;	
+	String rol;
 	public String getId() {
 		return id;
 	}
