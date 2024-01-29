@@ -4,16 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import es.iespto.agl.TresEnRayaHexagonal.domain.model.Usuario;
+import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.IUsuarioRepository;
+import es.iespto.agl.TresEnRayaHexagonal.infrastructure.adapter.secundary.UsuarioDocumentService;
+import es.iespto.agl.TresEnRayaHexagonal.infrastructure.adapter.secundary.UsuarioEntityService;
+
 @Service
 public class AuthService {
-	/*@Autowired
-	private IUsuarioService usuarioservice;
+	@Autowired private IUsuarioRepository usuarioservice;
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private JwtService jwtService;
-	@Autowired
-	private MailService mailService;
+	//@Autowired private MailService mailService;
 	
 	public String register(UserDetailsLogin userdetails) {
 		Usuario userentity = new Usuario();
@@ -37,7 +41,7 @@ public class AuthService {
 		
 		String asunto = "Register Verification For Account";
 		
-		mailService.send(save.getEmail(),asunto , message);
+		//mailService.send(save.getEmail(),asunto , message);
 		
 		return generateToken;
 	}
@@ -58,5 +62,5 @@ public class AuthService {
 			generateToken = jwtService.generateToken(userentity.getNombre(), userentity.getRol());
 		}
 		return generateToken;
-	}*/
+	}
 }

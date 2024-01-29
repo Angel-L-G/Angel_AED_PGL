@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Document
+@Document(collection="partidas")
 public class PartidaDocument {
 	@Id
 	private String id;

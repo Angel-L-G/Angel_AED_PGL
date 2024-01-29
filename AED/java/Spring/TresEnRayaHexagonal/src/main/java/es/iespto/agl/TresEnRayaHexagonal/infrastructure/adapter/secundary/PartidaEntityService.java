@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import es.iespto.agl.TresEnRayaHexagonal.domain.model.Partida;
 import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.ITresEnRayaRepository;
 
-@Service
+//@Service
 public class PartidaEntityService implements ITresEnRayaRepository{
 	@Autowired private PartidaEntityRepository partidaRepository;
 	private PartidaEntityMapper pem = new PartidaEntityMapper();
@@ -91,6 +91,18 @@ public class PartidaEntityService implements ITresEnRayaRepository{
 		}
 		
 		return ok;
+	}
+
+	@Override
+	public Partida findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(String id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

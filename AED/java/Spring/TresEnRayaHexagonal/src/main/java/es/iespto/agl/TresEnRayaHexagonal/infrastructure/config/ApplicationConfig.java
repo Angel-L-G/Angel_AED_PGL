@@ -11,20 +11,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-//@Configuration
+import es.iespto.agl.TresEnRayaHexagonal.domain.model.Usuario;
+import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.IUsuarioRepository;
+import es.iespto.agl.TresEnRayaHexagonal.infrastructure.adapter.secundary.UsuarioEntityService;
+import es.iespto.agl.TresEnRayaHexagonal.infrastructure.security.UserDetailsLogin;
+
+@Configuration
 public class ApplicationConfig {
-	//@Autowired
-	//private IUsuarioService repository;
+	@Autowired
+	private IUsuarioRepository repository;
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return username -> { return null;
-			/*Usuario entity = repository.findByName(username);
+		return username -> {
+			Usuario entity = repository.findByName(username);
 			UserDetailsLogin user = new UserDetailsLogin();
 			user.setUsername(entity.getNombre());
 			user.setPassword(entity.getPassword());
 			user.setRole(entity.getRol());
-			return user;*/
+			return user;
 		};
 	}
 

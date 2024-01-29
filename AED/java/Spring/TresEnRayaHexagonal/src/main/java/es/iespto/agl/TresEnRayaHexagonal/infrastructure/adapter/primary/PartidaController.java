@@ -33,8 +33,16 @@ public class PartidaController {
 		return ResponseEntity.ok(findAll);
 	}
 	
-	@GetMapping("/{id}")
+	//MYSQL
+	/*@GetMapping("/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id){
+		Partida find = partidaService.findById(id);         	
+		return ResponseEntity.ok(find); 
+	}*/
+	
+	//MONGO
+	@GetMapping("/{id}")
+	public ResponseEntity<?> findById(@PathVariable String id){
 		Partida find = partidaService.findById(id);         	
 		return ResponseEntity.ok(find); 
 	}

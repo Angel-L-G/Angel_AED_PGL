@@ -4,13 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Juego from './components/Juego';
 import Main from './components/Main';
+import ReactWebSocket from './Websocket';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <Main />
+  <ReactWebSocket />
 );
 
 // If you want to start measuring performance in your app, pass a function

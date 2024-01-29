@@ -9,4 +9,6 @@ public interface ITresEnRayaRepository {
 	void deleteById(Integer id);
 	boolean update(Partida p);
 	boolean apostar(Partida p);
+	Partida findById(String id);
+	void deleteById(String id);
 }
