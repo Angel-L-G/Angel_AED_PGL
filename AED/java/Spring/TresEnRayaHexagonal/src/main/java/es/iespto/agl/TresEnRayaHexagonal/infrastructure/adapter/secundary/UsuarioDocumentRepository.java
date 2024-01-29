@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 
 //@Repository
 public interface UsuarioDocumentRepository extends MongoRepository<UsuarioDocument, String>{
-	/*
-	@Query("{'nombre': ?0}")
-    public UsuarioDocument findByName(@Param("nombre") String nombre);
+	
+	@Query("{'nombre': ? 0}")
+    public UsuarioDocument findByNombre(@Param("nombre") String nombre);
 
     @Query("{'email': ?0}")
     public UsuarioDocument findByEmail(@Param("email") String email);
-    */
+    
 }

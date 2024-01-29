@@ -1,0 +1,12 @@
+<div [ngStyle]="{'background-color': 'grey'}">
+    <!--<label>Opcion Elegida Por Humano: {{}}</label><br>
+    <label>Opcion Elegida Por Maquina: {{}}</label><br>-->
+    <h2>Elegir: </h2>
+    <select #eleccion>
+        <option *ngFor="let i of opciones" [value]="i" >{{i}}</option>
+    </select><br>
+    <button [disabled]="finished" (click)="jugar(eleccion.value)">Apostar</button><br><br>
+
+    <label>{{resultado}}</label><br><br>
+    <button [disabled]="!finished" (click)="reiniciar()">Reiniciar</button>
+</div>

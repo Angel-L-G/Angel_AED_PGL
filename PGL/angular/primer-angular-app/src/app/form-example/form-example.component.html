@@ -1,7 +1,19 @@
 <div>
-  <form [formGroup]="personaFormData" (submit)="enviarFormulario()">
-    <input type="text" id="nombre" formControlName="nombre" placeholder="nombre" /><br>
-    <input type="text" id="peso" formControlName="peso" placeholder="peso" /><br>
-    <input type="text" id="edad" formControlName="edad" placeholder="edad" /><br>
-  </form>
+    <form [formGroup]="personaFormData" (submit)="enviarFormulario()">
+        <input type="text" id="nombre" formControlName="nombre" placeholder="nombre" /><br>
+        <input type="text" id="peso" formControlName="peso" placeholder="peso" /><br>
+        <input type="text" id="edad" formControlName="edad" placeholder="edad" /><br>
+    </form>
+
+    <!--
+    <input type="text" [(ngModel)]="edad1" placeholder="edad" />
+    <br>
+    <input type="text" [(ngModel)]="nombre1" placeholder="nombre" />
+    <button (click)="procesarForm(inputapellidos.value, inputpeso.value)">calcular</button>
+
+    <br>
+    <input type="text" placeholder="apellidos" #inputapellidos/>
+    <br>
+    <input type="text"  placeholder="peso"  #inputpeso/>
+    -->
 </div>

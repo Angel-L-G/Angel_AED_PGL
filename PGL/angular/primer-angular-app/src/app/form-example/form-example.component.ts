@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-form-example',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, FormsModule],
     templateUrl: './form-example.component.html',
     styleUrl: './form-example.component.css'
 })
@@ -18,16 +18,20 @@ export class FormExampleComponent {
 
     enviarFormulario(){
         this.calcular(this.personaFormData.value.edad);
-        /*let a = this.personaFormData.value.edad;
-        let i = parseInt(a);
-
-        new Gato(
-            ,
-            this.personaFormData.value.nombre,
-            this.personaFormData.value.peso,
-            this.edadConvertida
-        );*/
+        let g = new Gato();
+        g.nombre = this.personaFormData.value.nombre ?? "";
+        g.edad = this.personaFormData.value.edad ?? "";
+        g.peso = Number(this.personaFormData.value.peso) ?? 10;
+        g.edadHumana = this.edadConvertida;
     }
+
+
+    /*edad1: any;
+    nombre1: any;
+
+    procesarForm(ape: any, peso: any){
+        alert("los datos son: " + this.edad1 + " y el nombre: " + this.nombre1 + " apellidos: " + ape + " peso "+peso);
+    }*/
 
     calcular(strEdad: any){
         switch (strEdad) {
@@ -55,7 +59,7 @@ export class FormExampleComponent {
 
 export class Gato{
     constructor(
-        public edad: number=0,
+        public edad: string="0",
         public nombre: string="misifu",
         public peso: number=40,
         public edadHumana: string= "1 año",

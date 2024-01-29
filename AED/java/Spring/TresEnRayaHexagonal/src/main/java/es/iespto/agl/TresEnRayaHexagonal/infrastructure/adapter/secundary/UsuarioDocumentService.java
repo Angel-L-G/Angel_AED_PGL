@@ -47,13 +47,11 @@ public class UsuarioDocumentService implements IUsuarioRepository{
 	}
 	
 	public Usuario findByName(String n) {
-		return null;
-		//return um.toDomain(usuariorepository.findByName(n));
+		return um.toDomain(usuariorepository.findByNombre(n));
 	}
 	
 	public Usuario findByEmail(String e) {
-		return null;
-		//return um.toDomain(usuariorepository.findByEmail(e));
+		return um.toDomain(usuariorepository.findByEmail(e));
 	}
 
 	@Override

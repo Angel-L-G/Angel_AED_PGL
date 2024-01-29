@@ -24,7 +24,9 @@ public class PartidaEntityMapper {
 		
 		p.setEscenario(pe.getEscenario());
 		p.setEstado(pe.getEstado());
-		p.setId(Integer.parseInt(pe.getId()));
+		if(p.getId() != null) {
+			p.setId(Integer.parseInt(pe.getId()));
+		}
 		p.setNickJ1(pe.getNickJ1());
 		p.setNickJ2(pe.getNickJ2());
 		p.setSimbJ1(pe.getSimbJ1());

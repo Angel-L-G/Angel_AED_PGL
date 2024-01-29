@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import es.iespto.agl.TresEnRayaHexagonal.domain.model.Partida;
 import es.iespto.agl.TresEnRayaHexagonal.domain.port.secundary.ITresEnRayaRepository;
 
-@Service
+//@Service
 public class PartidaDocumentService implements ITresEnRayaRepository{
 	@Autowired private PartidaDocumentRepository partidaRepository;
 	private PartidaDocumentMapper pm = new PartidaDocumentMapper();	

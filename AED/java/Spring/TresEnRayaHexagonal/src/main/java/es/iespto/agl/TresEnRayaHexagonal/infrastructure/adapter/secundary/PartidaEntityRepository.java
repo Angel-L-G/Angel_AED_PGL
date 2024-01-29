@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import es.iespto.agl.TresEnRayaHexagonal.domain.model.Partida;
 
-//@Repository
+@Repository
 public interface PartidaEntityRepository extends JpaRepository<PartidaEntity, Integer>{
 
 }
