@@ -20,6 +20,9 @@ public class AlumnoDTO {
     @SerializedName("nombre")
     @Expose
     private String nombre;
+    @SerializedName("estudios")
+    @Expose
+    private String estudios;
     @SerializedName("matriculas")
     @Expose
     private List<Object> matriculas;
@@ -28,10 +31,8 @@ public class AlumnoDTO {
 
     @Override
     public String toString() {
-        return "AlumnoDTO{" +
-                "Dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return "Alumno: " + nombre +
+                "";
     }
 
     public String getDni() {
@@ -72,6 +73,14 @@ public class AlumnoDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getEstudios() {
+        return estudios;
+    }
+
+    public void setEstudios(String estudios) {
+        this.estudios = estudios;
     }
 
     public List<Object> getMatriculas() {

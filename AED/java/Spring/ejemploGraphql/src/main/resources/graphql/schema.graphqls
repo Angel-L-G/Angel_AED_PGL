@@ -1,0 +1,10 @@
+type Curso{
+	id: Int
+	nombre: String
+	categoria: String
+}
+
+type Query {
+	cursos: [Curso]
+	curso(id : Int! ): Curso
+}

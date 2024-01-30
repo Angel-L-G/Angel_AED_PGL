@@ -120,11 +120,7 @@ public class PersonaGraphQL {
 		p.setId(2);
 		p.setName("nino");
 		
-		
-    
 		return p;
-		
-		 
 	}	
 
 	
@@ -142,9 +138,5 @@ public class PersonaGraphQL {
 			return "no es válido";
 		else
 			return token;
-    
-		
-		
-		 
 	}
 }

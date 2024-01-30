@@ -38,6 +38,9 @@ public class Alumno implements Serializable {
 
 	@Column(length=50)
 	private String nombre;
+	
+	@Column(length=50)
+	private String estudios;
 
 	//bi-directional many-to-one association to Matricula
 	@OneToMany(mappedBy="alumno")
@@ -84,6 +87,14 @@ public class Alumno implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getEstudios() {
+		return estudios;
+	}
+
+	public void setEstudios(String estudios) {
+		this.estudios = estudios;
 	}
 
 	public List<Matricula> getMatriculas() {

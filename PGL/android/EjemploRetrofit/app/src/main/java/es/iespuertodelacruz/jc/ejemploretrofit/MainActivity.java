@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
 
         RESTService restService = RetrofitClient.getInstance().getRestService();
@@ -48,5 +49,6 @@ public class MainActivity extends AppCompatActivity {
             txtRes.append(al.toString());
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAA ---- " + al);
         });
+        */
     }
 }

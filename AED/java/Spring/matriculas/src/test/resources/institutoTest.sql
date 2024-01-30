@@ -24,6 +24,7 @@ CREATE TABLE `alumnos`(
     apellidos CHARACTER(50),
     fechanacimiento BIGINT,
     foto CHARACTER(30),
+    estudios varchar(50),
     
     CONSTRAINT pk_alumnos PRIMARY KEY(dni)
 );    

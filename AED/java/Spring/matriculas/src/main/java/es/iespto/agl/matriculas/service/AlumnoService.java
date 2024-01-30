@@ -53,6 +53,7 @@ public class AlumnoService implements IGenericService<Alumno, String>{
 				findById.get().setApellidos(element.getApellidos());
 				findById.get().setNombre(element.getNombre());
 				findById.get().setFoto(element.getFoto());
+				findById.get().setEstudios(element.getEstudios());
 				
 				ok = true;
 			}
