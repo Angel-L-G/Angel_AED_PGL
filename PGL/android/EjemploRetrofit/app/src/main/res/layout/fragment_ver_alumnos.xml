@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VerAlumnos">
+    tools:context=".ui.VerAlumnos">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/txtFiltrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="47dp"
         android:layout_marginBottom="97dp"
         android:ems="10"
+        android:hint="Nombre A Filtrar"
         android:inputType="text"
-        android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="es.iespuertodelacruz.jc.ejemploretrofit.AlumnoFragment"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.ui.AlumnoFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="27dp"
@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        app:layout_constraintTop_toBottomOf="@+id/txtFiltrar"
         tools:layout="@layout/fragment_alumno_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/landing"
-        android:name="es.iespuertodelacruz.jc.ejemploretrofit.Landing"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.ui.Landing"
         android:label="fragment_landing"
         tools:layout="@layout/fragment_landing" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/crearAlumno"
-        android:name="es.iespuertodelacruz.jc.ejemploretrofit.crearAlumno"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.ui.crearAlumno"
         android:label="fragment_crear_alumno"
         tools:layout="@layout/fragment_crear_alumno" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/verAlumnos"
-        android:name="es.iespuertodelacruz.jc.ejemploretrofit.VerAlumnos"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.ui.VerAlumnos"
         android:label="fragment_ver_alumnos"
         tools:layout="@layout/fragment_ver_alumnos" >
         <action
@@ -37,5 +37,8 @@
         <action
             android:id="@+id/action_verAlumnos_to_landing"
             app:destination="@id/landing" />
+        <action
+            android:id="@+id/action_verAlumnos_self"
+            app:destination="@id/verAlumnos" />
     </fragment>
 </navigation>

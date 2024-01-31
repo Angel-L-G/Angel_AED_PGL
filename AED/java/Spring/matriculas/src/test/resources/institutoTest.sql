@@ -57,9 +57,9 @@ CREATE TABLE asignatura_matricula(
 
 );
 
-INSERT INTO `alumnos` (`dni`, `nombre`, `apellidos`, `fechanacimiento`) VALUES ('12345678Z', 'Ana', 'Martín', '968972400000');
-INSERT INTO `alumnos` (`dni`, `nombre`, `apellidos`, `fechanacimiento`) VALUES ('87654321X', 'Marcos', 'Afonso Jiménez', '874278000000');
-INSERT INTO `alumnos` (`dni`, `nombre`, `apellidos`, `fechanacimiento`) VALUES ('12312312K', 'María Luisa', 'Gutiérrez', '821234400000');
+INSERT INTO `alumnos` (`dni`, `nombre`, `apellidos`, `fechanacimiento`, `estudios`) VALUES ('12345678Z', 'Ana', 'Martín', '968972400000', 'Dam');
+INSERT INTO `alumnos` (`dni`, `nombre`, `apellidos`, `fechanacimiento`, `estudios`) VALUES ('87654321X', 'Marcos', 'Afonso Jiménez', '874278000000', 'Daw');
+INSERT INTO `alumnos` (`dni`, `nombre`, `apellidos`, `fechanacimiento`, `estudios`) VALUES ('12312312K', 'María Luisa', 'Gutiérrez', '821234400000', 'Asir');
 
 
 INSERT INTO `asignaturas` (`id`, `nombre`, `curso`) VALUES (1, 'BAE', '1º DAM');
@@ -71,6 +71,4 @@ INSERT INTO `asignaturas` (`id`, `nombre`, `curso`) VALUES (6, 'DPL', '2º DAW')
 INSERT INTO `asignaturas` (`id`, `nombre`, `curso`) VALUES (7, 'PRO', '1º DAM');
 INSERT INTO `asignaturas` (`id`, `nombre`, `curso`) VALUES (8, 'PGL', '2º DAM');
 
-INSERT INTO `matriculas` (`id`, `dni`,`year`) VALUES (1, '12345678Z', 2023);
 
-INSERT INTO `asignatura_matricula` (`idmatricula`,`idasignatura`) VALUES (1, 2);

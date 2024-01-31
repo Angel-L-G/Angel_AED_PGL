@@ -39,6 +39,7 @@ public class AlumnoControllerV1 {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> findById(@PathVariable String id) {
 		Optional<Alumno> find = alumnoService.findById(id);
+		System.out.println(id);
 		return ResponseEntity.ok(find);
 	}
 

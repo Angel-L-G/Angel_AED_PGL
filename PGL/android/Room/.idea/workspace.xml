@@ -9,11 +9,42 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84955cdd-916f-4641-b930-381c8b9edae0" name="Changes" comment="" />
+    <list default="true" id="84955cdd-916f-4641-b930-381c8b9edae0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/data/db/entity/AlumnoEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/data/rest/RESTService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/repository/AlumnoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ui/crearAlumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AED/java/Spring/matriculas/src/main/java/es/iespto/agl/matriculas/controller/v1/AlumnoControllerV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AED/java/Spring/matriculas/src/main/java/es/iespto/agl/matriculas/controller/v1/AlumnoControllerV1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AED/java/Spring/matriculas/src/test/resources/institutoTest.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AED/java/Spring/matriculas/src/test/resources/institutoTest.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/AlumnoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/data/rest/dto/AlumnoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/AlumnoFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ui/AlumnoFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/Landing.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ui/Landing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ui/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/MyAlumnoRecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ui/MyAlumnoRecyclerViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/PerroDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/RESTService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/RetrofitClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/data/rest/RetrofitClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/VerAlumnos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ui/VerAlumnos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/ViewModelAlumnos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/viewmodel/ViewModelAlumnos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/java/es/iespuertodelacruz/jc/ejemploretrofit/crearAlumno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_alumno.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_alumno.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_alumno_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_alumno_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_crear_alumno.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_crear_alumno.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_landing.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_landing.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_ver_alumnos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/layout/fragment_ver_alumnos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EjemploRetrofit/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/dam/.android/avd/Pixel_7_API_28.avd]" />
   <component name="ExternalProjectsData">
@@ -44,8 +75,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/home/dam/Escritorio/repositorios/Angel_AED_PGL/PGL/android/EjemploBasicoRoom",
+    "last_opened_file_path": "/home/dam/Escritorio/repositorios/Angel_AED_PGL/PGL/android/room1",
     "memory.settings.postsync.last.time.stamp": "1705595260334",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
@@ -61,6 +93,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -113,9 +146,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
