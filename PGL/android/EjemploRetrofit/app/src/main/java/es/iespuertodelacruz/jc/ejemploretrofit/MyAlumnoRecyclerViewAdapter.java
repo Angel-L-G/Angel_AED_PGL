@@ -1,19 +1,21 @@
 package es.iespuertodelacruz.jc.ejemploretrofit;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import es.iespuertodelacruz.jc.ejemploretrofit.placeholder.PlaceholderContent.PlaceholderItem;
-import es.iespuertodelacruz.jc.ejemploretrofit.databinding.FragmentAlumnoBinding;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import es.iespuertodelacruz.jc.ejemploretrofit.databinding.FragmentAlumnoBinding;
+import es.iespuertodelacruz.jc.ejemploretrofit.placeholder.PlaceholderContent.PlaceholderItem;
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
@@ -21,30 +23,31 @@ import java.util.List;
  */
 public class MyAlumnoRecyclerViewAdapter extends RecyclerView.Adapter<MyAlumnoRecyclerViewAdapter.ViewHolder> {
 
-    private final MutableLiveData<List<AlumnoDTO>> alumnos;
+    private List<AlumnoDTO> alumnos;
     private Context ctx;
 
-    public MyAlumnoRecyclerViewAdapter(Context ctx, MutableLiveData<List<AlumnoDTO>> items) {
+    public MyAlumnoRecyclerViewAdapter(Context ctx, List<AlumnoDTO> alumnos) {
         this.ctx = ctx;
-        alumnos = items;
+        this.alumnos = alumnos;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         return new ViewHolder(FragmentAlumnoBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-
     }
+
+    ViewModelAlumnos viewModelAlumnos;
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.alumno = alumnos.getValue().get(position);
+        holder.alumno = alumnos.get(position);
         //holder.mTextData.setText(alumnos.getValue().get(position));
     }
 
     @Override
     public int getItemCount() {
-        return alumnos.getValue().size();
+        return alumnos.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -54,13 +57,13 @@ public class MyAlumnoRecyclerViewAdapter extends RecyclerView.Adapter<MyAlumnoRe
 
         public ViewHolder(FragmentAlumnoBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            mTextData = binding.txtData;
+            btnBorrar = binding.btnBorrar;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mTextData.getText() + "'";
         }
     }
 }

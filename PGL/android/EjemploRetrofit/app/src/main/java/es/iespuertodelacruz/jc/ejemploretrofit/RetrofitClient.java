@@ -13,7 +13,7 @@ public class RetrofitClient {
 
         retrofit = new Retrofit.Builder()
                 //.baseUrl("http://172.26.16.0:8080/api/v1/")
-                .baseUrl("http://172.26.16.0:8080/api/v1/")
+                .baseUrl("http://192.168.0.13:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         restService = retrofit.create(RESTService.class);

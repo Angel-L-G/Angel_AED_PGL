@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,10 +47,11 @@ public class AlumnoFragment extends Fragment {
         return fragment;
     }
 
+    ViewModelAlumnos viewModelAlumnos;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -58,9 +60,10 @@ public class AlumnoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        viewModelAlumnos = new ViewModelProvider(requireActivity()).get(ViewModelAlumnos.class);
         View view = inflater.inflate(R.layout.fragment_alumno_list, container, false);
 
-        MutableLiveData<List<AlumnoDTO>> all = findAll();
+        List<AlumnoDTO> value = findAll().getValue();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -71,7 +74,7 @@ public class AlumnoFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyAlumnoRecyclerViewAdapter(context, all));
+            recyclerView.setAdapter(new MyAlumnoRecyclerViewAdapter(context, viewModelAlumnos.alumnos));
         }
         return view;
     }
@@ -97,6 +100,10 @@ public class AlumnoFragment extends Fragment {
                 System.out.println("Error en la llamada");
                 System.out.println(t.getCause());
             }
+        });
+
+        mutableAlumnos.observe(getViewLifecycleOwner(), alumno -> {
+            System.out.println("recibido query retrofit: --------------------------------------- " + alumno);
         });
 
         return mutableAlumnos;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/landing">
+
+    <fragment
+        android:id="@+id/landing"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.Landing"
+        android:label="fragment_landing"
+        tools:layout="@layout/fragment_landing" >
+        <action
+            android:id="@+id/action_landing_to_crearAlumno"
+            app:destination="@id/crearAlumno" />
+        <action
+            android:id="@+id/action_landing_to_verAlumnos"
+            app:destination="@id/verAlumnos" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearAlumno"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.crearAlumno"
+        android:label="fragment_crear_alumno"
+        tools:layout="@layout/fragment_crear_alumno" >
+        <action
+            android:id="@+id/action_crearAlumno_to_landing"
+            app:destination="@id/landing" />
+    </fragment>
+    <fragment
+        android:id="@+id/verAlumnos"
+        android:name="es.iespuertodelacruz.jc.ejemploretrofit.VerAlumnos"
+        android:label="fragment_ver_alumnos"
+        tools:layout="@layout/fragment_ver_alumnos" >
+        <action
+            android:id="@+id/action_verAlumnos_to_crearAlumno"
+            app:destination="@id/crearAlumno" />
+        <action
+            android:id="@+id/action_verAlumnos_to_landing"
+            app:destination="@id/landing" />
+    </fragment>
+</navigation>
