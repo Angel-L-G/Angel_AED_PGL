@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import es.iespuertodelacruz.jc.ejemploretrofit.R;
@@ -67,7 +69,20 @@ public class VerAlumnos extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ver_alumnos, container, false);
         viewModelAlumnos = new ViewModelProvider(this).get(ViewModelAlumnos.class);
 
-        EditText viewById = view.findViewById(R.id.txtFiltrar);
+        EditText txtFiltrar = view.findViewById(R.id.txtFiltrar);
+        Button btnFiltrarAlumnos = view.findViewById(R.id.btnFiltrarAlumnos);
+
+        btnFiltrarAlumnos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModelAlumnos.nombreParaFiltrar = txtFiltrar.getText().toString();
+                /*
+                Codigo Para recargar
+                 */
+                //Navigation.findNavController(view).navigate(R.id.action_verAlumnos_self);
+            }
+        });
+
 
 
         return view;

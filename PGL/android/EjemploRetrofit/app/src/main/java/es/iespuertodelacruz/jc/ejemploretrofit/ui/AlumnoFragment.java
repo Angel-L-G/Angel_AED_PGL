@@ -89,6 +89,12 @@ public class AlumnoFragment extends Fragment {
                 ae.setNombre(a.getNombre());
 
                 viewModelAlumnos.alumnos.add(ae);
+                viewModelAlumnos.alumnosFiltrados.add(ae);
+            }
+
+            if(viewModelAlumnos.nombreParaFiltrar != null && !viewModelAlumnos.nombreParaFiltrar.isEmpty()){
+                System.out.println("1111111");
+                viewModelAlumnos.filter();
             }
 
             if (view instanceof RecyclerView) {
@@ -99,7 +105,7 @@ public class AlumnoFragment extends Fragment {
                 } else {
                     recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
                 }
-                recyclerView.setAdapter(new MyAlumnoRecyclerViewAdapter(context, viewModelAlumnos.alumnos, viewModelAlumnos));
+                recyclerView.setAdapter(new MyAlumnoRecyclerViewAdapter(context, viewModelAlumnos.alumnosFiltrados, viewModelAlumnos));
             }
         });
 
