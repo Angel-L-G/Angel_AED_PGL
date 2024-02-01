@@ -26,29 +26,19 @@ public class AlumnoRepository {
 
     public AlumnoRepository(Application application) {
         database = DatabaseAlumnos.getDatabase(application);
-        alumnoDAO = database.alumnoDAO();
+        alumnoDAO = database.alumnoDao();
         restService = RetrofitClient.getInstance().getRestService();
     }
 
-    public List<AlumnoDTO> findAll() {
+    public LiveData<List<AlumnoEntity>> findAll() {
         LiveData<List<AlumnoEntity>> all = alumnoDAO.getAll();
 
-        List<AlumnoDTO> lista = new ArrayList();
-        for (AlumnoEntity a: all.getValue()) {
-            AlumnoDTO ae = new AlumnoDTO();
-
-            ae.setFechanacimiento(a.getFechanacimiento());
-            ae.setEstudios(a.getEstudios());
-            ae.setDni(a.getDni());
-            ae.setNombre(a.getNombre());
-
-            lista.add(ae);
-        }
-
-        return lista;
+        return all;
     }
 
     public Long insert(AlumnoDTO a) {
+        System.out.println(a);
+
         AlumnoEntity ae = new AlumnoEntity();
 
         ae.setFechanacimiento(a.getFechanacimiento());

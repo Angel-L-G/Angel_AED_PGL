@@ -76,6 +76,7 @@ public class crearAlumno extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModelAlumnos = new ViewModelProvider(this).get(ViewModelAlumnos.class);
         EditText txtDni = view.findViewById(R.id.txtDni);
         EditText txtNombre = view.findViewById(R.id.txtNombre);
         EditText txtEstudios = view.findViewById(R.id.txtEstudios);
@@ -104,7 +105,9 @@ public class crearAlumno extends Fragment {
                 a.setFechanacimiento(fechaNac);
                 a.setNombre(nombre);
 
-                MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
+                viewModelAlumnos.save(a);
+
+                /*MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
                 viewModelAlumnos = new ViewModelProvider(requireActivity()).get(ViewModelAlumnos.class);
 
                 RESTService restService = RetrofitClient.getInstance().getRestService();
@@ -126,7 +129,7 @@ public class crearAlumno extends Fragment {
                         System.out.println("Error en la llamada");
                         System.out.println(t.getCause());
                     }
-                });
+                });*/
             }
         });
     }

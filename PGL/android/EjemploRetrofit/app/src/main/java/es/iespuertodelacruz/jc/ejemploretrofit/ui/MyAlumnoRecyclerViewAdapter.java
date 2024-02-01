@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,9 +36,10 @@ public class MyAlumnoRecyclerViewAdapter extends RecyclerView.Adapter<MyAlumnoRe
     private List<AlumnoDTO> alumnos;
     private Context ctx;
 
-    public MyAlumnoRecyclerViewAdapter(Context ctx, List<AlumnoDTO> alumnos) {
+    public MyAlumnoRecyclerViewAdapter(Context ctx, List<AlumnoDTO> alumnos, ViewModelAlumnos vma) {
         this.ctx = ctx;
         this.alumnos = alumnos;
+        this.viewModelAlumnos = vma;
     }
 
     @Override
@@ -56,12 +59,16 @@ public class MyAlumnoRecyclerViewAdapter extends RecyclerView.Adapter<MyAlumnoRe
         holder.btnBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                NavController navController = Navigation.findNavController((Activity) ctx, R.id.fragmentContainerView4);
+                viewModelAlumnos.delete(alumnos.get(pos));
+                viewModelAlumnos.alumnos.remove(pos);
+
+                /*
                 MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
 
                 RESTService restService = RetrofitClient.getInstance().getRestService();
                 Call<String> deleteCall = restService.doDeleteAlumnoDTO(alumnos.get(pos).getDni());
 
-                NavController navController = Navigation.findNavController((Activity) ctx, R.id.fragmentContainerView4);
                 deleteCall.enqueue(new retrofit2.Callback<String>() {
 
                     @Override
@@ -80,7 +87,7 @@ public class MyAlumnoRecyclerViewAdapter extends RecyclerView.Adapter<MyAlumnoRe
                         System.out.println("Error en la llamada");
                         System.out.println(t.getCause());
                     }
-                });
+                });*/
             }
         });
     }

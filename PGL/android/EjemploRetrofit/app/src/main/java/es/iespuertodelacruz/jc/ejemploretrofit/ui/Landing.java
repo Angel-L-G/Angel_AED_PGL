@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -64,7 +65,7 @@ public class Landing extends Fragment {
     }
 
     ViewModelAlumnos viewModelAlumnos;
-    AlumnoRepository alumnoRepository;
+
 
 
     @Override
@@ -75,21 +76,10 @@ public class Landing extends Fragment {
         Button btnCrear = view.findViewById(R.id.btnCrear);
         Button btnFiltrar = view.findViewById(R.id.btnFiltrar);
 
-        Context context = view.getContext();
-
-        //ESTO POSIBLEMENTE PETE
-        alumnoRepository = new AlumnoRepository((Application) context);
-
-
-        //System.out.println("recibido query DB: --------------------------------------- " + alumno);
-
 
         btnFiltrar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<AlumnoDTO> all = alumnoRepository.findAll();
-                viewModelAlumnos.alumnos = all;
-
                 Navigation.findNavController(view).navigate(R.id.action_landing_to_verAlumnos);
             }
         });

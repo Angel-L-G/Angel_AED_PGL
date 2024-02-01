@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.jc.ejemploretrofit.data.db.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import es.iespuertodelacruz.jc.ejemploretrofit.data.db.entity.AlumnoEntity;
 
+@Dao
 public abstract class AlumnoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public abstract Long insert(AlumnoEntity alumnoEntity);

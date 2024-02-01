@@ -1,0 +1,14 @@
+<p>
+  {{nombre}}
+
+
+  <br/><br/><br/><br/>
+
+  <form [formGroup]="formData" (submit)="enviarFormulario()">
+    <input type="text" [disabled]="mostrar" #etiqueta formControlName="txt"/>
+    <button type="submit">Procesar</button>
+  </form>
+
+  <button (click)="cambiarBool()">Cambiar</button>
+  <button (click)="alertar(etiqueta.value)">Alert</button>
+

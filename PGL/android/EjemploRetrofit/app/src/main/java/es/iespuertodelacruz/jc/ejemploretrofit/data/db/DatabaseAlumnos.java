@@ -13,16 +13,13 @@ import es.iespuertodelacruz.jc.ejemploretrofit.data.db.entity.AlumnoEntity;
 
 @androidx.room.Database(
         entities = {
-            AlumnoEntity.class,
+                AlumnoEntity.class
         }, version = 1
         , exportSchema = false
 )
 @TypeConverters({ /*Converters.class */})
 public abstract class DatabaseAlumnos extends androidx.room.RoomDatabase{
-    //abstract public MonedaDAO monedaDAO();
-    //abstract public HistoricoDAO historicoDAO();
-    abstract public AlumnoDao alumnoDAO();
-
+    abstract public AlumnoDao alumnoDao();
     private static volatile DatabaseAlumnos INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
@@ -41,4 +38,5 @@ public abstract class DatabaseAlumnos extends androidx.room.RoomDatabase{
         }
         return INSTANCE;
     }
+
 }
