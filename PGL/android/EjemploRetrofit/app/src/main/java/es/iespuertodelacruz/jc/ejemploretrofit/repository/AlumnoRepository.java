@@ -37,8 +37,6 @@ public class AlumnoRepository {
     }
 
     public Long insert(AlumnoDTO a) {
-        System.out.println(a);
-
         AlumnoEntity ae = new AlumnoEntity();
 
         ae.setFechanacimiento(a.getFechanacimiento());

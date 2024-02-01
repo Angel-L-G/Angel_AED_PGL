@@ -18,6 +18,7 @@ import es.iespuertodelacruz.jc.ejemploretrofit.repository.AlumnoRepository;
 public class ViewModelAlumnos extends AndroidViewModel {
     public List<AlumnoDTO> alumnos = new ArrayList<>();
     public List<AlumnoDTO> alumnosFiltrados = new ArrayList<>();
+    public String nombreParaFiltrar;
 
     AlumnoRepository alumnoRepository;
 
@@ -30,9 +31,9 @@ public class ViewModelAlumnos extends AndroidViewModel {
         return alumnoRepository.findAll();
     }
 
-    public void filter(String n){
+    public void filter(){
         alumnosFiltrados = alumnos.stream()
-            .filter(objeto -> objeto.getNombre().contains(n))
+            .filter(objeto -> objeto.getNombre().contains(nombreParaFiltrar))
             .collect(Collectors.toList());
     }
 

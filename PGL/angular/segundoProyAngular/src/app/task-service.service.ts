@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
+import { ToDo } from './ToD';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class ToDo {
-    constructor(
-        public id: Number=0,
-        public subject: string="Task",
-        public terminado: boolean=true,
-    ){}
-
-
-}
-
 export class TaskServiceService {
+    constructor() {
 
-    constructor() { }
+        this.toDos.push(new ToDo(1,"First"));
+        this.toDos.push(new ToDo(2,"Second"))
+        this.toDos.push(new ToDo(3,"third"));
+    }
+
+    toDos: Array<ToDo> = [
+
+    ];
+
+    getAll(){
+        return this.toDos;
+    }
+
+    add(td: ToDo){
+        this.toDos.push(td);
+    }
 }

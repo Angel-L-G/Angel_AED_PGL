@@ -3,12 +3,15 @@ package es.iespuertodelacruz.jc.ejemploretrofit.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import es.iespuertodelacruz.jc.ejemploretrofit.R;
+import es.iespuertodelacruz.jc.ejemploretrofit.viewmodel.ViewModelAlumnos;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,11 +59,17 @@ public class VerAlumnos extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    ViewModelAlumnos viewModelAlumnos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ver_alumnos, container, false);
+        View view = inflater.inflate(R.layout.fragment_ver_alumnos, container, false);
+        viewModelAlumnos = new ViewModelProvider(this).get(ViewModelAlumnos.class);
+
+        EditText viewById = view.findViewById(R.id.txtFiltrar);
+
+
+        return view;
     }
 }

@@ -81,7 +81,6 @@ public class AlumnoFragment extends Fragment {
             aux = alumnos;
 
             for (AlumnoEntity a: aux) {
-                System.out.println("111111");
                 AlumnoDTO ae = new AlumnoDTO();
 
                 ae.setFechanacimiento(a.getFechanacimiento());

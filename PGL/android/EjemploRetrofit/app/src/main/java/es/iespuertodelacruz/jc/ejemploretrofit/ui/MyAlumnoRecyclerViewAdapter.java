@@ -63,6 +63,8 @@ public class MyAlumnoRecyclerViewAdapter extends RecyclerView.Adapter<MyAlumnoRe
                 viewModelAlumnos.delete(alumnos.get(pos));
                 viewModelAlumnos.alumnos.remove(pos);
 
+                navController.navigate(R.id.action_verAlumnos_self);
+
                 /*
                 MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
 
