@@ -23,6 +23,9 @@ public abstract class AlumnoDao {
     @Query("SELECT * FROM " + AlumnoEntity.TABLE_NAME)
     public abstract LiveData<List<AlumnoEntity>> getAll();
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public abstract void insertAll(List<AlumnoEntity> alumnoEntity);
+
     /*
     @Query("SELECT * FROM " +MonedaEntity.TABLE_NAME + " WHERE "+MonedaEntity.ID +" = :id")
     public abstract MonedaEntity getMonedaById(Long id);

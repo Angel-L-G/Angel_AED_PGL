@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.jc.ejemploretrofit.ui;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,9 +18,12 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import es.iespuertodelacruz.jc.ejemploretrofit.R;
+import es.iespuertodelacruz.jc.ejemploretrofit.data.db.DatabaseAlumnos;
+import es.iespuertodelacruz.jc.ejemploretrofit.data.db.dao.AlumnoDao;
 import es.iespuertodelacruz.jc.ejemploretrofit.data.rest.RESTService;
 import es.iespuertodelacruz.jc.ejemploretrofit.data.rest.RetrofitClient;
 import es.iespuertodelacruz.jc.ejemploretrofit.data.rest.dto.AlumnoDTO;
+import es.iespuertodelacruz.jc.ejemploretrofit.repository.AlumnoRepository;
 import es.iespuertodelacruz.jc.ejemploretrofit.viewmodel.ViewModelAlumnos;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -61,12 +65,30 @@ public class AlumnoFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewModelAlumnos = new ViewModelProvider(requireActivity()).get(ViewModelAlumnos.class);
         View view = inflater.inflate(R.layout.fragment_alumno_list, container, false);
+        Context context = view.getContext();
 
+        if (view instanceof RecyclerView) {
+
+            RecyclerView recyclerView = (RecyclerView) view;
+            if (mColumnCount <= 1) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            } else {
+                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+            }
+            recyclerView.setAdapter(new MyAlumnoRecyclerViewAdapter(context, viewModelAlumnos.alumnos));
+        }
+
+        return view;
+    }
+
+    /*
         MutableLiveData<List<AlumnoDTO>> mutableAlumnos = new MutableLiveData<>();
 
         RESTService restService = RetrofitClient.getInstance().getRestService();
@@ -90,7 +112,7 @@ public class AlumnoFragment extends Fragment {
             }
         });
 
-        mutableAlumnos.observe(getViewLifecycleOwner(), alumno -> {
+     mutableAlumnos.observe(getViewLifecycleOwner(), alumno -> {
             viewModelAlumnos.alumnos = alumno;
             System.out.println("recibido query retrofit: --------------------------------------- " + alumno);
             if (view instanceof RecyclerView) {
@@ -104,16 +126,5 @@ public class AlumnoFragment extends Fragment {
                 recyclerView.setAdapter(new MyAlumnoRecyclerViewAdapter(context, viewModelAlumnos.alumnos));
             }
         });
-
-        // Set the adapter
-
-        return view;
-    }
-
-    public MutableLiveData<List<AlumnoDTO>> findAll(){
-
-
-        //return mutableAlumnos;
-        return null;
-    }
+    */
 }

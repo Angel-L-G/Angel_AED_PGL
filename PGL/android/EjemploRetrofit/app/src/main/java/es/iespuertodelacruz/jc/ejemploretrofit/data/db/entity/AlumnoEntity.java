@@ -20,9 +20,9 @@ public class AlumnoEntity {
     @ColumnInfo(name = NOMBRE)
     private String nombre;
     @ColumnInfo(name = ESTUDIOS)
-    private int estudios;
+    private String estudios;
     @ColumnInfo(name = FECHANAC)
-    private int fechanacimiento;
+    private Long fechanacimiento;
 
     public AlumnoEntity(){}
 
@@ -42,19 +42,19 @@ public class AlumnoEntity {
         this.nombre = nombre;
     }
 
-    public int getEstudios() {
+    public String getEstudios() {
         return estudios;
     }
 
-    public void setEstudios(int estudios) {
+    public void setEstudios(String estudios) {
         this.estudios = estudios;
     }
 
-    public int getFechanacimiento() {
+    public Long getFechanacimiento() {
         return fechanacimiento;
     }
 
-    public void setFechanacimiento(int fechanacimiento) {
+    public void setFechanacimiento(Long fechanacimiento) {
         this.fechanacimiento = fechanacimiento;
     }
 

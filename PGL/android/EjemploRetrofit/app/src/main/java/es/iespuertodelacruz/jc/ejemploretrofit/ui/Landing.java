@@ -1,9 +1,12 @@
 package es.iespuertodelacruz.jc.ejemploretrofit.ui;
 
+import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -11,7 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.List;
+
 import es.iespuertodelacruz.jc.ejemploretrofit.R;
+import es.iespuertodelacruz.jc.ejemploretrofit.data.db.entity.AlumnoEntity;
+import es.iespuertodelacruz.jc.ejemploretrofit.data.rest.dto.AlumnoDTO;
+import es.iespuertodelacruz.jc.ejemploretrofit.repository.AlumnoRepository;
 import es.iespuertodelacruz.jc.ejemploretrofit.viewmodel.ViewModelAlumnos;
 
 /**
@@ -56,6 +64,8 @@ public class Landing extends Fragment {
     }
 
     ViewModelAlumnos viewModelAlumnos;
+    AlumnoRepository alumnoRepository;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,9 +75,21 @@ public class Landing extends Fragment {
         Button btnCrear = view.findViewById(R.id.btnCrear);
         Button btnFiltrar = view.findViewById(R.id.btnFiltrar);
 
+        Context context = view.getContext();
+
+        //ESTO POSIBLEMENTE PETE
+        alumnoRepository = new AlumnoRepository((Application) context);
+
+
+        //System.out.println("recibido query DB: --------------------------------------- " + alumno);
+
+
         btnFiltrar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<AlumnoDTO> all = alumnoRepository.findAll();
+                viewModelAlumnos.alumnos = all;
+
                 Navigation.findNavController(view).navigate(R.id.action_landing_to_verAlumnos);
             }
         });
