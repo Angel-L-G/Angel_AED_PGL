@@ -19,12 +19,14 @@ export class AddTaskComponent {
         txt: new FormControl('')
     });
 
-    enviarFormulario(){
-        /*t: ToDo = new ToDo({
-            id: 0,
-            subject: this.formData.value.txt,
+    enviarFormulario() {
+        let t: ToDo = {
+            id: this.taskService.getAll().length + 1,
+            subject: this.formData.value.txt ?? "",
             terminado: false
-        });*/
+        };
+
+        this.taskService.add(t);
     }
 
 }

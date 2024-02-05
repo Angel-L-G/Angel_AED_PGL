@@ -8,13 +8,12 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <main>
-
-    <app-una-prueba nombre="Ana"/>
-
-    <app-view-tasks></app-view-tasks>
-
-    <app-add-task></app-add-task>
-
+  <h2>Task List</h2>
+  <router-outlet />
+  <ul>
+    <li><a [routerLink]="['/seeTasks']">Ver Tareas</a></li>
+    <li><a [routerLink]="['/addTasks']">Añadir Tareas</a></li>
+  </ul>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -26,4 +25,4 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />
+
