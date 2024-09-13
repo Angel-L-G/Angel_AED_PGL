@@ -1,0 +1,202 @@
+ <!-- pom.xml la parte de dependencias y el build con opción a jetty -->
+
+ <dependencies>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>javax.servlet.jsp</groupId>
+    <artifactId>javax.servlet.jsp-api</artifactId>
+    <version>2.3.0</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>javax.el</groupId>
+    <artifactId>javax.el-api</artifactId>
+    <version>3.0.0</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+    <dependency>
+        <groupId>taglibs</groupId>
+        <artifactId>standard</artifactId>
+        <version>1.1.2</version>
+    </dependency>  
+    
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.26</version>
+</dependency>    
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.12.2</version>
+</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+
+
+<!--
+ https://mvnrepository.com/artifact/org.hibernate/hibernate-core 
+-->
+<dependency>
+<groupId>org.hibernate</groupId>
+<artifactId>hibernate-core</artifactId>
+<version>5.4.3.Final</version>
+</dependency>
+<!--
+ https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager 
+-->
+<dependency>
+<groupId>org.hibernate</groupId>
+<artifactId>hibernate-entitymanager</artifactId>
+<version>5.4.3.Final</version>
+</dependency>
+<!--
+ https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api 
+-->
+<dependency>
+<groupId>javax.persistence</groupId>
+<artifactId>javax.persistence-api</artifactId>
+<version>2.2</version>
+</dependency>
+
+<dependency>
+  <groupId>org.mindrot</groupId>
+  <artifactId>jbcrypt</artifactId>
+  <version>0.4</version>
+</dependency>
+
+
+  </dependencies>
+
+
+
+
+
+
+
+
+
+
+
+
+<build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+        <!-- Jetty Plugin. Default port is 8080 -->
+        <plugin>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>9.4.28.v20200408</version>
+            <configuration>
+                <httpConnector>
+                    <port>8080</port>
+                </httpConnector>
+                <!-- scans your project for any changes to hot swap it to server -->
+                <scanIntervalSeconds>5</scanIntervalSeconds>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
+
+
+
+  
+
+  <!-- en web.xml comprobar su encabezado es: -->
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://Java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+      version="3.0">
+
+
+
+
+
+
+
+<!-- en los ficheros jsp para que soporte jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+
+
+
+<!-- en persistence.xml hay que vigilar: 
+el nombre de la unidad de persistencia
+y hay que especificar los datos para que se pueda conectar
+a mysql. Esto es, dentro de: persistence-unit aparece la etiqueta properties
+que hay que poner los datos de usuario, password y nombre ddbb además 
+de que se haga debug de mysql y decirle que use hibernate
+Adicionalmente ponemos que las transacciones son un recurso local 
+ 
+Ejemplo de encabezado de persistence.xml( observar que el nombre de la unidad persistencia cambia)
+-->
+
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+<persistence-unit name="unidadPersistencia" transaction-type="RESOURCE_LOCAL">
+<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+
+
+<!-- Aquí vienen las clases declaradas que se usarán como entities 
+Que si se usa el wizard las genera automáticamente el ide
+Ej.   <class> bla bla bla </class>  
+
+
+
+
+Y justo debajo vienen las properties. Copiamos y pegamos cuidando cambiar nombre DDBB usuario y password. Observar que se carga driver mysql y se le dice que haga debug del sql
+-->
+
+
+<properties>
+      <property name="javax.persistence.jdbc.url" 
+value="jdbc:mysql://localhost:3306/seguimientomonedas?serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" 
+value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="1q2w3e4r"/>
+      
+      <property name="hibernate.dialect" 
+value="org.hibernate.dialect.MySQLDialect" />
+      <property name="hibernate.show_sql" value="true" />
+ 
+      
+    </properties>
+
+	</persistence-unit>
+</persistence>
+
+
